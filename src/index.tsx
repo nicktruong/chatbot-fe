@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 
+import 'sentry';
 import 'styles/global.css';
 
 const root = ReactDOM.createRoot(
