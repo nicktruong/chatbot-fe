@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { IoKeyOutline } from 'react-icons/io5';
 
@@ -32,6 +33,13 @@ export const SignUp = () => {
         <Heading fontSize="3xl">{t(messages.getStarted)}</Heading>
 
         <Divider mt={2} mb={3} />
+
+        <InputGroup>
+          <InputLeftElement sx={styles.inputIconContainer}>
+            <FaUser fill={themes.light.colors.gray[400]} size="1.3rem" />
+          </InputLeftElement>
+          <Input type="text" sx={styles.input} placeholder={t(messages.name)} />
+        </InputGroup>
 
         <InputGroup>
           <InputLeftElement sx={styles.inputIconContainer}>
