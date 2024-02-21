@@ -8,6 +8,8 @@ export const HomeContent = () => {
       <TabPanel>
         <BotDetail />
       </TabPanel>
+      <TabPanel>Integrations</TabPanel>
+      <TabPanel>Conversations</TabPanel>
     </TabPanels>
   );
 };

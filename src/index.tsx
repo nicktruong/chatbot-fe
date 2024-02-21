@@ -1,8 +1,10 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { setupStore } from 'store';
 import { themes } from 'styles/theme/themes';
 
 import App from './app';
@@ -10,6 +12,8 @@ import reportWebVitals from './reportWebVitals';
 
 import 'i18n';
 import 'sentry';
+
+const store = setupStore();
 
 const queryClient = new QueryClient();
 
@@ -19,12 +23,14 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      {/* TODO: Support dark theme if time allows */}
-      <ChakraProvider theme={themes.light}>
-        <App />
-      </ChakraProvider>
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        {/* TODO: Support dark theme if time allows */}
+        <ChakraProvider theme={themes.light}>
+          <App />
+        </ChakraProvider>
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>,
 );
 
