@@ -25,7 +25,7 @@ import { usePrepareHook } from './helpers';
 import { ContentTab } from '../ContentTab';
 
 export const Appbar = () => {
-  const { t, onTabsChange } = usePrepareHook();
+  const { user, t, onTabsChange, onLogout } = usePrepareHook();
 
   return (
     <Box sx={styles.container}>
@@ -59,7 +59,7 @@ export const Appbar = () => {
 
         <Menu>
           <MenuButton>
-            <Avatar name="Dan Abrahmov" size="sm" marginRight="0.5rem" />
+            <Avatar name={user.name} size="sm" marginRight="0.5rem" />
           </MenuButton>
 
           <MenuList>
@@ -95,6 +95,7 @@ export const Appbar = () => {
             </Hide>
 
             <MenuItem
+              onClick={onLogout}
               sx={{ ...styles.menuItem, ...styles.logout }}
               icon={<HiOutlineLogout fontSize="0.875rem" />}
             >

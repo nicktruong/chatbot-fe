@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { setupStore } from 'store';
 import { themes } from 'styles/theme/themes';
+import { storageKeys } from 'constants/storageKeys';
 
 import App from './app';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,17 @@ import reportWebVitals from './reportWebVitals';
 import 'i18n';
 import 'sentry';
 
-const store = setupStore();
+import type { RootState } from 'store';
+
+let preloadedState: Partial<RootState> = {};
+const userLocalStorage = localStorage.getItem(storageKeys.USER);
+try {
+  if (userLocalStorage) preloadedState = { user: JSON.parse(userLocalStorage) };
+} catch {
+  console.error('Invalid JSON');
+}
+
+export const store = setupStore(preloadedState);
 
 const queryClient = new QueryClient();
 
