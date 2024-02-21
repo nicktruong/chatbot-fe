@@ -1,5 +1,5 @@
-import { selectTabIndex, setTabIndex } from 'store/home';
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { selectTabIndex, setTabIndex } from '@/store/home';
 
 export const usePrepareHook = () => {
   const dispatch = useAppDispatch();

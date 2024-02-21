@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocation, useNavigate } from 'react-router';
 
-import { routes } from 'app/routes';
-import { setUser } from 'store/user';
-import { storageKeys } from 'constants/storageKeys';
-import { useAppDispatch, useLoginMutation } from 'hooks';
+import { routes } from '@/app/routes';
+import { setUser } from '@/store/user';
+import { storageKeys } from '@/constants';
+import { useAppDispatch, useLoginMutation } from '@/hooks';
 
 import { messages } from './messages';
 import { LoginSchema } from './schema';

@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { axiosClient } from 'apis/axios';
-import { queryKeys } from 'constants/queryKeys';
+import { axiosClient } from '@/apis';
+import { queryKeys } from '@/constants';
 
 import type { AxiosError } from 'axios';
-import type { SignUpSchemaType } from 'app';
-import type { ErrorResponse } from 'interfaces';
+import type { SignUpSchemaType } from '@/app';
+import type { ErrorResponse } from '@/interfaces';
 import type { UseMutationOptions } from '@tanstack/react-query';
 
 export const useSignUpMutation = ({
