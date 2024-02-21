@@ -1,6 +1,6 @@
 import { lazyLoad } from 'utils/loadable';
 
 export const Login = lazyLoad(
-  () => import('./index'),
+  () => import('./Login'),
   module => module.Login,
 );
