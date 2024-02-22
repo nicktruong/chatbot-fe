@@ -4,11 +4,17 @@ import '@fontsource-variable/inter';
 
 const lightTheme = extendTheme({
   colors: {
+    gray: {
+      600: '#525252',
+      700: '#404040',
+    },
     grayBorder: '#e5e5e5',
-    homeBackground: '#fdfdfd',
+    home: {
+      background: '#fdfdfd',
+    },
     tab: {
       color: '#737373',
-      hover: { background: '#fafafa', color: '#404040' },
+      hover: { background: '#fafafa' },
       selected: { color: '#171717', background: '#f5f5f5' },
     },
   },

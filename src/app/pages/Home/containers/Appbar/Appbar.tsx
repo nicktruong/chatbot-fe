@@ -22,10 +22,10 @@ import { styles } from './styles';
 import { messages } from './messages';
 import { usePrepareHook } from './helpers';
 
-import { ContentTab } from '../ContentTab';
+import { ContentTab } from '../../components/ContentTab';
 
 export const Appbar = () => {
-  const { user, t, onTabsChange, onLogout } = usePrepareHook();
+  const { user, t, onTabsChange, onLogout, onToggleSidebar } = usePrepareHook();
 
   return (
     <Box sx={styles.container}>
@@ -34,6 +34,7 @@ export const Appbar = () => {
           as={HiOutlineMenu}
           sx={styles.menuIcon}
           aria-label="Toggle Menu"
+          onClick={onToggleSidebar}
         />
       </Hide>
 

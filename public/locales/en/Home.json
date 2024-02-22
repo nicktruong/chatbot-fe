@@ -3,5 +3,7 @@
   "logout": "Logout",
   "details": "Details",
   "integrations": "Integrations",
-  "conversations": "Conversations"
+  "conversations": "Conversations",
+  "createChatbot": "Create chatbot",
+  "thisWorkspaceDoesntHaveChatbotsYet": "This workspace doesn't have chatbots, yet."
 }

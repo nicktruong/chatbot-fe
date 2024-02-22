@@ -10,9 +10,9 @@ export const styles = {
     border: '1px solid #e5e5e5',
   },
   menuIcon: {
+    fontSize: '2xl',
     color: 'gray.600',
     cursor: 'pointer',
-    fontSize: '1.5rem',
     marginRight: '1rem',
   },
   tabList: {
@@ -26,11 +26,11 @@ export const styles = {
     alignItems: 'center',
   },
   editBtn: {
+    fontSize: 'xs',
     fontWeight: 500,
-    fontSize: '0.75rem',
   },
   menuItem: {
-    fontSize: '0.875rem',
+    fontSize: 'sm',
   },
   logout: {
     color: 'red',
