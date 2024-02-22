@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { axiosClient } from 'utils/axios';
+import { axiosClient } from 'apis/axios';
 import { queryKeys } from 'constants/queryKeys';
 
 import type { LoginSchemaType } from 'app';
