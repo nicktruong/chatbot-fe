@@ -1,7 +1,6 @@
 import {
   Box,
   Menu,
-  Icon,
   Show,
   Hide,
   Avatar,
@@ -11,6 +10,7 @@ import {
   MenuItem,
   MenuList,
   MenuButton,
+  IconButton,
 } from '@chakra-ui/react';
 import { LuBot } from 'react-icons/lu';
 import { PiChats } from 'react-icons/pi';
@@ -30,9 +30,9 @@ export const Appbar = () => {
   return (
     <Box sx={styles.container}>
       <Hide above="md">
-        <Icon
-          as={HiOutlineMenu}
+        <IconButton
           sx={styles.menuIcon}
+          icon={<HiOutlineMenu />}
           aria-label="Toggle Menu"
           onClick={onToggleSidebar}
         />

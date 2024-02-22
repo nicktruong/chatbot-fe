@@ -11,8 +11,8 @@ export const styles = {
       background: 'tab.hover.background',
     },
     _selected: {
+      background: 'gray.100',
       color: 'tab.selected.color',
-      background: 'tab.selected.background',
     },
   },
 } satisfies Record<string, SystemStyleObject>;

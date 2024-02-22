@@ -5,6 +5,7 @@ import '@fontsource-variable/inter';
 const lightTheme = extendTheme({
   colors: {
     gray: {
+      100: '#f5f5f5',
       600: '#525252',
       700: '#404040',
     },
@@ -14,8 +15,8 @@ const lightTheme = extendTheme({
     },
     tab: {
       color: '#737373',
+      selected: { color: '#171717' },
       hover: { background: '#fafafa' },
-      selected: { color: '#171717', background: '#f5f5f5' },
     },
   },
   fonts: {
