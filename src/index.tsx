@@ -21,6 +21,7 @@ const userLocalStorage = localStorage.getItem(storageKeys.USER);
 try {
   if (userLocalStorage) preloadedState = { user: JSON.parse(userLocalStorage) };
 } catch {
+  // TODO: Handle invalid JSON
   console.error('Invalid JSON');
 }
 
