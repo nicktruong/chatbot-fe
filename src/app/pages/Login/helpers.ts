@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocation, useNavigate } from 'react-router';
 
 import { routes } from 'app/routes';
-import { axiosClient } from 'utils/axios';
+import { axiosClient } from 'apis/axios';
 import { queryKeys } from 'constants/queryKeys';
 
 import { messages } from './messages';
