@@ -1,0 +1,9 @@
+{
+  "email": "Email",
+  "signUp": "Sign up",
+  "password": "Password",
+  "loginWithEmail": "Login with Email",
+  "newToGoChatbot": "New to GO Chatbot?",
+  "loginToGoChatbot": "Login to GO Chatbot",
+  "youveCreatedAccountSuccessfullyPleaseLoginToContinue": "You've created account successfully. Please login to continue."
+}

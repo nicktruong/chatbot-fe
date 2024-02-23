@@ -1,5 +1,3 @@
-function App() {
-  return <div></div>;
-}
+export * from './pages';
 
-export default App;
+export { default } from './App';

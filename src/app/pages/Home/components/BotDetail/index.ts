@@ -1,0 +1,1 @@
+export { BotDetail } from './BotDetail';
