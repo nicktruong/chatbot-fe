@@ -6,4 +6,6 @@ export const messages = {
   loginWithEmail: 'loginWithEmail',
   newToGoChatbot: 'newToGoChatbot',
   loginToGoChatbot: 'loginToGoChatbot',
+  youveCreatedAccountSuccessfullyPleaseLoginToContinue:
+    'youveCreatedAccountSuccessfullyPleaseLoginToContinue',
 };
