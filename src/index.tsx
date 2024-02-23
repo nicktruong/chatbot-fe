@@ -4,17 +4,17 @@ import ReactDOM from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { setupStore } from 'store';
-import { themes } from 'styles/theme/themes';
-import { storageKeys } from 'constants/storageKeys';
+import { themes } from '@/styles';
+import { setupStore } from '@/store';
+import { storageKeys } from '@/constants';
 
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 
-import 'i18n';
-import 'sentry';
+import '@/i18n';
+import '@/sentry';
 
-import type { RootState } from 'store';
+import type { RootState } from '@/store';
 
 let preloadedState: Partial<RootState> = {};
 const userLocalStorage = localStorage.getItem(storageKeys.USER);

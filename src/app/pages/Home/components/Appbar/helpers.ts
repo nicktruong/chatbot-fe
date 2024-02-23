@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { selectUser } from 'store/user';
-import { setTabIndex } from 'store/home';
-import { storageKeys } from 'constants/storageKeys';
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { selectUser } from '@/store/user';
+import { storageKeys } from '@/constants';
+import { setTabIndex } from '@/store/home';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 import { messages } from './messages';
 

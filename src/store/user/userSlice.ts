@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { UserRole } from 'enums';
+import { UserRole } from '@/enums';
 
-import type { UserInfo } from 'interfaces';
+import type { UserInfo } from '@/interfaces';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: UserInfo = {

@@ -19,8 +19,8 @@ import { Link } from 'react-router-dom';
 import { MdEmail } from 'react-icons/md';
 import { IoKeyOutline } from 'react-icons/io5';
 
-import { routes } from 'app/routes';
-import { themes } from 'styles/theme/themes';
+import { themes } from '@/styles';
+import { routes } from '@/app/routes';
 
 import { styles } from './styles';
 import { messages } from './messages';
