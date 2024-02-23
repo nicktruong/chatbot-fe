@@ -25,7 +25,7 @@ import { usePrepareHook } from './helpers';
 import { ContentTab } from '../ContentTab';
 
 export const Appbar = () => {
-  const { t } = usePrepareHook();
+  const { user, t, onTabsChange, onLogout } = usePrepareHook();
 
   return (
     <Box sx={styles.container}>
@@ -59,7 +59,7 @@ export const Appbar = () => {
 
         <Menu>
           <MenuButton>
-            <Avatar name="Dan Abrahmov" size="sm" marginRight="0.5rem" />
+            <Avatar name={user.name} size="sm" marginRight="0.5rem" />
           </MenuButton>
 
           <MenuList>
@@ -67,6 +67,7 @@ export const Appbar = () => {
             <Hide breakpoint="(min-width: 540px)">
               <MenuItem
                 sx={styles.menuItem}
+                onClick={onTabsChange(0)}
                 icon={<LuBot fontSize="0.875rem" />}
               >
                 {t(messages.details)}
@@ -74,6 +75,7 @@ export const Appbar = () => {
 
               <MenuItem
                 sx={styles.menuItem}
+                onClick={onTabsChange(1)}
                 icon={
                   <GrIntegration
                     style={{ width: '0.875rem', fontSize: '0.75rem' }}
@@ -85,6 +87,7 @@ export const Appbar = () => {
 
               <MenuItem
                 sx={styles.menuItem}
+                onClick={onTabsChange(2)}
                 icon={<PiChats fontSize="0.875rem" />}
               >
                 {t(messages.conversations)}
@@ -92,6 +95,7 @@ export const Appbar = () => {
             </Hide>
 
             <MenuItem
+              onClick={onLogout}
               sx={{ ...styles.menuItem, ...styles.logout }}
               icon={<HiOutlineLogout fontSize="0.875rem" />}
             >

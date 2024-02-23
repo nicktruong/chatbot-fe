@@ -1,18 +1,15 @@
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { useMutation } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { routes } from 'app/routes';
-import { axiosClient } from 'apis/axios';
-import { queryKeys } from 'constants/queryKeys';
+import { routes } from '@/app/routes';
+import { useSignUpMutation } from '@/hooks';
 
 import { messages } from './messages';
 import { SignUpSchema } from './schema';
 
-import type { AxiosError } from 'axios';
 import type { SignUpSchemaType } from './schema';
 
 export const usePrepareHook = () => {
@@ -23,9 +20,7 @@ export const usePrepareHook = () => {
     isPending,
     error: serverError,
     mutate,
-  } = useMutation<unknown, AxiosError<{ message: string }>, SignUpSchemaType>({
-    mutationKey: [queryKeys.SIGN_UP],
-    mutationFn: registerData => axiosClient.post('/register', registerData),
+  } = useSignUpMutation({
     onSuccess: () => {
       navigate(routes.login, { state: { prevRoute: routes.signUp } });
     },
