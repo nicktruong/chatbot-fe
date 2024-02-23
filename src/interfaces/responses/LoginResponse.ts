@@ -1,4 +1,4 @@
-import type { UserInfo } from '.';
+import type { UserInfo } from '..';
 
 export interface LoginResponse {
   userInfo: UserInfo;
