@@ -5,7 +5,9 @@ import '@fontsource-variable/inter';
 const lightTheme = extendTheme({
   colors: {
     gray: {
+      50: '#fafafa',
       100: '#f5f5f5',
+      300: '#d4d4d4',
       600: '#525252',
       700: '#404040',
     },

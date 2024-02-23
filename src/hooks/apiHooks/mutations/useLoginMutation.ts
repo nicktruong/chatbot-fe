@@ -17,11 +17,7 @@ export const useLoginMutation = ({
   AxiosError<ErrorResponse>,
   LoginSchemaType
 >) =>
-  useMutation<
-    AxiosResponse<LoginResponse>,
-    AxiosError<ErrorResponse>,
-    LoginSchemaType
-  >({
+  useMutation({
     mutationKey: [queryKeys.LOGIN],
     mutationFn: registerData =>
       axiosClient.post('/login', registerData).then(({ data }) => data),

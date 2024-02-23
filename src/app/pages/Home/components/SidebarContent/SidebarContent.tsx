@@ -1,6 +1,10 @@
-import { GoPlus } from 'react-icons/go';
-import { Box, Text } from '@chakra-ui/react';
+import { Link, Navigate } from 'react-router-dom';
+import { Box, IconButton, Spinner, Text } from '@chakra-ui/react';
 
+import { GoPlus } from 'react-icons/go';
+import { RxOpenInNewWindow } from 'react-icons/rx';
+
+import { routes } from '@/app/routes';
 import { NoMessagesIcon } from '@/assets';
 
 import { styles } from './styles';
@@ -8,19 +12,65 @@ import { messages } from './messages';
 import { usePrepareHook } from './helpers';
 
 export const SidebarContent = () => {
-  const { t } = usePrepareHook();
+  const { bots, location, isPending, t, onCreateBot } = usePrepareHook();
+
+  if (
+    bots?.length &&
+    [routes.home, routes.chatbot].includes(location.pathname)
+  ) {
+    return <Navigate to={routes.chatbotDetail.replace(':id', bots[0].id)} />;
+  }
+
+  if (routes.home === location.pathname) {
+    return <Navigate to={routes.chatbot} />;
+  }
 
   return (
     <>
-      <Box sx={styles.container}>
+      <Box as="button" sx={styles.createChatbotBtn} onClick={onCreateBot}>
         <Text fontSize="sm">{t(messages.createChatbot)}</Text>
-        <GoPlus fontSize="1.25rem" />
+        {!isPending ? <GoPlus fontSize="1.25rem" /> : <Spinner size="sm" />}
       </Box>
       <Box marginTop="1rem">
-        <NoMessagesIcon width="100%" />
-        <Text sx={styles.emptyText}>
-          {t(messages.thisWorkspaceDoesntHaveChatbotsYet)}
-        </Text>
+        {!!bots?.length ? (
+          bots.map(bot => {
+            const isActive = location.pathname.includes(bot.id);
+            return (
+              <Box
+                as={Link}
+                key={bot.id}
+                to={routes.chatbotDetail.replace(':id', bot.id)}
+                background={isActive ? 'gray.100' : 'transparent'}
+                sx={{
+                  ...styles.chatbotContainer,
+                  _hover: {
+                    ...styles.chatbotContainer._hover,
+                    backgroundColor: isActive ? 'gray.100' : 'gray.50',
+                  },
+                }}
+              >
+                <Text fontSize="sm" fontWeight={500}>
+                  {bot.name}
+                </Text>
+
+                <IconButton
+                  id="open-studio-btn"
+                  colorScheme="blue"
+                  aria-label="Open Studio"
+                  sx={styles.openStudioBtn}
+                  icon={<RxOpenInNewWindow fontSize="0.875rem" />}
+                />
+              </Box>
+            );
+          })
+        ) : (
+          <>
+            <NoMessagesIcon width="100%" />
+            <Text sx={styles.emptyText}>
+              {t(messages.thisWorkspaceDoesntHaveChatbotsYet)}
+            </Text>
+          </>
+        )}
       </Box>
     </>
   );

@@ -13,7 +13,7 @@ export const useSignUpMutation = ({
   mutationKey,
   ...options
 }: UseMutationOptions<unknown, AxiosError<ErrorResponse>, SignUpSchemaType>) =>
-  useMutation<unknown, AxiosError<ErrorResponse>, SignUpSchemaType>({
+  useMutation({
     mutationKey: [queryKeys.SIGN_UP],
     mutationFn: registerData => axiosClient.post('/register', registerData),
     ...options,
