@@ -8,9 +8,7 @@ import { storageKeys } from '@/constants';
 import { useLoginMutation } from '@/hooks';
 
 import { messages } from './messages';
-import { LoginSchema } from './schema';
-
-import type { LoginSchemaType } from './schema';
+import { LoginSchema, type LoginSchemaType } from './schema';
 
 export const usePrepareHook = () => {
   const navigate = useNavigate();
