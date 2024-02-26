@@ -7,8 +7,8 @@ export const styles = {
     display: 'flex',
     padding: '8px 12px',
     alignItems: 'center',
+    borderColor: 'gray.200',
     borderRadius: '0.25rem',
-    borderColor: 'grayBorder',
     justifyContent: 'space-between',
     boxShadow:
       '0 0 #0000,0 0 #0000,0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1)',

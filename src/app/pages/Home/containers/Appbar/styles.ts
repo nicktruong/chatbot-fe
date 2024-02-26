@@ -2,12 +2,13 @@ import type { SystemStyleObject } from '@chakra-ui/react';
 
 export const styles = {
   container: {
+    border: '1px',
     display: 'flex',
     padding: '0.5rem',
     alignItems: 'center',
+    borderColor: 'gray.200',
     borderRadius: '0.25rem',
     backgroundColor: 'white',
-    border: '1px solid #e5e5e5',
   },
   menuIcon: {
     fontSize: '2xl',
