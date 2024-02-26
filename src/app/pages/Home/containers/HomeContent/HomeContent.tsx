@@ -1,15 +1,17 @@
 import { TabPanel, TabPanels } from '@chakra-ui/react';
 
+import { styles } from './styles';
+
 import { BotDetail } from '../../components/BotDetail';
 
 export const HomeContent = () => {
   return (
-    <TabPanels>
-      <TabPanel>
+    <TabPanels sx={styles.tabPanels}>
+      <TabPanel sx={styles.tabPanel}>
         <BotDetail />
       </TabPanel>
-      <TabPanel>Integrations</TabPanel>
-      <TabPanel>Conversations</TabPanel>
+      <TabPanel sx={styles.tabPanel}>Integrations</TabPanel>
+      <TabPanel sx={styles.tabPanel}>Conversations</TabPanel>
     </TabPanels>
   );
 };

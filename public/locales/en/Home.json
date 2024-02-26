@@ -1,9 +1,16 @@
 {
   "edit": "Edit",
+  "never": "Never",
   "logout": "Logout",
+  "created": "Created",
   "details": "Details",
   "integrations": "Integrations",
+  "lastModified": "Last modified",
+  "internalName": "Internal name",
   "conversations": "Conversations",
   "createChatbot": "Create chatbot",
-  "thisWorkspaceDoesntHaveChatbotsYet": "This workspace doesn't have chatbots, yet."
+  "lastPublished": "Last published",
+  "deleteChatbot": "Delete Chatbot",
+  "thisWorkspaceDoesntHaveChatbotsYet": "This workspace doesn't have chatbots, yet.",
+  "deleteAChatbotIsAnIrreversibleProcess": "Deleting a chatbot is an irreversible process. All the data associated with this chatbot will be erased."
 }

@@ -3,7 +3,7 @@ import type { SystemStyleObject } from '@chakra-ui/react';
 export const styles = {
   container: {
     fontSize: 'sm',
-    color: 'tab.color',
+    color: 'gray.500',
     padding: '0.5rem 1rem',
     borderRadius: '0.25rem',
     _hover: {

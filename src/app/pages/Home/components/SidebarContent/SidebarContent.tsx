@@ -12,16 +12,32 @@ import { messages } from './messages';
 import { usePrepareHook } from './helpers';
 
 export const SidebarContent = () => {
-  const { bots, location, isPending, t, onCreateBot } = usePrepareHook();
+  const {
+    bots,
+    botId,
+    location,
+    isPending,
+    isHomeRoute,
+    isChatbotRoute,
+    isChatbotDetailRoute,
+    t,
+    onCreateBot,
+  } = usePrepareHook();
 
-  if (
-    bots?.length &&
-    [routes.home, routes.chatbot].includes(location.pathname)
-  ) {
+  if (bots?.length && (isHomeRoute || isChatbotRoute)) {
     return <Navigate to={routes.chatbotDetail.replace(':id', bots[0].id)} />;
   }
 
-  if (routes.home === location.pathname) {
+  if (isHomeRoute) {
+    return <Navigate to={routes.chatbot} />;
+  }
+
+  if (
+    // If isDetailPage but have no bots or the botId is invalid
+    // => redirect to route chatbot
+    isChatbotDetailRoute &&
+    (!bots?.length || !bots?.find(bot => bot.id === botId))
+  ) {
     return <Navigate to={routes.chatbot} />;
   }
 
