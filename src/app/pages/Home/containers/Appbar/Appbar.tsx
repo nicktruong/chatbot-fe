@@ -25,8 +25,15 @@ import { usePrepareHook } from './helpers';
 import { ContentTab } from '../../components/ContentTab';
 
 export const Appbar = () => {
-  const { user, hasBot, t, onTabsChange, onLogout, onToggleSidebar } =
-    usePrepareHook();
+  const {
+    user,
+    hasBot,
+    t,
+    onLogout,
+    onTabsChange,
+    onToggleSidebar,
+    onNavigateToStudio,
+  } = usePrepareHook();
 
   return (
     <Box sx={styles.container}>
@@ -53,6 +60,7 @@ export const Appbar = () => {
             size="sm"
             colorScheme="blue"
             sx={styles.editBtn}
+            onClick={onNavigateToStudio}
             rightIcon={<RxOpenInNewWindow />}
           >
             {t(messages.edit)}

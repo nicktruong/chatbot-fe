@@ -12,6 +12,12 @@ const lightTheme = extendTheme({
       500: '#737373',
       600: '#525252',
       700: '#404040',
+      studio: {
+        50: '#f9f9fb',
+        100: '#f0f0f3',
+        200: '#e8e8ec',
+        300: '#e0e1e7',
+      },
     },
     blue: {
       50: '#eff6ff',
