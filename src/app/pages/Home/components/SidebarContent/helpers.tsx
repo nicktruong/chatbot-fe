@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { RxOpenInNewWindow } from 'react-icons/rx';
 import { Box, Text, IconButton } from '@chakra-ui/react';
-import { Link, generatePath, useParams } from 'react-router-dom';
+import { Link, generatePath, useNavigate, useParams } from 'react-router-dom';
 import { useMutationState, useQueryClient } from '@tanstack/react-query';
 
 import { routes } from '@/app/routes';
@@ -14,6 +14,7 @@ import { messages } from './messages';
 
 export const usePrepareHook = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { t } = useTranslation(messages.ns);
 
@@ -40,6 +41,23 @@ export const usePrepareHook = () => {
   const isHomeRoute = useIsRoute(routes.home);
   const isChatbotRoute = useIsRoute(routes.chatbot);
   const isChatbotDetailRoute = useIsRoute(routes.chatbotDetail);
+
+  if (bots?.length && (isHomeRoute || isChatbotRoute)) {
+    navigate(generatePath(routes.chatbotDetail, { id: bots[0].id }));
+  }
+
+  if (isHomeRoute) {
+    navigate(routes.chatbot);
+  }
+
+  if (
+    // If isDetailPage but have no bots or the botId is invalid
+    // => redirect to route chatbot
+    isChatbotDetailRoute &&
+    (!bots?.length || !bots?.find(bot => bot.id === id))
+  ) {
+    navigate(routes.chatbot);
+  }
 
   const renderBots = () => {
     return !!bots?.length ? (
