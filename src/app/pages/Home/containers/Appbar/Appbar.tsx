@@ -1,7 +1,6 @@
 import {
   Box,
   Menu,
-  Icon,
   Show,
   Hide,
   Avatar,
@@ -11,6 +10,7 @@ import {
   MenuItem,
   MenuList,
   MenuButton,
+  IconButton,
 } from '@chakra-ui/react';
 import { LuBot } from 'react-icons/lu';
 import { PiChats } from 'react-icons/pi';
@@ -22,18 +22,19 @@ import { styles } from './styles';
 import { messages } from './messages';
 import { usePrepareHook } from './helpers';
 
-import { ContentTab } from '../ContentTab';
+import { ContentTab } from '../../components/ContentTab';
 
 export const Appbar = () => {
-  const { user, t, onTabsChange, onLogout } = usePrepareHook();
+  const { user, t, onTabsChange, onLogout, onToggleSidebar } = usePrepareHook();
 
   return (
     <Box sx={styles.container}>
       <Hide above="md">
-        <Icon
-          as={HiOutlineMenu}
+        <IconButton
           sx={styles.menuIcon}
+          icon={<HiOutlineMenu />}
           aria-label="Toggle Menu"
+          onClick={onToggleSidebar}
         />
       </Hide>
 
@@ -59,11 +60,10 @@ export const Appbar = () => {
 
         <Menu>
           <MenuButton>
-            <Avatar name={user.name} size="sm" marginRight="0.5rem" />
+            <Avatar name={user?.name} size="sm" marginRight="0.5rem" />
           </MenuButton>
 
           <MenuList>
-            {/* TODO: Setup redux slice to change tab content */}
             <Hide breakpoint="(min-width: 540px)">
               <MenuItem
                 sx={styles.menuItem}

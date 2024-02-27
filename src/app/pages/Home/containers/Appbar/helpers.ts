@@ -1,19 +1,22 @@
 import { useTranslation } from 'react-i18next';
 
-import { selectUser } from '@/store/user';
 import { storageKeys } from '@/constants';
-import { setTabIndex } from '@/store/home';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch, useGetMe } from '@/hooks';
+import { setTabIndex, toggleSidebar } from '@/store/home';
 
 import { messages } from './messages';
 
 export const usePrepareHook = () => {
+  const { data } = useGetMe();
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
   const { t } = useTranslation(messages.ns);
 
   const handleTabsChange = (index: number) => () => {
     dispatch(setTabIndex(index));
+  };
+
+  const handleToggleSidebar = () => {
+    dispatch(toggleSidebar());
   };
 
   const handleLogout = () => {
@@ -24,5 +27,11 @@ export const usePrepareHook = () => {
     window.location.reload();
   };
 
-  return { user, t, onTabsChange: handleTabsChange, onLogout: handleLogout };
+  return {
+    user: data?.data,
+    t,
+    onLogout: handleLogout,
+    onTabsChange: handleTabsChange,
+    onToggleSidebar: handleToggleSidebar,
+  };
 };

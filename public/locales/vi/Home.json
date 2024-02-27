@@ -3,5 +3,7 @@
   "logout": "Đăng xuất",
   "details": "Chi tiết",
   "integrations": "Tích hợp",
-  "conversations": "Lịch sử trò chuyện"
+  "createChatbot": "Tạo chatbot",
+  "conversations": "Lịch sử trò chuyện",
+  "thisWorkspaceDoesntHaveChatbotsYet": "Hiện tại workspace này chưa có chatbots."
 }

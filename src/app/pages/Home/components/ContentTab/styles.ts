@@ -2,17 +2,17 @@ import type { SystemStyleObject } from '@chakra-ui/react';
 
 export const styles = {
   container: {
+    fontSize: 'sm',
     color: 'tab.color',
-    fontSize: '0.875rem',
     padding: '0.5rem 1rem',
     borderRadius: '0.25rem',
     _hover: {
-      color: 'tab.hover.color',
+      color: 'gray.700',
       background: 'tab.hover.background',
     },
     _selected: {
+      background: 'gray.100',
       color: 'tab.selected.color',
-      background: 'tab.selected.background',
     },
   },
 } satisfies Record<string, SystemStyleObject>;
