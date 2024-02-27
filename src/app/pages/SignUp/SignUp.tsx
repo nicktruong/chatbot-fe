@@ -16,9 +16,9 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
+import { FaKey } from 'react-icons/fa6';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
-import { IoKeyOutline } from 'react-icons/io5';
 
 import { themes } from '@/styles';
 import { routes } from '@/app/routes';
@@ -95,10 +95,7 @@ export const SignUp = () => {
           <FormControl isInvalid={!!errors.password}>
             <InputGroup>
               <InputLeftElement sx={styles.inputIconContainer}>
-                <IoKeyOutline
-                  size="1.5rem"
-                  color={themes.light.colors.gray[400]}
-                />
+                <FaKey size="1.25rem" color={themes.light.colors.gray[400]} />
               </InputLeftElement>
               <Input
                 type="password"
@@ -117,7 +114,7 @@ export const SignUp = () => {
             height={12}
             type="submit"
             variant="outline"
-            colorScheme="purple"
+            colorScheme="blue"
             isLoading={isPending}
             loadingText="Submitting"
             leftIcon={<MdEmail size="1.5rem" />}
@@ -127,7 +124,7 @@ export const SignUp = () => {
 
           <Text fontSize="xs" mt={8} textAlign="center">
             {t(messages.alreadyHaveAnAccount)}{' '}
-            <Text as={Link} to={routes.login} color="purple" fontWeight={700}>
+            <Text as={Link} to={routes.login} color="blue" fontWeight={700}>
               {t(messages.login)}
             </Text>
           </Text>
