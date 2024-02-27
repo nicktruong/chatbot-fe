@@ -8,7 +8,9 @@ export const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(config => {
   const accessToken = localStorage.getItem(storageKeys.ACCESS_TOKEN);
-  config.headers.Authorization = `Bearer ${accessToken}`;
+  config.headers.Authorization = accessToken
+    ? `Bearer ${accessToken}`
+    : undefined;
 
   return config;
 });
