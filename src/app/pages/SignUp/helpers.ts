@@ -8,9 +8,7 @@ import { routes } from '@/app/routes';
 import { useSignUpMutation } from '@/hooks';
 
 import { messages } from './messages';
-import { SignUpSchema } from './schema';
-
-import type { SignUpSchemaType } from './schema';
+import { SignUpSchema, type SignUpSchemaType } from './schema';
 
 export const usePrepareHook = () => {
   const navigate = useNavigate();

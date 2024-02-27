@@ -1,4 +1,4 @@
+export * from './Bot';
+export * from './Session';
 export * from './UserInfo';
-export * from './ErrorResponse';
-export * from './LoginResponse';
-export * from './RegisterResponse';
+export * from './responses';

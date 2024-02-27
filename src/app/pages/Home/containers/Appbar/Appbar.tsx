@@ -60,11 +60,10 @@ export const Appbar = () => {
 
         <Menu>
           <MenuButton>
-            <Avatar name={user.name} size="sm" marginRight="0.5rem" />
+            <Avatar name={user?.name} size="sm" marginRight="0.5rem" />
           </MenuButton>
 
           <MenuList>
-            {/* TODO: Setup redux slice to change tab content */}
             <Hide breakpoint="(min-width: 540px)">
               <MenuItem
                 sx={styles.menuItem}
