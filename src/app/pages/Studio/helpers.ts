@@ -3,6 +3,7 @@ import { Connection, addEdge, useEdgesState, useNodesState } from 'reactflow';
 
 import { Explorers } from './constants';
 
+// TODO: Declare interfaces for nodes, edges, and integrate APIs
 const initialNodes: any[] = [];
 const initialEdges: any[] = [];
 
@@ -32,7 +33,10 @@ export const usePrepareHook = () => {
   };
 
   const handleToggleExplorer = (newExplorer?: Explorers) => () => {
-    if (explorer === newExplorer) setOldExplorer(explorer);
+    if (explorer === newExplorer) {
+      setOldExplorer(explorer);
+    }
+
     setExplorer(oldExplorer =>
       oldExplorer === newExplorer ? undefined : newExplorer,
     );

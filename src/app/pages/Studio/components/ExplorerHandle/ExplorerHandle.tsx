@@ -13,7 +13,7 @@ export const ExplorerHandle = forwardRef<
       ref={ref}
       sx={styles.explorerHandle}
       className={`foo handle-${handleAxis}`}
-      backgroundColor={dragging ? '#0090ff' : 'transparent'}
+      backgroundColor={dragging ? 'blue.studio.700' : 'transparent'}
       {...props}
     />
   );

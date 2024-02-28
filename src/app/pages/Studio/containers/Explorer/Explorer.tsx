@@ -3,6 +3,8 @@ import { Box, Text } from '@chakra-ui/react';
 import { MdOutlineStart } from 'react-icons/md';
 import { HiChevronDoubleLeft } from 'react-icons/hi2';
 
+import { colors } from '@/styles';
+
 import { styles } from './styles';
 import { messages } from './messages';
 import { usePrepareHook } from './helpers';
@@ -46,7 +48,11 @@ export const Explorer = ({ open, onOpen, onClose }: ExplorerProps) => {
             <Text sx={styles.explorerHeaderText}>{t(messages.files)}</Text>
             <HiChevronDoubleLeft
               onClick={onClose}
-              style={{ fontSize: '1rem', color: '#a3a3a3', cursor: 'pointer' }}
+              style={{
+                fontSize: '1rem',
+                cursor: 'pointer',
+                color: colors.light.gray[400],
+              }}
             />
           </Box>
 
@@ -58,7 +64,10 @@ export const Explorer = ({ open, onOpen, onClose }: ExplorerProps) => {
           <Box sx={styles.flows}>
             <Box sx={styles.flow} backgroundColor="gray.studio.200">
               <MdOutlineStart
-                style={{ fontSize: '0.875rem', color: '#7f838d' }}
+                style={{
+                  fontSize: '0.875rem',
+                  color: colors.light.gray.studio[600],
+                }}
               />
               {/* TODO: Get from API */}
               <Text fontWeight={600} color="black" sx={styles.flowName}>

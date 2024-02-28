@@ -11,6 +11,6 @@ export const styles = {
     position: 'absolute',
     transition: 'all var(--chakra-transition-duration-normal)',
 
-    _hover: { backgroundColor: '#0090ff' },
+    _hover: { backgroundColor: 'blue.studio.700' },
   },
 } satisfies Record<string, SystemStyleObject>;

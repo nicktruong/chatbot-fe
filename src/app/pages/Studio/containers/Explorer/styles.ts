@@ -1,49 +1,6 @@
 import type { SystemStyleObject } from '@chakra-ui/react';
 
 export const styles = {
-  container: {
-    width: '100vw',
-    height: '100vh',
-    background: 'gray.studio.100',
-  },
-  leftBarContainer: {
-    gap: '2',
-    top: '0',
-    left: '0',
-    bottom: '0',
-    padding: '2',
-    height: '100%',
-    display: 'flex',
-    position: 'fixed',
-  },
-  leftSidebar: {
-    zIndex: 10,
-    width: '12',
-    padding: '1',
-    border: '1px',
-    height: '100%',
-    borderRadius: 'lg',
-    position: 'relative',
-    borderColor: 'gray.studio.200',
-    backgroundColor: 'gray.studio.50',
-  },
-  buttonContainer: {
-    padding: '2',
-    cursor: 'pointer',
-    borderRadius: 'lg',
-  },
-  explorerHandle: {
-    top: '0',
-    right: '0',
-    height: '100%',
-    width: '0.3rem',
-    borderRadius: 'lg',
-    cursor: 'col-resize',
-    position: 'absolute',
-    transition: 'all var(--chakra-transition-duration-normal)',
-
-    _hover: { backgroundColor: '#0090ff' },
-  },
   explorerContent: {
     zIndex: 10,
     border: '1px',

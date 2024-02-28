@@ -5,7 +5,7 @@ import {
   useNavigate,
   generatePath,
 } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { Box, Text, IconButton } from '@chakra-ui/react';
@@ -40,7 +40,10 @@ export const usePrepareHook = () => {
     select: mutation => mutation.state.variables,
   });
 
-  const bots = data?.data.filter(bot => !idsToBeDeleted.includes(bot.id));
+  const bots = useMemo(
+    () => data?.data.filter(bot => !idsToBeDeleted.includes(bot.id)) ?? [],
+    [data, idsToBeDeleted],
+  );
 
   const handleCreateBot = () => {
     mutate();
@@ -51,7 +54,7 @@ export const usePrepareHook = () => {
     const isChatbotRoute = !!matchPath(routes.chatbot, pathname);
     const isChatbotDetailRoute = !!matchPath(routes.chatbotDetail, pathname);
 
-    if (bots?.length && (isHomeRoute || isChatbotRoute)) {
+    if (bots.length > 0 && (isHomeRoute || isChatbotRoute)) {
       navigate(generatePath(routes.chatbotDetail, { id: bots[0].id }));
     }
 
@@ -63,14 +66,14 @@ export const usePrepareHook = () => {
       // If isDetailPage but have no bots or the botId is invalid
       // => redirect to route chatbot
       isChatbotDetailRoute &&
-      (!bots?.length || !bots?.find(bot => bot.id === id))
+      (bots.length === 0 || !bots.find(bot => bot.id === id))
     ) {
       navigate(routes.chatbot);
     }
   }, [id, bots, pathname, navigate]);
 
   const renderBots = () => {
-    return !!bots?.length ? (
+    return bots.length > 0 ? (
       bots.map(bot => {
         const isActive = bot.id === id;
 
