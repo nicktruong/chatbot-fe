@@ -1,13 +1,20 @@
+import {
+  matchPath,
+  useParams,
+  useLocation,
+  useNavigate,
+  generatePath,
+} from 'react-router-dom';
+import { useEffect } from 'react';
+import { FaRegEdit } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { RxOpenInNewWindow } from 'react-icons/rx';
 import { Box, Text, IconButton } from '@chakra-ui/react';
-import { Link, generatePath, useNavigate, useParams } from 'react-router-dom';
 import { useMutationState, useQueryClient } from '@tanstack/react-query';
 
 import { routes } from '@/app/routes';
 import { queryKeys } from '@/constants';
 import { NoMessagesIcon } from '@/assets';
-import { useCreateBotMutation, useGetMyBots, useIsRoute } from '@/hooks';
+import { useCreateBotMutation, useGetMyBots } from '@/hooks';
 
 import { styles } from './styles';
 import { messages } from './messages';
@@ -15,6 +22,7 @@ import { messages } from './messages';
 export const usePrepareHook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const queryClient = useQueryClient();
   const { t } = useTranslation(messages.ns);
 
@@ -38,26 +46,28 @@ export const usePrepareHook = () => {
     mutate();
   };
 
-  const isHomeRoute = useIsRoute(routes.home);
-  const isChatbotRoute = useIsRoute(routes.chatbot);
-  const isChatbotDetailRoute = useIsRoute(routes.chatbotDetail);
+  useEffect(() => {
+    const isHomeRoute = !!matchPath(routes.home, pathname);
+    const isChatbotRoute = !!matchPath(routes.chatbot, pathname);
+    const isChatbotDetailRoute = !!matchPath(routes.chatbotDetail, pathname);
 
-  if (bots?.length && (isHomeRoute || isChatbotRoute)) {
-    navigate(generatePath(routes.chatbotDetail, { id: bots[0].id }));
-  }
+    if (bots?.length && (isHomeRoute || isChatbotRoute)) {
+      navigate(generatePath(routes.chatbotDetail, { id: bots[0].id }));
+    }
 
-  if (isHomeRoute) {
-    navigate(routes.chatbot);
-  }
+    if (isHomeRoute) {
+      navigate(routes.chatbot);
+    }
 
-  if (
-    // If isDetailPage but have no bots or the botId is invalid
-    // => redirect to route chatbot
-    isChatbotDetailRoute &&
-    (!bots?.length || !bots?.find(bot => bot.id === id))
-  ) {
-    navigate(routes.chatbot);
-  }
+    if (
+      // If isDetailPage but have no bots or the botId is invalid
+      // => redirect to route chatbot
+      isChatbotDetailRoute &&
+      (!bots?.length || !bots?.find(bot => bot.id === id))
+    ) {
+      navigate(routes.chatbot);
+    }
+  }, [id, bots, pathname, navigate]);
 
   const renderBots = () => {
     return !!bots?.length ? (
@@ -66,10 +76,12 @@ export const usePrepareHook = () => {
 
         return (
           <Box
-            as={Link}
             key={bot.id}
             background={isActive ? 'gray.100' : 'transparent'}
-            to={generatePath(routes.chatbotDetail, { id: bot.id })}
+            // to={generatePath(routes.chatbotDetail, { id: bot.id })}
+            onClick={() => {
+              navigate(generatePath(routes.chatbotDetail, { id: bot.id }));
+            }}
             sx={{
               ...styles.chatbotContainer,
               _hover: {
@@ -83,11 +95,15 @@ export const usePrepareHook = () => {
             </Text>
 
             <IconButton
-              id="open-studio-btn"
               colorScheme="blue"
+              id="open-studio-btn"
               aria-label="Open Studio"
               sx={styles.openStudioBtn}
-              icon={<RxOpenInNewWindow fontSize="0.875rem" />}
+              onClick={event => {
+                event.stopPropagation();
+                navigate(routes.studio);
+              }}
+              icon={<FaRegEdit fontSize="0.75rem" />}
             />
           </Box>
         );
@@ -103,12 +119,7 @@ export const usePrepareHook = () => {
   };
 
   return {
-    bots,
     isPending,
-    botId: id,
-    isHomeRoute,
-    isChatbotRoute,
-    isChatbotDetailRoute,
     t,
     renderBots,
     onCreateBot: handleCreateBot,

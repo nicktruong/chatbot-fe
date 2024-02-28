@@ -14,8 +14,8 @@ import {
 } from '@chakra-ui/react';
 import { LuBot } from 'react-icons/lu';
 import { PiChats } from 'react-icons/pi';
+import { FaRegEdit } from 'react-icons/fa';
 import { GrIntegration } from 'react-icons/gr';
-import { RxOpenInNewWindow } from 'react-icons/rx';
 import { HiOutlineMenu, HiOutlineLogout } from 'react-icons/hi';
 
 import { styles } from './styles';
@@ -61,7 +61,7 @@ export const Appbar = () => {
             colorScheme="blue"
             sx={styles.editBtn}
             onClick={onNavigateToStudio}
-            rightIcon={<RxOpenInNewWindow />}
+            rightIcon={<FaRegEdit style={{ marginBottom: '0.125rem' }} />}
           >
             {t(messages.edit)}
           </Button>

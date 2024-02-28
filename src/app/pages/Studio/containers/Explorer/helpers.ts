@@ -19,7 +19,7 @@ export const usePrepareHook = ({
   useEffect(() => {
     if (open && width === 0) setWidth(MIN_EXPLORER_WIDTH);
     else if (!open && width !== 0) setWidth(0);
-  }, [open]);
+  }, [open, width]);
 
   const handleResize = (event: SyntheticEvent<Element, Event>) => {
     const e = event as unknown as MouseEvent;
