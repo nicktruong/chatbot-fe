@@ -17,6 +17,7 @@ const lightTheme = extendTheme({
         100: '#f0f0f3',
         200: '#e8e8ec',
         300: '#e0e1e7',
+        600: '#7f838d',
       },
     },
     blue: {

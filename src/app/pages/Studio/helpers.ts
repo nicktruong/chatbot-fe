@@ -39,9 +39,9 @@ export const usePrepareHook = () => {
   };
 
   return {
-    explorer: explorer,
     edges,
     nodes,
+    explorer,
     onEdgesChange,
     onNodesChange,
     onConnect: handleConnect,

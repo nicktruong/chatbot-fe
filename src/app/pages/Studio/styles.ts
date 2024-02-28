@@ -24,7 +24,7 @@ export const styles = {
     height: '100%',
     borderRadius: 'lg',
     position: 'relative',
-    borderColor: '#e8e8ec',
+    borderColor: 'gray.studio.200',
     backgroundColor: 'gray.studio.50',
   },
   buttonContainer: {

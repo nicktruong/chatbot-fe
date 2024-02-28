@@ -14,11 +14,11 @@ export const Studio = () => {
     nodes,
     explorer,
     onConnect,
+    onEdgesChange,
+    onNodesChange,
     onOpenExplorer,
     onCloseExplorer,
     onToggleExplorer,
-    onEdgesChange,
-    onNodesChange,
   } = usePrepareHook();
 
   return (
