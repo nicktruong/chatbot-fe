@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { routes } from '@/app/routes';
 import { storageKeys } from '@/constants';
 import { setTabIndex, toggleSidebar } from '@/store/home';
 import { useAppDispatch, useGetMe, useGetMyBots } from '@/hooks';
@@ -8,6 +10,7 @@ import { messages } from './messages';
 
 export const usePrepareHook = () => {
   const { data } = useGetMe();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation(messages.ns);
   const { data: botsData } = useGetMyBots();
@@ -29,6 +32,10 @@ export const usePrepareHook = () => {
     window.location.reload();
   };
 
+  const handleNavigateToStudio = () => {
+    navigate(routes.studio);
+  };
+
   return {
     hasBot,
     user: data?.data,
@@ -36,5 +43,6 @@ export const usePrepareHook = () => {
     onLogout: handleLogout,
     onTabsChange: handleTabsChange,
     onToggleSidebar: handleToggleSidebar,
+    onNavigateToStudio: handleNavigateToStudio,
   };
 };

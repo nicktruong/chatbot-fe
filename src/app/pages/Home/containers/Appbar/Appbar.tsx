@@ -14,8 +14,8 @@ import {
 } from '@chakra-ui/react';
 import { LuBot } from 'react-icons/lu';
 import { PiChats } from 'react-icons/pi';
+import { FaRegEdit } from 'react-icons/fa';
 import { GrIntegration } from 'react-icons/gr';
-import { RxOpenInNewWindow } from 'react-icons/rx';
 import { HiOutlineMenu, HiOutlineLogout } from 'react-icons/hi';
 
 import { styles } from './styles';
@@ -25,8 +25,15 @@ import { usePrepareHook } from './helpers';
 import { ContentTab } from '../../components/ContentTab';
 
 export const Appbar = () => {
-  const { user, hasBot, t, onTabsChange, onLogout, onToggleSidebar } =
-    usePrepareHook();
+  const {
+    user,
+    hasBot,
+    t,
+    onLogout,
+    onTabsChange,
+    onToggleSidebar,
+    onNavigateToStudio,
+  } = usePrepareHook();
 
   return (
     <Box sx={styles.container}>
@@ -53,7 +60,8 @@ export const Appbar = () => {
             size="sm"
             colorScheme="blue"
             sx={styles.editBtn}
-            rightIcon={<RxOpenInNewWindow />}
+            onClick={onNavigateToStudio}
+            rightIcon={<FaRegEdit style={{ marginBottom: '0.125rem' }} />}
           >
             {t(messages.edit)}
           </Button>
