@@ -1,7 +1,7 @@
-export interface Bot {
+import type { Base } from './Base';
+
+export interface Bot extends Base {
   id: string;
   name: string;
-  createdAt: string;
-  updatedAt: string;
   publishDate: string;
 }

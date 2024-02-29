@@ -1,5 +1,5 @@
-export interface Session {
+import type { Base } from './Base';
+
+export interface Session extends Base {
   id: string;
-  createdAt: string;
-  updatedAt: string;
 }

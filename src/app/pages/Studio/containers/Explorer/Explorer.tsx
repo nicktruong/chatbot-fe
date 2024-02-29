@@ -1,6 +1,5 @@
 import { Resizable } from 'react-resizable';
 import { Box, Text } from '@chakra-ui/react';
-import { MdOutlineStart } from 'react-icons/md';
 import { HiChevronDoubleLeft } from 'react-icons/hi2';
 
 import { colors } from '@/styles';
@@ -21,6 +20,7 @@ export const Explorer = ({ open, onOpen, onClose }: ExplorerProps) => {
     resizableContentRef,
     t,
     onResize,
+    renderFlows,
     onResizeStop,
     onResizeStart,
   } = usePrepareHook({ open, onOpen, onClose });
@@ -61,20 +61,7 @@ export const Explorer = ({ open, onOpen, onClose }: ExplorerProps) => {
             <Text sx={styles.projectName}>Project name</Text>
           </Box>
 
-          <Box sx={styles.flows}>
-            <Box sx={styles.flow} backgroundColor="gray.studio.200">
-              <MdOutlineStart
-                style={{
-                  fontSize: '0.875rem',
-                  color: colors.light.gray.studio[600],
-                }}
-              />
-              {/* TODO: Get from API */}
-              <Text fontWeight={600} color="black" sx={styles.flowName}>
-                Main
-              </Text>
-            </Box>
-          </Box>
+          <Box sx={styles.flows}>{renderFlows()}</Box>
         </Box>
       </Box>
     </Resizable>

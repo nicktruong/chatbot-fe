@@ -1,14 +1,12 @@
 import type { UserRole } from '@/enums';
 
-import type { Session } from '.';
+import type { Base, Session } from '.';
 
-export interface UserInfo {
+export interface UserInfo extends Base {
   id: string;
   name: string;
   email: string;
   role: UserRole;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface UserDetail extends UserInfo {
