@@ -25,7 +25,7 @@ export const styles = {
     border: '1px',
     height: '100%',
     padding: '1rem',
+    borderColor: 'gray.200',
     borderRadius: '0.25rem',
-    borderColor: 'grayBorder',
   },
 } satisfies Record<string, SystemStyleObject>;

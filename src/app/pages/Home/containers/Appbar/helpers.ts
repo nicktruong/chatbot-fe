@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { storageKeys } from '@/constants';
-import { useAppDispatch, useGetMe } from '@/hooks';
 import { setTabIndex, toggleSidebar } from '@/store/home';
+import { useAppDispatch, useGetMe, useGetMyBots } from '@/hooks';
 
 import { messages } from './messages';
 
@@ -10,6 +10,8 @@ export const usePrepareHook = () => {
   const { data } = useGetMe();
   const dispatch = useAppDispatch();
   const { t } = useTranslation(messages.ns);
+  const { data: botsData } = useGetMyBots();
+  const hasBot = !!botsData?.data.length;
 
   const handleTabsChange = (index: number) => () => {
     dispatch(setTabIndex(index));
@@ -28,6 +30,7 @@ export const usePrepareHook = () => {
   };
 
   return {
+    hasBot,
     user: data?.data,
     t,
     onLogout: handleLogout,

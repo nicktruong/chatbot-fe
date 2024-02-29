@@ -7,16 +7,16 @@ const lightTheme = extendTheme({
     gray: {
       50: '#fafafa',
       100: '#f5f5f5',
+      200: '#e5e5e5',
       300: '#d4d4d4',
+      500: '#737373',
       600: '#525252',
       700: '#404040',
     },
-    grayBorder: '#e5e5e5',
     home: {
       background: '#fdfdfd',
     },
     tab: {
-      color: '#737373',
       selected: { color: '#171717' },
       hover: { background: '#fafafa' },
     },

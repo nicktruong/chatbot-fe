@@ -2,8 +2,15 @@
   "edit": "Chỉnh sửa",
   "logout": "Đăng xuất",
   "details": "Chi tiết",
+  "created": "Tạo ngày",
+  "never": "Không bao giờ",
   "integrations": "Tích hợp",
+  "internalName": "Tên nội bộ",
   "createChatbot": "Tạo chatbot",
+  "deleteChatbot": "Xoá Chatbot",
   "conversations": "Lịch sử trò chuyện",
-  "thisWorkspaceDoesntHaveChatbotsYet": "Hiện tại workspace này chưa có chatbots."
+  "lastPublished": "Ngày xuất bản gần nhất",
+  "lastModified": "Ngày cuối cùng chỉnh sửa",
+  "thisWorkspaceDoesntHaveChatbotsYet": "Hiện tại workspace này chưa có chatbots.",
+  "deleteAChatbotIsAnIrreversibleProcess": "Xoá chatbot là một quá trình không thể đảo ngược. Tất cả dữ liệu liên quan đến chatbot này sẽ bị xoá."
 }
