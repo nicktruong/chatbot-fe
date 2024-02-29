@@ -7,47 +7,42 @@ import { colors } from '@/styles';
 import { styles } from './styles';
 import { messages } from './messages';
 import { usePrepareHook } from './helpers';
-import type { ExplorerProps } from './interfaces';
 
-import { MIN_EXPLORER_WIDTH } from '../../constants';
-import { ExplorerHandle } from '../../components/ExplorerHandle';
+import { Flows, ExplorerHandle } from '../../components';
 
 // TODO: Refine UI
-export const Explorer = ({ open, onOpen, onClose }: ExplorerProps) => {
+export const Explorer = () => {
   const {
+    open,
     width,
     dragging,
     resizableContentRef,
     t,
     onResize,
-    renderFlows,
     onResizeStop,
     onResizeStart,
-  } = usePrepareHook({ open, onOpen, onClose });
+    onCloseExplorer,
+  } = usePrepareHook();
 
   return (
     <Resizable
       axis="x"
       onResize={onResize}
+      width={open ? width : 0}
       onResizeStop={onResizeStop}
       onResizeStart={onResizeStart}
-      width={open || dragging ? width : 0}
       handle={<ExplorerHandle dragging={dragging} />}
     >
       <Box
+        width={open ? width : 0}
         ref={resizableContentRef}
         sx={styles.explorerContent}
-        width={open || dragging ? width : 0}
       >
-        <Box
-          visibility={
-            width < MIN_EXPLORER_WIDTH / 2 || !open ? 'hidden' : 'visible'
-          }
-        >
+        <Box visibility={open ? 'visible' : 'hidden'}>
           <Box sx={styles.explorerHeader}>
             <Text sx={styles.explorerHeaderText}>{t(messages.files)}</Text>
             <HiChevronDoubleLeft
-              onClick={onClose}
+              onClick={onCloseExplorer}
               style={{
                 fontSize: '1rem',
                 cursor: 'pointer',
@@ -61,7 +56,9 @@ export const Explorer = ({ open, onOpen, onClose }: ExplorerProps) => {
             <Text sx={styles.projectName}>Project name</Text>
           </Box>
 
-          <Box sx={styles.flows}>{renderFlows()}</Box>
+          <Box sx={styles.flows}>
+            <Flows />
+          </Box>
         </Box>
       </Box>
     </Resizable>
