@@ -1,5 +1,6 @@
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { SyntheticEvent, useRef } from 'react';
+import { SyntheticEvent, useMemo, useRef } from 'react';
 
 import {
   setWidth,
@@ -9,7 +10,7 @@ import {
   selectCurrentExplorer,
   selectExplorerDragging,
 } from '@/store/studio';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector, useGetMyBots } from '@/hooks';
 
 import { messages } from './messages';
 
@@ -20,8 +21,15 @@ import {
 } from '../../constants';
 
 export const usePrepareHook = () => {
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const { t } = useTranslation(messages.ns);
+
+  const { data } = useGetMyBots();
+  const botDetail = useMemo(
+    () => data?.data.find(bot => bot.id === id),
+    [id, data],
+  );
 
   const width = useAppSelector(selectExplorerWidth);
   const dragging = useAppSelector(selectExplorerDragging);
@@ -63,6 +71,7 @@ export const usePrepareHook = () => {
     open,
     width,
     dragging,
+    botDetail,
     resizableContentRef,
     t,
     onResize: handleResize,

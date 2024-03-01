@@ -1,6 +1,18 @@
-import ReactFlow, { Background, BackgroundVariant } from 'reactflow';
+import ReactFlow, {
+  Background,
+  BackgroundVariant,
+  ConnectionLineType,
+} from 'reactflow';
 
 import { usePrepareHook } from './helpers';
+
+import { StartNode, StandardNode, EndNode } from '../../components';
+
+const nodeTypes = {
+  endNode: EndNode,
+  startNode: StartNode,
+  standardNode: StandardNode,
+};
 
 export const Canvas = () => {
   const { edges, nodes, onConnect, onEdgesChange, onNodesChange } =
@@ -8,12 +20,13 @@ export const Canvas = () => {
 
   return (
     <ReactFlow
-      fitView
       nodes={nodes}
       edges={edges}
+      nodeTypes={nodeTypes}
       onConnect={onConnect}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
+      connectionLineType={ConnectionLineType.SmoothStep}
     >
       <Background
         gap={12}

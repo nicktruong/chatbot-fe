@@ -14,6 +14,7 @@ export const styles = {
 
     _hover: {
       backgroundColor: 'gray.studio.200',
+      boxShadow: 'inset 0 0 0 1px #0090ff',
     },
   },
   flowName: {

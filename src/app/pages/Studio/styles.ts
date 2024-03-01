@@ -10,6 +10,7 @@ export const styles = {
     gap: '2',
     top: '0',
     left: '0',
+    zIndex: 1,
     bottom: '0',
     padding: '2',
     height: '100%',

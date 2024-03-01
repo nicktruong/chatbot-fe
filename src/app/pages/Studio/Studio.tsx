@@ -9,11 +9,11 @@ import 'react-resizable/css/styles.css';
 export const Studio = () => {
   return (
     <Box sx={styles.container}>
-      <Canvas />
       <Box sx={styles.leftBarContainer}>
         <LeftSidebar />
         <Explorer />
       </Box>
+      <Canvas />
     </Box>
   );
 };
