@@ -16,6 +16,7 @@ export const Explorer = () => {
     open,
     width,
     dragging,
+    botDetail,
     resizableContentRef,
     t,
     onResize,
@@ -53,7 +54,7 @@ export const Explorer = () => {
 
           <Box sx={styles.infoAndAction}>
             {/* TODO: Get from API */}
-            <Text sx={styles.projectName}>Project name</Text>
+            <Text sx={styles.projectName}>{botDetail?.name}</Text>
           </Box>
 
           <Box sx={styles.flows}>
