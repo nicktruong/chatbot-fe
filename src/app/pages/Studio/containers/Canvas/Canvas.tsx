@@ -4,15 +4,8 @@ import ReactFlow, {
   ConnectionLineType,
 } from 'reactflow';
 
+import { nodeTypes } from './constants';
 import { usePrepareHook } from './helpers';
-
-import { StartNode, StandardNode, EndNode } from '../../components';
-
-const nodeTypes = {
-  endNode: EndNode,
-  startNode: StartNode,
-  standardNode: StandardNode,
-};
 
 export const Canvas = () => {
   const { edges, nodes, onConnect, onEdgesChange, onNodesChange } =

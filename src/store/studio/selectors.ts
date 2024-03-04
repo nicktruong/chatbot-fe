@@ -21,3 +21,8 @@ export const selectExplorerDragging = createSelector(
   [(state: RootState) => state.studio.dragging],
   dragging => dragging,
 );
+
+export const selectFlowId = createSelector(
+  [(state: RootState) => state.studio.flowId],
+  flowId => flowId,
+);
