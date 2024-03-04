@@ -1,9 +1,14 @@
-import { Connection, addEdge } from 'reactflow';
+import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useContext, useEffect } from 'react';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
+import { Connection, OnNodesChange, XYPosition, addEdge } from 'reactflow';
 
+import {
+  useGetNodes,
+  useAppSelector,
+  useChangeNodePositionMutation,
+} from '@/hooks';
 import { selectFlowId } from '@/store/studio';
-import { useAppSelector, useGetNodes } from '@/hooks';
 
 import { CanvasContext } from '../../contexts';
 import { MENU_ID } from '../../components/ContextMenu/constants';
@@ -12,7 +17,9 @@ export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
   const { data } = useGetNodes(flowId);
   const nodesData = data?.data;
+
   const { show } = useContextMenu({ id: MENU_ID });
+  const { mutate } = useChangeNodePositionMutation({});
 
   const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
     useContext(CanvasContext);
@@ -30,6 +37,28 @@ export const usePrepareHook = () => {
     setNodes(nodes);
   }, [nodesData, setNodes]);
 
+  const changeNodePosition = useDebouncedCallback(
+    (nodeId: string, position?: XYPosition) => {
+      if (!position) {
+        return;
+      }
+
+      mutate({ nodeId, position });
+    },
+    100,
+  );
+
+  const handleNodesChange: OnNodesChange = changes => {
+    changes.forEach(value => {
+      switch (value.type) {
+        case 'position':
+          changeNodePosition(value.id, value.position);
+          break;
+      }
+    });
+    onNodesChange(changes);
+  };
+
   const handleConnect = useCallback(
     (params: Connection) =>
       setEdges(eds => addEdge({ ...params, type: 'smoothstep' }, eds)),
@@ -46,8 +75,8 @@ export const usePrepareHook = () => {
     edges,
     nodes,
     onEdgesChange,
-    onNodesChange,
     onConnect: handleConnect,
     onShowMenu: handleShowMenu,
+    onNodesChange: handleNodesChange,
   };
 };

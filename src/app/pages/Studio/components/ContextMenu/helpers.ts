@@ -29,7 +29,6 @@ export const usePrepareHook = () => {
       },
     ]);
 
-    // TODO: Send API to create node
     mutate({ flowId, type: NodeTypeEnum.CUSTOM, ...position });
   };
 

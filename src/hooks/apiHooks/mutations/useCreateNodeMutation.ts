@@ -17,7 +17,7 @@ export const useCreateNodeMutation = ({
 >) =>
   useMutation({
     mutationKey: [queryKeys.CREATE_NODE],
-    mutationFn: (data: CreateNode) =>
+    mutationFn: data =>
       axiosClient.post('/nodes', data).then(({ data }) => data),
     ...options,
   });
