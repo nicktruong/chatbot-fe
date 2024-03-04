@@ -15,3 +15,9 @@ export interface Node extends Base {
   name: string;
   nodeType: NodeType;
 }
+
+export interface ChangedPosition {
+  x: number;
+  y: number;
+  updatedAt: string;
+}
