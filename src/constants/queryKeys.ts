@@ -8,4 +8,5 @@ export const queryKeys = {
   SIGN_UP: 'SIGN_UP',
   CREATE_BOT: 'CREATE_BOT',
   DELETE_BOT: 'DELETE_BOT',
+  CREATE_NODE: 'CREATE_NODE',
 };
