@@ -1,1 +1,1 @@
-export { Canvas } from './Canvas';
+export { CanvasWrapper as Canvas } from './Canvas';

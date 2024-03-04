@@ -1,0 +1,11 @@
+:root {
+  --contexify-item-color: #ffffff;
+  --contexify-menu-bgColor: #1c2024;
+  --contexify-activeItem-bgColor: #404246;
+  --contexify-itemContent-padding: 0.25rem 1rem;
+}
+
+.contexify {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
