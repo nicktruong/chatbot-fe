@@ -59,19 +59,6 @@ export const usePrepareHook = () => {
     onNodesChange(changes);
   };
 
-  useEffect(() => {
-    if (!nodesData) return;
-
-    const nodes = nodesData.map(data => ({
-      id: data.id,
-      data: { value: 123 }, // data: {value: any} is required by reactflow
-      type: data.nodeType.type,
-      position: { x: data.x, y: data.y },
-    }));
-
-    setNodes(nodes);
-  }, [nodesData, setNodes]);
-
   const handleConnect = useCallback(
     (params: Connection) =>
       setEdges(eds => addEdge({ ...params, type: 'smoothstep' }, eds)),
