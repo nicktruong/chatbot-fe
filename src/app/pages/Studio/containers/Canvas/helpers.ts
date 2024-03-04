@@ -1,34 +1,29 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Connection, addEdge, useEdgesState, useNodesState } from 'reactflow';
 
+import { selectFlowId } from '@/store/studio';
+import { useAppSelector, useGetNodes } from '@/hooks';
+
 export const usePrepareHook = () => {
-  const [nodes, setNodes, onNodesChange] = useNodesState([
-    {
-      id: 'node-3',
-      type: 'startNode',
-      position: { x: 350, y: 50 },
-      data: { value: 123 },
-    },
-    {
-      id: 'node-1',
-      type: 'standardNode',
-      position: { x: 350, y: 125 },
-      data: { value: 123 },
-    },
-    {
-      id: 'node-2',
-      type: 'standardNode',
-      position: { x: 350, y: 275 },
-      data: { value: 123 },
-    },
-    {
-      id: 'node-4',
-      type: 'endNode',
-      position: { x: 700, y: 300 },
-      data: { value: 123 },
-    },
-  ]);
+  const flowId = useAppSelector(selectFlowId);
+  const { data } = useGetNodes(flowId);
+  const nodesData = data?.data;
+
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+
+  useEffect(() => {
+    if (!nodesData) return;
+
+    const nodes = nodesData.map(data => ({
+      id: data.id,
+      data: { value: 123 }, // data: {value: any} is required by reactflow
+      type: data.nodeType.type,
+      position: { x: data.x, y: data.y },
+    }));
+
+    setNodes(nodes);
+  }, [nodesData, setNodes]);
 
   const handleConnect = useCallback(
     (params: Connection) =>

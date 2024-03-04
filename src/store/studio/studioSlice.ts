@@ -5,6 +5,7 @@ import { ExplorerType, MIN_EXPLORER_WIDTH } from '@/app/pages/Studio/constants';
 import type { StudioState } from './interfaces';
 
 const initialState: StudioState = {
+  flowId: '',
   dragging: false,
   width: MIN_EXPLORER_WIDTH,
   explorer: ExplorerType.FLOW,
@@ -36,9 +37,13 @@ const studioSlice = createSlice({
         state.currentExplorer = state.explorer;
       }
     },
+    setFlowId: (state, action: PayloadAction<string>) => {
+      state.flowId = action.payload;
+    },
   },
 });
 
 export default studioSlice.reducer;
 
-export const { setDragging, setExplorer, setWidth } = studioSlice.actions;
+export const { setDragging, setExplorer, setWidth, setFlowId } =
+  studioSlice.actions;
