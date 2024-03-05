@@ -8,7 +8,11 @@ import { CustomHandle } from '../Handle';
 export const EndNode = () => {
   return (
     <Box>
-      <CustomHandle position={Position.Left} type="target" />
+      <CustomHandle
+        type="target"
+        style={{ left: -10 }}
+        position={Position.Left}
+      />
 
       <Box sx={styles.container}>
         <Text fontSize="sm" fontWeight={600}>
