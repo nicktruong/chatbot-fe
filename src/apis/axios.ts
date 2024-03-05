@@ -1,5 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
+import { HttpStatus } from '@/enums';
+import { routes } from '@/app/routes';
 import { storageKeys } from '@/constants';
 
 export const axiosClient = axios.create({
@@ -15,4 +17,16 @@ axiosClient.interceptors.request.use(config => {
   return config;
 });
 
-// TODO: Intercept response, if unauthorized => logout user (remove accessToken, and reset states)
+axiosClient.interceptors.response.use(
+  response => {
+    return response;
+  },
+  (error: AxiosError) => {
+    if (error.response?.status === HttpStatus.UNAUTHORIZED) {
+      localStorage.removeItem(storageKeys.ACCESS_TOKEN);
+      window.location.pathname !== routes.login && window.location.reload();
+    }
+
+    return Promise.reject(error);
+  },
+);
