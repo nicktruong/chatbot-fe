@@ -5,3 +5,4 @@ export * from './useDeleteBotMutation';
 export * from './useCreateCardMutation';
 export * from './useCreateNodeMutation';
 export * from './useChangeNodePosition';
+export * from './useCreateEdgeMutation';

@@ -6,6 +6,7 @@ import { Connection, OnNodesChange, XYPosition, addEdge } from 'reactflow';
 import {
   useGetNodes,
   useAppSelector,
+  useCreateEdgeMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
 import { selectFlowId } from '@/store/studio';
@@ -18,8 +19,9 @@ export const usePrepareHook = () => {
   const { data, isFetching } = useGetNodes(flowId);
   const nodesData = data?.data;
 
+  const { mutate } = useCreateEdgeMutation({});
   const { show } = useContextMenu({ id: MENU_ID });
-  const { mutate } = useChangeNodePositionMutation({});
+  const { mutate: updateNodePosition } = useChangeNodePositionMutation({});
 
   const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
     useContext(CanvasContext);
@@ -39,9 +41,9 @@ export const usePrepareHook = () => {
 
   const changeNodePosition = useDebouncedCallback(
     (nodeId: string, position: XYPosition) => {
-      mutate({ nodeId, position });
+      updateNodePosition({ nodeId, position });
     },
-    20,
+    100,
   );
 
   const handleNodesChange: OnNodesChange = changes => {
@@ -58,9 +60,17 @@ export const usePrepareHook = () => {
   };
 
   const handleConnect = useCallback(
-    (params: Connection) =>
-      setEdges(eds => addEdge({ ...params, type: 'smoothstep' }, eds)),
-    [setEdges],
+    (params: Connection) => {
+      const options = { ...params, type: 'smoothstep' };
+      setEdges(eds => addEdge(options, eds));
+
+      mutate({
+        sourceNodeId: options.source ?? '',
+        targetNodeId: options.target ?? '',
+        cardId: options.sourceHandle ?? undefined,
+      });
+    },
+    [mutate, setEdges],
   );
 
   const handleShowMenu = (e: TriggerEvent) => {

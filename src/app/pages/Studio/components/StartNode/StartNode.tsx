@@ -16,7 +16,11 @@ export const StartNode = () => {
         <FaBookOpen />
       </Box>
 
-      <CustomHandle type="source" position={Position.Right} />
+      <CustomHandle
+        type="source"
+        style={{ right: -10 }}
+        position={Position.Right}
+      />
     </Box>
   );
 };

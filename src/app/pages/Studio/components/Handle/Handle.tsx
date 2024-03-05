@@ -1,9 +1,10 @@
-import { Handle } from 'reactflow';
-
-import type { CustomHandleInterface } from './interfaces';
+import { HTMLAttributes } from 'react';
+import { Handle, HandleProps } from 'reactflow';
 
 import './styles.css';
 
-export const CustomHandle = ({ type, position }: CustomHandleInterface) => {
-  return <Handle type={type} position={position} className="custom-handle" />;
+export const CustomHandle = (
+  props: HandleProps & Omit<HTMLAttributes<HTMLDivElement>, 'className'>,
+) => {
+  return <Handle {...props} className="custom-handle" />;
 };
