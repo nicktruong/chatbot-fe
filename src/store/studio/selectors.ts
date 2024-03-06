@@ -6,8 +6,3 @@ export const selectFlowId = createSelector(
   [(state: RootState) => state.studio.flowId],
   flowId => flowId,
 );
-
-export const selectFlowId = createSelector(
-  [(state: RootState) => state.studio.flowId],
-  flowId => flowId,
-);
