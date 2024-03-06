@@ -28,8 +28,8 @@ export const usePrepareHook = () => {
     if (!nodesData) return;
 
     const nodes = nodesData.map(data => ({
+      data,
       id: data.id,
-      data: { value: null },
       type: data.nodeType.type,
       position: { x: data.x, y: data.y },
     }));
