@@ -3,6 +3,7 @@ export * from './Base';
 export * from './Flow';
 export * from './Node';
 export * from './Session';
+export * from './CardType';
 export * from './FlowType';
 export * from './NodeType';
 export * from './UserInfo';
