@@ -1,13 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const cardTraySlice = createSlice({
   name: 'cardTray',
   initialState: {
+    nodeId: '',
     open: false,
   },
   reducers: {
-    openCardTray: state => {
+    openCardTray: (state, action: PayloadAction<string>) => {
       state.open = true;
+      state.nodeId = action.payload;
     },
     closeCardTray: state => {
       state.open = false;

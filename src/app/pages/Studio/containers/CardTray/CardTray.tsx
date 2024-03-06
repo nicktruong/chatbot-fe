@@ -10,15 +10,11 @@ import {
 
 import { styles } from './styles';
 import { usePrepareHook } from './helpers';
+import { mapCardTypeToIcon } from '@/utils';
 
 export const CardTray = () => {
-  const {
-    cardGroups,
-    cardTrayOpen,
-    onAddCardToNode,
-    mapCardTypeToIcon,
-    mapGroupTypeToString,
-  } = usePrepareHook();
+  const { cardGroups, cardTrayOpen, onAddCardToNode, mapGroupTypeToString } =
+    usePrepareHook();
 
   return (
     <Box sx={styles.container} left={cardTrayOpen ? '100%' : '-100%'}>
@@ -39,7 +35,7 @@ export const CardTray = () => {
                   <Box
                     key={cardType.id}
                     sx={styles.cardType}
-                    onClick={onAddCardToNode}
+                    onClick={onAddCardToNode(cardType.id)}
                   >
                     {mapCardTypeToIcon(cardType.type)}
                     <Text fontSize="xs" fontWeight={500}>

@@ -24,8 +24,8 @@ export const usePrepareHook = () => {
       {
         position,
         id: nanoid(),
-        data: { value: null },
         type: NodeTypeEnum.CUSTOM,
+        data: { name: 'Standard Node 1' },
       },
     ]);
 

@@ -4,8 +4,8 @@ import { openCardTray } from '@/store/studio';
 export const usePrepareHook = () => {
   const dispatch = useAppDispatch();
 
-  const handleOpenCardTray = () => {
-    dispatch(openCardTray());
+  const handleOpenCardTray = (id: string) => () => {
+    dispatch(openCardTray(id));
   };
 
   return { onOpenCardTray: handleOpenCardTray };
