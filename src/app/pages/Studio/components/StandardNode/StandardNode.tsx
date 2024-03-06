@@ -21,7 +21,7 @@ export const StandardNode = ({
       <Box sx={styles.container}>
         <Box sx={styles.nodeName}>{name}</Box>
         <Box sx={styles.nodeBody}>
-          {cards.map(card => (
+          {cards?.map(card => (
             <Box key={card.id} sx={styles.card}>
               {mapCardTypeToIcon(card.cardType?.type ?? '')}
               <Text sx={styles.cardContent}>
