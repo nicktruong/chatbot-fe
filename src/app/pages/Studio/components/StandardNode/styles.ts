@@ -50,6 +50,7 @@ export const styles = {
     display: 'flex',
     fontWeight: 500,
     color: '#7f838d',
+    cursor: 'pointer',
     height: '1.875rem',
     borderRadius: 'md',
     border: '1px dashed',

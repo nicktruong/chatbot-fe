@@ -2,7 +2,6 @@ import type { SystemStyleObject } from '@chakra-ui/react';
 
 export const styles = {
   explorerContent: {
-    zIndex: 10,
     border: '1px',
     height: '100%',
     borderRadius: 'lg',
