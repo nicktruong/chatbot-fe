@@ -38,20 +38,18 @@ export const usePrepareHook = () => {
   }, [nodesData, setNodes]);
 
   const changeNodePosition = useDebouncedCallback(
-    (nodeId: string, position?: XYPosition) => {
-      if (!position) {
-        return;
-      }
-
+    (nodeId: string, position: XYPosition) => {
       mutate({ nodeId, position });
     },
-    100,
+    20,
   );
 
   const handleNodesChange: OnNodesChange = changes => {
     changes.forEach(value => {
       switch (value.type) {
         case 'position':
+          if (!value.position) return;
+
           changeNodePosition(value.id, value.position);
           break;
       }

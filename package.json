@@ -11,6 +11,7 @@
     "@reduxjs/toolkit": "^2.2.1",
     "@sentry/react": "^7.101.1",
     "@tanstack/react-query": "^5.22.2",
+    "@types/uuid": "^9.0.8",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.5",
     "i18next": "^23.9.0",
@@ -30,6 +31,7 @@
     "reactflow": "^11.10.4",
     "typescript": "^4.9.5",
     "use-debounce": "^10.0.0",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4",
     "zod": "^3.22.4"
   },
