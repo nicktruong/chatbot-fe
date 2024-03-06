@@ -2,11 +2,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import homeReducer from './home';
 import studioReducer from './studio';
+import cardTrayReducer from './studio/cardTray';
 import explorerReducer from './studio/explorer';
 
 const rootReducer = combineReducers({
   home: homeReducer,
   studio: studioReducer,
+  cardTray: cardTrayReducer,
   explorer: explorerReducer,
 });
 
