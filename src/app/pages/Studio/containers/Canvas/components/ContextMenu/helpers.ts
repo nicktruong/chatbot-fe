@@ -5,9 +5,8 @@ import { ItemParams } from 'react-contexify';
 
 import { NodeTypeEnum } from '@/enums';
 import { selectFlowId } from '@/store/studio';
+import { CanvasContext } from '@studio/contexts';
 import { useAppSelector, useCreateNodeMutation } from '@/hooks';
-
-import { CanvasContext } from '../../contexts';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);

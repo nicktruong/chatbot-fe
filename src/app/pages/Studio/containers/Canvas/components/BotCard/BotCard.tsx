@@ -10,7 +10,7 @@ import type { CardProps } from './interfaces';
 
 import { CustomHandle } from '../Handle';
 
-export const Card = ({ card }: CardProps) => {
+export const BotCard = ({ card }: CardProps) => {
   usePrepareHook(card.id);
 
   return (

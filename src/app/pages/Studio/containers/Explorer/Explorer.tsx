@@ -8,7 +8,7 @@ import { styles } from './styles';
 import { messages } from './messages';
 import { usePrepareHook } from './helpers';
 
-import { Flows, ExplorerHandle } from '../../components';
+import { Flows, ExplorerHandle } from './components';
 
 // TODO: Refine UI
 export const Explorer = () => {
