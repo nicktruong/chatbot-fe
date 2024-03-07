@@ -15,8 +15,7 @@ import { MENU_ID } from '../../components/ContextMenu/constants';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
-  const { data, isFetching } = useGetNodes(flowId);
-  const nodesData = data?.data;
+  const { data: nodesData, isFetching } = useGetNodes(flowId);
 
   const { show } = useContextMenu({ id: MENU_ID });
   const { mutate } = useChangeNodePositionMutation({});
@@ -36,6 +35,8 @@ export const usePrepareHook = () => {
 
     setNodes(nodes);
   }, [nodesData, isFetching, setNodes]);
+
+  useEffect(() => () => setNodes([]), [setNodes]);
 
   const changeNodePosition = useDebouncedCallback(
     (nodeId: string, position: XYPosition) => {

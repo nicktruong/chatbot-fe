@@ -42,7 +42,7 @@ export const usePrepareHook = () => {
   });
 
   const bots = useMemo(
-    () => data?.data.filter(bot => !idsToBeDeleted.includes(bot.id)) ?? [],
+    () => data?.filter(bot => !idsToBeDeleted.includes(bot.id)) ?? [],
     [data, idsToBeDeleted],
   );
 
