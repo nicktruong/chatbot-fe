@@ -1,6 +1,6 @@
 import { NodeTypeEnum } from '@/enums';
 
-import { Base, Card, NodeType } from '.';
+import { Base, NodeType } from '.';
 
 export interface CreateNode {
   x: number;
@@ -14,7 +14,6 @@ export interface Node extends Base {
   x: number;
   y: number;
   name: string;
-  cards?: Card[];
   nodeType: NodeType;
 }
 

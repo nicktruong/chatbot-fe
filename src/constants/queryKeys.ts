@@ -1,6 +1,7 @@
 // react-query keys
 export const queryKeys = {
   BOTS: 'BOTS',
+  CARD: 'CARD',
   USER: 'USER',
   FLOW: 'FLOW',
   NODE: 'NODE',
