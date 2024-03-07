@@ -20,9 +20,8 @@ import { HiOutlineMenu, HiOutlineLogout } from 'react-icons/hi';
 
 import { styles } from './styles';
 import { messages } from './messages';
+import { ContentTab } from './components';
 import { usePrepareHook } from './helpers';
-
-import { ContentTab } from '../../components/ContentTab';
 
 export const Appbar = () => {
   const {

@@ -1,6 +1,5 @@
-import { ExplorerType } from '../../constants';
+import { ExplorerType } from '@studio/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-
 import { setExplorer, selectCurrentExplorer } from '@/store/studio';
 
 export const usePrepareHook = () => {

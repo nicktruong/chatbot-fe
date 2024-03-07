@@ -9,9 +9,9 @@ import {
   useChangeNodePositionMutation,
 } from '@/hooks';
 import { selectFlowId } from '@/store/studio';
+import { CanvasContext } from '@studio/contexts';
 
-import { CanvasContext } from '../../contexts';
-import { MENU_ID } from '../../components/ContextMenu/constants';
+import { MENU_ID } from './components';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
