@@ -14,7 +14,7 @@ const FlowIcon = ({ flowType }: { flowType?: FlowTypeEnum }) => {
         <MdOutlineStart
           style={{
             fontSize: '0.875rem',
-            color: colors.light.gray.studio[600],
+            color: colors.studioLight.gray[600],
           }}
         />
       );
@@ -33,7 +33,7 @@ export const Flows = () => {
           <Box
             key={id}
             sx={styles.flow}
-            backgroundColor={isActive ? 'gray.studio.200' : 'transparent'}
+            backgroundColor={isActive ? 'gray.200' : 'transparent'}
           >
             <FlowIcon flowType={flowType?.type} />
             <Text
