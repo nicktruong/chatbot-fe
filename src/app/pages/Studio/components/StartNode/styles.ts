@@ -11,6 +11,6 @@ export const styles = {
     alignItems: 'center',
     backgroundColor: '#25997a',
     transition: 'all 200ms ease-in',
-    _hover: { outline: '1.5px solid #0090ff' },
+    _hover: { outline: '1.5px solid blue.700' },
   },
 } satisfies Record<string, SystemStyleObject>;

@@ -13,8 +13,8 @@ export const styles = {
     transition: 'backgroundColor var(--chakra-transition-duration-normal)',
 
     _hover: {
-      backgroundColor: 'gray.studio.200',
-      boxShadow: 'inset 0 0 0 1px #0090ff',
+      backgroundColor: 'gray.200',
+      boxShadow: 'inset 0 0 0 1px blue.700',
     },
   },
   flowName: {

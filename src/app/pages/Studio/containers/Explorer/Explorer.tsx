@@ -47,7 +47,7 @@ export const Explorer = () => {
               style={{
                 fontSize: '1rem',
                 cursor: 'pointer',
-                color: colors.light.gray[400],
+                color: colors.homeLight.gray[400],
               }}
             />
           </Box>

@@ -10,7 +10,7 @@ export const styles = {
     alignItems: 'center',
     backgroundColor: 'white',
 
-    _hover: { outline: '1.5px solid #0090ff' },
+    _hover: { outline: '1.5px solid blue.700' },
   },
   cardContent: {
     fontSize: 'xs',

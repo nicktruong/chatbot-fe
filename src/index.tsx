@@ -23,7 +23,7 @@ root.render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         {/* TODO: Support dark theme if time allows */}
-        <ChakraProvider theme={themes.light}>
+        <ChakraProvider theme={themes.homeLight}>
           <App />
         </ChakraProvider>
       </QueryClientProvider>

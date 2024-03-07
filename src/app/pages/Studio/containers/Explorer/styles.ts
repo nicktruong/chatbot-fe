@@ -5,8 +5,8 @@ export const styles = {
     border: '1px',
     height: '100%',
     borderRadius: 'lg',
-    borderColor: 'gray.studio.200',
-    backgroundColor: 'gray.studio.50',
+    borderColor: 'gray.200',
+    backgroundColor: 'gray.50',
   },
   explorerHeader: {
     padding: 3,
