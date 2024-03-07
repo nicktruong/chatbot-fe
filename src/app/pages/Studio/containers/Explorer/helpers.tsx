@@ -26,10 +26,7 @@ export const usePrepareHook = () => {
   const { t } = useTranslation(messages.ns);
 
   const { data } = useGetMyBots();
-  const botDetail = useMemo(
-    () => data?.data.find(bot => bot.id === id),
-    [id, data],
-  );
+  const botDetail = useMemo(() => data?.find(bot => bot.id === id), [id, data]);
 
   const width = useAppSelector(selectExplorerWidth);
   const dragging = useAppSelector(selectExplorerDragging);

@@ -8,7 +8,7 @@ export const usePrepareHook = (id: string) => {
     dispatch(openCardTray(id));
   };
 
-  const { data } = useGetCards(id);
+  const { data: cards } = useGetCards(id);
 
-  return { cards: data?.data, onOpenCardTray: handleOpenCardTray };
+  return { cards, onOpenCardTray: handleOpenCardTray };
 };

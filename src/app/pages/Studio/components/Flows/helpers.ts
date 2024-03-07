@@ -15,7 +15,7 @@ export const usePrepareHook = () => {
 
   const flows = useMemo(
     () =>
-      data?.data.map(({ id, flowType, ...data }) => {
+      data?.map(({ id, flowType, ...data }) => {
         return {
           ...data,
           id,
@@ -29,7 +29,7 @@ export const usePrepareHook = () => {
   useEffect(() => {
     if (!flow || !data) return;
 
-    const flowId = data.data.find(({ flowType, id }) => {
+    const flowId = data.find(({ flowType, id }) => {
       if (flowType?.type === flow.toUpperCase()) return true;
       if (id === flow) return true;
       return false;

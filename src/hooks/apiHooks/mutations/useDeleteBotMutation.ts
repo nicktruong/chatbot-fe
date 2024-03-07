@@ -4,17 +4,13 @@ import { axiosClient } from '@/apis';
 import { queryKeys } from '@/constants';
 
 import type { AxiosError } from 'axios';
-import type { DataResponse, ErrorResponse } from '@/interfaces';
+import type { ErrorResponse } from '@/interfaces';
 
 export const useDeleteBotMutation = ({
   mutationFn,
   mutationKey,
   ...options
-}: UseMutationOptions<
-  DataResponse<string>,
-  AxiosError<ErrorResponse>,
-  string
-> = {}) =>
+}: UseMutationOptions<string, AxiosError<ErrorResponse>, string> = {}) =>
   useMutation({
     mutationKey: [queryKeys.DELETE_BOT],
     mutationFn: id =>

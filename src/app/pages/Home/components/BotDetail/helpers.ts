@@ -14,8 +14,7 @@ export const usePrepareHook = () => {
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation(messages.ns);
 
-  const { data } = useGetMyBots();
-  const bots = data?.data;
+  const { data: bots } = useGetMyBots();
   const botDetail = bots?.find(bot => bot.id === id);
 
   const { isPending, mutate } = useDeleteBotMutation({

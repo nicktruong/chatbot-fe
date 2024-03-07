@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { axiosClient } from '@/apis';
 import { queryKeys } from '@/constants';
-import type { Edge, DataResponse, ErrorResponse } from '@/interfaces';
+import type { Edge, ErrorResponse } from '@/interfaces';
 
 export const useGetEdgeByCardOrNodeId = ({
   id,
@@ -12,7 +12,7 @@ export const useGetEdgeByCardOrNodeId = ({
   id: string;
   type: 'card' | 'node';
 }) =>
-  useQuery<DataResponse<Edge>, AxiosError<ErrorResponse>>({
+  useQuery<Edge, AxiosError<ErrorResponse>>({
     queryKey: [queryKeys.EDGE, id],
     queryFn: () =>
       axiosClient.get(`/edges/${type}-${id}`).then(({ data }) => data),

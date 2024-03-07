@@ -6,11 +6,10 @@ import { CanvasContext } from '../../contexts';
 import { Edge, addEdge } from 'reactflow';
 
 export const usePrepareHook = (nodeId: string) => {
-  const { data, isFetching } = useGetEdgeByCardOrNodeId({
+  const { data: edgeData, isFetching } = useGetEdgeByCardOrNodeId({
     id: nodeId,
     type: 'node',
   });
-  const edgeData = data?.data;
 
   const { setEdges } = useContext(CanvasContext);
 
