@@ -4,3 +4,4 @@ export * from './useGetNodes';
 export * from './useGetMyBots';
 export * from './useGetAllFlows';
 export * from './useGetCardTypes';
+export * from './useGetEdgeByCardId';

@@ -2,6 +2,7 @@
 export const queryKeys = {
   BOTS: 'BOTS',
   CARD: 'CARD',
+  EDGE: 'EDGE',
   USER: 'USER',
   FLOW: 'FLOW',
   NODE: 'NODE',

@@ -41,6 +41,12 @@ export const usePrepareHook = () => {
     setNodes(nodes);
   }, [nodesData, isFetching, setNodes]);
 
+  useEffect(() => {
+    return () => {
+      setNodes([]);
+    };
+  }, []);
+
   const changeNodePosition = useDebouncedCallback(
     (nodeId: string, position: XYPosition) => {
       updateNodePosition({ nodeId, position });
@@ -64,7 +70,17 @@ export const usePrepareHook = () => {
   const handleConnect = useCallback(
     (params: Connection) => {
       const options = { ...params, type: 'smoothstep' };
-      setEdges(eds => addEdge(options, eds));
+      const newData = options.source;
+
+      setEdges(eds => {
+        return addEdge(
+          { ...options, data: newData },
+          eds.filter(edge => {
+            console.log(edge.data === newData);
+            return edge.data !== newData;
+          }),
+        );
+      });
 
       mutate({
         sourceNodeId: options.source ?? '',
