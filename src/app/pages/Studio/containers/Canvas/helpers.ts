@@ -15,7 +15,7 @@ import { MENU_ID } from '../../components';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
-  const { data } = useGetNodes(flowId);
+  const { data, isFetching } = useGetNodes(flowId);
   const nodesData = data?.data;
 
   const { show } = useContextMenu({ id: MENU_ID });
@@ -25,7 +25,7 @@ export const usePrepareHook = () => {
     useContext(CanvasContext);
 
   useEffect(() => {
-    if (!nodesData) return;
+    if (!nodesData || isFetching) return;
 
     const nodes = nodesData.map(data => ({
       data,
@@ -35,7 +35,7 @@ export const usePrepareHook = () => {
     }));
 
     setNodes(nodes);
-  }, [nodesData, setNodes]);
+  }, [nodesData, isFetching, setNodes]);
 
   useEffect(() => {
     if (!nodesData) return;
