@@ -10,10 +10,8 @@ import { usePrepareHook } from './helpers';
 
 import { CustomHandle } from '../Handle';
 
-export const StandardNode = ({
-  data: { id, name, cards },
-}: NodeProps<Node>) => {
-  const { onOpenCardTray } = usePrepareHook();
+export const StandardNode = ({ data: { id, name } }: NodeProps<Node>) => {
+  const { cards, onOpenCardTray } = usePrepareHook(id);
 
   return (
     <Box>
@@ -29,7 +27,7 @@ export const StandardNode = ({
               </Text>
             </Box>
           ))}
-          <Box sx={styles.addCard} onClick={onOpenCardTray(id)}>
+          <Box sx={styles.addCard} onClick={onOpenCardTray}>
             <IoIosAdd style={{ margin: '0 0.5rem', fontSize: '0.875rem' }} />
             <Text>Add Card</Text>
           </Box>

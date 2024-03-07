@@ -20,8 +20,10 @@ export const usePrepareHook = () => {
   const queryClient = useQueryClient();
 
   const { mutate } = useCreateCardMutation({
-    onSuccess: () => {
-      return queryClient.invalidateQueries({ queryKey: [queryKeys.NODE] });
+    onSuccess: (_, { nodeId }) => {
+      return queryClient.invalidateQueries({
+        queryKey: [queryKeys.CARD, nodeId],
+      });
     },
   });
 

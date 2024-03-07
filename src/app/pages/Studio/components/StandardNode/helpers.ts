@@ -1,12 +1,14 @@
-import { useAppDispatch } from '@/hooks';
 import { openCardTray } from '@/store/studio';
+import { useAppDispatch, useGetCards } from '@/hooks';
 
-export const usePrepareHook = () => {
+export const usePrepareHook = (id: string) => {
   const dispatch = useAppDispatch();
 
-  const handleOpenCardTray = (id: string) => () => {
+  const handleOpenCardTray = () => {
     dispatch(openCardTray(id));
   };
 
-  return { onOpenCardTray: handleOpenCardTray };
+  const { data } = useGetCards(id);
+
+  return { cards: data?.data, onOpenCardTray: handleOpenCardTray };
 };
