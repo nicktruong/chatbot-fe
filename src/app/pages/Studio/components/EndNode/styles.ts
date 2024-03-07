@@ -10,8 +10,8 @@ export const styles = {
     display: 'flex',
     borderRadius: 'xl',
     alignItems: 'center',
-    backgroundColor: '#60646c',
+    backgroundColor: 'slate.11',
     transition: 'all 200ms ease-in',
-    _hover: { outline: '1.5px solid #0090ff' },
+    _hover: { outline: '1.5px solid blue.700' },
   },
 } satisfies Record<string, SystemStyleObject>;

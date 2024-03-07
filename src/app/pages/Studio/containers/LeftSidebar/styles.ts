@@ -9,8 +9,8 @@ export const styles = {
     height: '100%',
     borderRadius: 'lg',
     position: 'relative',
-    borderColor: 'gray.studio.200',
-    backgroundColor: 'gray.studio.50',
+    borderColor: 'gray.200',
+    backgroundColor: 'gray.50',
   },
   buttonContainer: {
     padding: '2',

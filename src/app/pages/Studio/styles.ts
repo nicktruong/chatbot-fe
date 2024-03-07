@@ -4,7 +4,7 @@ export const styles = {
   container: {
     width: '100vw',
     height: '100vh',
-    background: 'gray.studio.100',
+    background: 'gray.100',
   },
   leftBarContainer: {
     gap: '2',

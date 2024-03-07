@@ -59,7 +59,10 @@ export const SignUp = () => {
           <FormControl isInvalid={!!errors.name}>
             <InputGroup>
               <InputLeftElement sx={styles.inputIconContainer}>
-                <FaUser fill={themes.light.colors.gray[400]} size="1.3rem" />
+                <FaUser
+                  fill={themes.homeLight.colors.gray[400]}
+                  size="1.3rem"
+                />
               </InputLeftElement>
               <Input
                 type="text"
@@ -77,7 +80,10 @@ export const SignUp = () => {
           <FormControl isInvalid={!!errors.email}>
             <InputGroup>
               <InputLeftElement sx={styles.inputIconContainer}>
-                <MdEmail fill={themes.light.colors.gray[400]} size="1.5rem" />
+                <MdEmail
+                  fill={themes.homeLight.colors.gray[400]}
+                  size="1.5rem"
+                />
               </InputLeftElement>
               <Input
                 type="email"
@@ -95,7 +101,10 @@ export const SignUp = () => {
           <FormControl isInvalid={!!errors.password}>
             <InputGroup>
               <InputLeftElement sx={styles.inputIconContainer}>
-                <FaKey size="1.25rem" color={themes.light.colors.gray[400]} />
+                <FaKey
+                  size="1.25rem"
+                  color={themes.homeLight.colors.gray[400]}
+                />
               </InputLeftElement>
               <Input
                 type="password"

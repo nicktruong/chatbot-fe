@@ -8,11 +8,11 @@ export const styles = {
     borderRadius: '0.25rem',
     _hover: {
       color: 'gray.700',
-      background: 'tab.hover.background',
+      background: 'gray.50',
     },
     _selected: {
+      color: 'gray.900',
       background: 'gray.100',
-      color: 'tab.selected.color',
     },
   },
 } satisfies Record<string, SystemStyleObject>;

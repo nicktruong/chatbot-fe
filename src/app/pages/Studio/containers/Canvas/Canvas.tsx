@@ -4,6 +4,8 @@ import ReactFlow, {
   ConnectionLineType,
 } from 'reactflow';
 
+import { colors } from '@/styles';
+
 import { usePrepareHook } from './helpers';
 
 import { StartNode, StandardNode, EndNode } from '../../components';
@@ -31,8 +33,8 @@ export const Canvas = () => {
       <Background
         gap={12}
         size={2}
-        color="#e0e1e7"
         variant={BackgroundVariant.Dots}
+        color={colors.studioLight.gray[300]}
       />
     </ReactFlow>
   );

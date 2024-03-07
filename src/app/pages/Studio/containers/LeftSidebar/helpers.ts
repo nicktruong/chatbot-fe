@@ -12,11 +12,11 @@ export const usePrepareHook = () => {
   };
 
   const getBtnColor = (explorerType: ExplorerType) => {
-    return currentExplorer === explorerType ? 'gray.studio.600' : 'black';
+    return currentExplorer === explorerType ? 'gray.600' : 'black';
   };
 
   const getBtnBgColor = (explorerType: ExplorerType) => {
-    return currentExplorer === explorerType ? 'gray.studio.200' : 'transparent';
+    return currentExplorer === explorerType ? 'gray.200' : 'transparent';
   };
 
   return {

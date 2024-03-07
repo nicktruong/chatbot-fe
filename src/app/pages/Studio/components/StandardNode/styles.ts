@@ -5,13 +5,13 @@ export const styles = {
     border: '1px',
     width: '255px',
     borderRadius: 'xl',
-    borderColor: '#cdced7',
-    backgroundColor: '#e0e1e7',
+    borderColor: 'node.border',
+    backgroundColor: 'node.background',
     transition: 'all 200ms ease-in',
     boxShadow:
       '0 2px 4px -1px #00000014,inset 0 0 2px 1px rgba(255, 255, 255, 0.48)',
 
-    _hover: { outline: '1.5px solid #0090ff' },
+    _hover: { outline: '1.5px solid blue.700' },
   },
   nodeName: {
     paddingX: '2',
@@ -19,7 +19,7 @@ export const styles = {
     fontSize: 'sm',
     display: 'flex',
     fontWeight: 600,
-    color: '#60646c',
+    color: 'slate.11',
     alignItems: 'center',
   },
   nodeBody: {
@@ -49,13 +49,14 @@ export const styles = {
     fontSize: 'xs',
     display: 'flex',
     fontWeight: 500,
-    color: '#7f838d',
+    color: 'node.placeholder',
+    cursor: 'pointer',
     height: '1.875rem',
     borderRadius: 'md',
     border: '1px dashed',
     alignItems: 'center',
     transition: 'all 150ms ease-out',
     borderColor: 'rgba(0, 0, 0, 0.1)',
-    _hover: { color: '#0090ff', borderColor: '#0090ff' },
+    _hover: { color: 'blue.700', borderColor: 'blue.700' },
   },
 } satisfies Record<string, SystemStyleObject>;
