@@ -20,7 +20,7 @@ export const usePrepareHook = () => {
     error: serverError,
     mutate,
   } = useLoginMutation({
-    onSuccess: ({ data }) => {
+    onSuccess: data => {
       // TODO: Save refreshToken to cookies when implemented corresponding endpoint
       localStorage.setItem(storageKeys.ACCESS_TOKEN, data.accessToken);
       navigate(routes.home);

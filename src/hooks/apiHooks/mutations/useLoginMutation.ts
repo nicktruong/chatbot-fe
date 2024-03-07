@@ -1,4 +1,4 @@
-import type { AxiosError, AxiosResponse } from 'axios';
+import type { AxiosError } from 'axios';
 import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
 
 import { axiosClient } from '@/apis';
@@ -11,7 +11,7 @@ export const useLoginMutation = ({
   mutationKey,
   ...options
 }: UseMutationOptions<
-  AxiosResponse<LoginResponse>,
+  LoginResponse,
   AxiosError<ErrorResponse>,
   LoginSchemaType
 >) =>
