@@ -2,41 +2,32 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { setFlowId } from '@/store/studio';
-import { useAppDispatch, useGetAllFlows } from '@/hooks';
+import { useAppDispatch, useExtractFlowId, useGetAllFlows } from '@/hooks';
 
 export const usePrepareHook = () => {
   // The `flow` parameter will be either
   // - flowType for unique flows like main, end,...
   // - flowId for other flows
-  const { id, flow } = useParams();
+  const { id } = useParams();
   const dispatch = useAppDispatch();
 
-  const { data } = useGetAllFlows(id ?? '');
+  const { data } = useGetAllFlows(id);
+  const flowId = useExtractFlowId(data);
 
   const flows = useMemo(
     () =>
-      data?.map(({ id, flowType, ...data }) => {
+      data?.map(params => {
         return {
-          ...data,
-          id,
-          flowType,
-          isActive: flowType?.type === flow?.toUpperCase() || id === flow,
+          ...params,
+          isActive: params.id === flowId,
         };
       }),
-    [data, flow],
+    [data, flowId],
   );
 
   useEffect(() => {
-    if (!flow || !data) return;
-
-    const flowId = data.find(({ flowType, id }) => {
-      if (flowType?.type === flow.toUpperCase()) return true;
-      if (id === flow) return true;
-      return false;
-    })?.id;
-
-    dispatch(setFlowId(flowId ?? ''));
-  }, [data, flow, dispatch]);
+    if (flowId) dispatch(setFlowId(flowId));
+  }, [flowId, dispatch]);
 
   return { flows };
 };

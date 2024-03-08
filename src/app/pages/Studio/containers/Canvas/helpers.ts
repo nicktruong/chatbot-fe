@@ -1,7 +1,7 @@
 import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useContext, useEffect } from 'react';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
-import { Connection, OnNodesChange, XYPosition, addEdge } from 'reactflow';
+import { addEdge, Connection, XYPosition, OnNodesChange } from 'reactflow';
 
 import {
   useGetNodes,
@@ -38,6 +38,7 @@ export const usePrepareHook = () => {
     setNodes(nodes);
   }, [nodesData, isFetching, setNodes]);
 
+  // To clean up cached nodes on the canvas
   useEffect(() => () => setNodes([]), [setNodes]);
 
   const changeNodePosition = useDebouncedCallback(
@@ -62,23 +63,20 @@ export const usePrepareHook = () => {
 
   const handleConnect = useCallback(
     (params: Connection) => {
-      const options = { ...params, type: 'smoothstep' };
-      const newData = options.source;
+      const { source } = params;
+      const connection = { ...params, type: 'smoothstep', data: source };
 
-      setEdges(eds => {
-        return addEdge(
-          { ...options, data: newData },
-          eds.filter(edge => {
-            console.log(edge.data === newData);
-            return edge.data !== newData;
-          }),
-        );
+      setEdges(edges => {
+        // One source only has one edge
+        // => Remove edge previously set for this source
+        const newEdges = edges.filter(edge => edge.data !== source);
+        return addEdge(connection, newEdges);
       });
 
       mutate({
-        sourceNodeId: options.source ?? '',
-        targetNodeId: options.target ?? '',
-        cardId: options.sourceHandle ?? undefined,
+        sourceNodeId: connection.source ?? '',
+        targetNodeId: connection.target ?? '',
+        cardId: connection.sourceHandle ?? undefined,
       });
     },
     [mutate, setEdges],

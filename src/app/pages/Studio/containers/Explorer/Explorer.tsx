@@ -7,7 +7,6 @@ import { colors } from '@/styles';
 import { styles } from './styles';
 import { messages } from './messages';
 import { usePrepareHook } from './helpers';
-
 import { Flows, ExplorerHandle } from './components';
 
 // TODO: Refine UI

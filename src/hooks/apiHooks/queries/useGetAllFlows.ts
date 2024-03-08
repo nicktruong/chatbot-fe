@@ -5,8 +5,9 @@ import { axiosClient } from '@/apis';
 import { queryKeys } from '@/constants';
 import type { Flow, ErrorResponse } from '@/interfaces';
 
-export const useGetAllFlows = (botId: string) =>
+export const useGetAllFlows = (botId?: string) =>
   useQuery<Flow[], AxiosError<ErrorResponse>>({
+    enabled: !!botId,
     queryKey: [queryKeys.FLOW],
     queryFn: () => axiosClient.get(`/flows/${botId}`).then(({ data }) => data),
   });
