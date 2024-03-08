@@ -33,7 +33,7 @@ export const usePrepareHook = () => {
     },
   });
 
-  const { data } = useGetMyBots();
+  const { data, isFetching } = useGetMyBots();
 
   // Optimistic update: filter out the bots on the sidebar before deleting successfully
   const idsToBeDeleted = useMutationState({
@@ -51,6 +51,8 @@ export const usePrepareHook = () => {
   };
 
   useEffect(() => {
+    if (isFetching) return;
+
     const isHomeRoute = !!matchPath(routes.home, pathname);
     const isChatbotRoute = !!matchPath(routes.chatbot, pathname);
     const isChatbotDetailRoute = !!matchPath(routes.chatbotDetail, pathname);
@@ -71,7 +73,7 @@ export const usePrepareHook = () => {
     ) {
       navigate(routes.chatbot);
     }
-  }, [id, bots, pathname, navigate]);
+  }, [id, bots, pathname, isFetching, navigate]);
 
   const renderBots = () => {
     return bots.length > 0 ? (
