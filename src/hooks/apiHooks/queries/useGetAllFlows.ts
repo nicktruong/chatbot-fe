@@ -5,7 +5,7 @@ import { axiosClient } from '@/apis';
 import { queryKeys } from '@/constants';
 import type { Flow, DataResponse, ErrorResponse } from '@/interfaces';
 
-export const useGetAllFlows = (botId: string) =>
+export const useGetAllFlows = (botId: string = '') =>
   useQuery<DataResponse<Flow[]>, AxiosError<ErrorResponse>>({
     queryKey: [queryKeys.FLOW],
     queryFn: () => axiosClient.get(`/flows/${botId}`).then(({ data }) => data),

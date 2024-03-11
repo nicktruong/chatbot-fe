@@ -20,7 +20,7 @@ export const usePrepareHook = ({
   onClose,
 }: UsePrepareHookProps) => {
   const { id, flow } = useParams();
-  const { data } = useGetAllFlows(id ?? '');
+  const { data } = useGetAllFlows(id);
   const flows = data?.data;
   const { t } = useTranslation(messages.ns);
   const [dragging, setDragging] = useState(false);
