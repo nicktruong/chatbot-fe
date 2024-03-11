@@ -7,13 +7,14 @@ export const usePrepareHook = () => {
 
   const { data } = useGetAllFlows(id ?? '');
 
-  const flows = data?.data.map(({ flowType, ...data }) => {
-    return {
-      ...data,
-      flowType,
-      isActive: flowType?.type === flow?.toUpperCase(),
-    };
-  });
+  const flows =
+    data?.data.map(({ flowType, ...data }) => {
+      return {
+        ...data,
+        flowType,
+        isActive: flowType?.type === flow?.toUpperCase(),
+      };
+    }) ?? [];
 
   return { flows };
 };

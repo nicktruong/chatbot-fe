@@ -28,7 +28,7 @@ export const Flows = () => {
 
   return (
     <>
-      {flows?.map(({ id, name, isActive, flowType }) => {
+      {flows.map(({ id, name, isActive, flowType }) => {
         return (
           <Box
             key={id}
