@@ -6,7 +6,7 @@ import ReactFlow, {
 
 import { colors } from '@/styles';
 
-import { nodeTypes } from './constants';
+import { nodeTypes } from './nodeTypesMapping';
 import { usePrepareHook } from './helpers';
 
 export const Canvas = () => {
