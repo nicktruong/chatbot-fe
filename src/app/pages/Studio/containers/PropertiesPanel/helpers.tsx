@@ -17,6 +17,8 @@ export const usePrepareHook = () => {
         return 'Transition';
       case GroupTypeEnum.CAPTURE_INFO:
         return 'Capture Information';
+      case GroupTypeEnum.SEND_MESSAGES:
+        return 'Send Message to Chatbot User';
     }
   };
 

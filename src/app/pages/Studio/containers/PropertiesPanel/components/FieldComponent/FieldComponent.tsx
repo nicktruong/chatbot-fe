@@ -5,8 +5,9 @@ import { usePrepareHook } from './helpers';
 
 import {
   LabelField,
-  ConditionField,
+  MessageField,
   QuestionField,
+  ConditionField,
   StoreResultField,
 } from '..';
 
@@ -41,6 +42,14 @@ export const FieldComponent = ({ field }: { field: Field }) => {
     case FieldTypeEnum.STORE_RESULT_IN:
       return (
         <StoreResultField
+          value={input}
+          onChange={onInputChange}
+          onUpdateField={onUpdateField}
+        />
+      );
+    case FieldTypeEnum.MESSAGE_TO_SEND:
+      return (
+        <MessageField
           value={input}
           onChange={onInputChange}
           onUpdateField={onUpdateField}
