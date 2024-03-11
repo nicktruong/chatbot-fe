@@ -11,7 +11,7 @@ import type { BotCardProps } from './interfaces';
 import { CustomHandle } from '../Handle';
 
 export const BotCard = ({ card }: BotCardProps) => {
-  const { label, activeCardId, onCardClick } = usePrepareHook(card.id);
+  const { label, activeCardId, onCardClick } = usePrepareHook(card);
 
   return (
     <Box

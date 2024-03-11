@@ -1,17 +1,20 @@
+import type { IBotCard } from '@/interfaces';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+import type { PropertiesState } from './interfaces';
+
+const initialState: PropertiesState = {};
 
 const propertiesSlice = createSlice({
   name: 'properties',
-  initialState: {
-    cardId: '',
-  },
+  initialState,
   reducers: {
-    setCardId: (state, action: PayloadAction<string>) => {
-      state.cardId = action.payload;
+    setCard: (state, action: PayloadAction<IBotCard>) => {
+      state.card = action.payload;
     },
   },
 });
 
 export default propertiesSlice.reducer;
 
-export const { setCardId } = propertiesSlice.actions;
+export const { setCard } = propertiesSlice.actions;
