@@ -12,6 +12,7 @@ import { Box, Text, IconButton } from '@chakra-ui/react';
 import { useMutationState, useQueryClient } from '@tanstack/react-query';
 
 import { routes } from '@/app/routes';
+import { FlowTypeEnum } from '@/enums';
 import { queryKeys } from '@/constants';
 import { NoMessagesIcon } from '@/assets';
 import { useCreateBotMutation, useGetMyBots } from '@/hooks';
@@ -104,7 +105,12 @@ export const usePrepareHook = () => {
               sx={styles.openStudioBtn}
               onClick={event => {
                 event.stopPropagation();
-                navigate(routes.studio);
+                navigate(
+                  generatePath(routes.studio, {
+                    id,
+                    flow: FlowTypeEnum.MAIN.toLowerCase(),
+                  }),
+                );
               }}
               icon={<FaRegEdit fontSize="0.75rem" />}
             />

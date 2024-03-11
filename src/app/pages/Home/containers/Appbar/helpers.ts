@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
 import { routes } from '@/app/routes';
+import { FlowTypeEnum } from '@/enums';
 import { storageKeys } from '@/constants';
 import { setTabIndex, toggleSidebar } from '@/store/home';
 import { useAppDispatch, useGetMe, useGetMyBots } from '@/hooks';
@@ -9,6 +10,7 @@ import { useAppDispatch, useGetMe, useGetMyBots } from '@/hooks';
 import { messages } from './messages';
 
 export const usePrepareHook = () => {
+  const { id } = useParams();
   const { data } = useGetMe();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -33,7 +35,12 @@ export const usePrepareHook = () => {
   };
 
   const handleNavigateToStudio = () => {
-    navigate(routes.studio);
+    navigate(
+      generatePath(routes.studio, {
+        id,
+        flow: FlowTypeEnum.MAIN.toLowerCase(),
+      }),
+    );
   };
 
   return {

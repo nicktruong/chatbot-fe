@@ -33,8 +33,8 @@ export const styles = {
   flow: {
     gap: 1,
     marginX: 1,
-    paddingX: 2,
-    paddingY: 1.5,
+    paddingY: 2,
+    paddingX: 2.5,
     display: 'flex',
     cursor: 'pointer',
     borderRadius: 'md',
