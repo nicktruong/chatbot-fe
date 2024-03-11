@@ -4,3 +4,4 @@ export { default } from './studioSlice';
 
 export * from './cardTray';
 export * from './explorer';
+export * from './propertiesPanel';

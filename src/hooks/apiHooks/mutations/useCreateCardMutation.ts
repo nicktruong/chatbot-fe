@@ -3,14 +3,14 @@ import { useMutation, type UseMutationOptions } from '@tanstack/react-query';
 
 import { axiosClient } from '@/apis';
 import { queryKeys } from '@/constants';
-import type { ErrorResponse, Card, CreateCard } from '@/interfaces';
+import type { ErrorResponse, IBotCard, CreateCard } from '@/interfaces';
 
 export const useCreateCardMutation = ({
   mutationFn,
   mutationKey,
   ...options
 }: UseMutationOptions<
-  AxiosResponse<Card>,
+  AxiosResponse<IBotCard>,
   AxiosError<ErrorResponse>,
   CreateCard
 >) =>

@@ -7,11 +7,11 @@ export const styles = {
     borderRadius: 'xl',
     borderColor: 'node.border',
     backgroundColor: 'node.background',
-    transition: 'all 200ms ease-in',
+    transition: 'outline-width 200ms ease-in',
     boxShadow:
       '0 2px 4px -1px #00000014,inset 0 0 2px 1px rgba(255, 255, 255, 0.48)',
 
-    _hover: { outline: '1.5px solid blue.700' },
+    _hover: { outline: '1.5px solid', outlineColor: 'blue.700' },
   },
   nodeName: {
     paddingX: '2',
