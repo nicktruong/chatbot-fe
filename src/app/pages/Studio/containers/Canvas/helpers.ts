@@ -64,13 +64,22 @@ export const usePrepareHook = () => {
 
   const handleConnect = useCallback(
     (params: Connection) => {
-      const { source } = params;
-      const connection = { ...params, type: 'smoothstep', data: source };
+      const { source, sourceHandle, target } = params;
+      const data = sourceHandle ?? source;
+
+      const connection = {
+        ...params,
+        data,
+        type: 'smoothstep',
+      };
 
       setEdges(edges => {
         // One source only has one edge
         // => Remove edge previously set for this source
-        const newEdges = edges.filter(edge => edge.data !== source);
+        const newEdges = edges.filter(edge => {
+          console.log(target, edge.target);
+          return edge.data !== data && edge.target !== target;
+        });
         return addEdge(connection, newEdges);
       });
 

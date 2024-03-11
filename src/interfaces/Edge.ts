@@ -1,4 +1,4 @@
-import { Base } from './Base';
+import type { Base, IBotCard } from '.';
 
 export interface CreateEdge {
   cardId?: string;
@@ -12,7 +12,7 @@ export interface CreatedEdge extends Base {
 }
 
 export interface Edge extends Base {
-  cardId: string;
+  card?: IBotCard;
   sourceNodeId: string;
   targetNodeId: string;
 }
