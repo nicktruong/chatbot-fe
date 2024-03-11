@@ -27,6 +27,8 @@ export const usePrepareHook = (card: IBotCard) => {
         );
       case CardTypeEnum.NUMBER:
         return card.cardType.name;
+      case CardTypeEnum.TEXT:
+        return card.cardType.name;
     }
   }, [cardFields, card.cardType]);
 

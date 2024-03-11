@@ -3,8 +3,9 @@ import { FieldTypeEnum } from '@/enums';
 
 import {
   LabelField,
-  ConditionField,
+  MessageField,
   QuestionField,
+  ConditionField,
   StoreResultField,
 } from '..';
 
@@ -24,6 +25,8 @@ export const FieldComponent = ({ field }: { field: Field }) => {
         return <QuestionField />;
       case FieldTypeEnum.STORE_RESULT_IN:
         return <StoreResultField />;
+      case FieldTypeEnum.MESSAGE_TO_SEND:
+        return <MessageField />;
     }
   };
 
