@@ -1,5 +1,7 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useState, createContext, ChangeEventHandler, useEffect } from 'react';
 
+import { queryKeys } from '@/constants';
 import { useUpdateFieldMutation } from '@/hooks';
 
 import type { FieldProviderProps, IFieldContext } from './interfaces';
@@ -11,8 +13,16 @@ export const FieldContext = createContext<IFieldContext>({
 });
 
 export const FieldProvider = ({ field, children }: FieldProviderProps) => {
+  const queryClient = useQueryClient();
+
   const [value, setValue] = useState('');
-  const { mutate } = useUpdateFieldMutation({});
+
+  const { mutate } = useUpdateFieldMutation({
+    onSuccess: () =>
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.FIELD, field.cardId],
+      }),
+  });
 
   useEffect(() => {
     // If current input value is empty && there is value fetched from server for this field => update input to have field.value

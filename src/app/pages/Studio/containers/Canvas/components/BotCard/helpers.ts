@@ -28,7 +28,11 @@ export const usePrepareHook = (card: IBotCard) => {
       case CardTypeEnum.NUMBER:
         return card.cardType.name;
       case CardTypeEnum.TEXT:
-        return card.cardType.name;
+        return (
+          cardFields?.find(
+            field => field.fieldType.type === FieldTypeEnum.MESSAGE_TO_SEND,
+          )?.value || card.cardType.name
+        );
     }
   }, [cardFields, card.cardType]);
 
