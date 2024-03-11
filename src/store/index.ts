@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import homeReducer from './home';
+import studioReducer from './studio';
 
 const rootReducer = combineReducers({
   home: homeReducer,
+  studio: studioReducer,
 });
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {
