@@ -18,8 +18,8 @@ export const CardTray = () => {
 
   return (
     <Box sx={styles.container} left={cardTrayOpen ? '100%' : '-100%'}>
-      <Accordion defaultIndex={[0]} allowMultiple>
-        {Object.entries(cardGroups ?? {})?.map(([groupType, cardTypes]) => (
+      <Accordion defaultIndex={Array.from(Array(2).keys())} allowMultiple>
+        {cardGroups.map(([groupType, cardTypes]) => (
           <AccordionItem key={groupType} sx={styles.accordionItem}>
             <Box>
               <AccordionButton sx={styles.accordionButton}>

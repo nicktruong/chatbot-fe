@@ -3,7 +3,12 @@ import { FieldTypeEnum } from '@/enums';
 
 import { usePrepareHook } from './helpers';
 
-import { LabelField, ConditionField } from '..';
+import {
+  LabelField,
+  ConditionField,
+  QuestionField,
+  StoreResultField,
+} from '..';
 
 export const FieldComponent = ({ field }: { field: Field }) => {
   const { input, onInputChange, onUpdateField } = usePrepareHook(field);
@@ -20,6 +25,22 @@ export const FieldComponent = ({ field }: { field: Field }) => {
     case FieldTypeEnum.CONDITION:
       return (
         <ConditionField
+          value={input}
+          onChange={onInputChange}
+          onUpdateField={onUpdateField}
+        />
+      );
+    case FieldTypeEnum.QUESTION:
+      return (
+        <QuestionField
+          value={input}
+          onChange={onInputChange}
+          onUpdateField={onUpdateField}
+        />
+      );
+    case FieldTypeEnum.STORE_RESULT_IN:
+      return (
+        <StoreResultField
           value={input}
           onChange={onInputChange}
           onUpdateField={onUpdateField}

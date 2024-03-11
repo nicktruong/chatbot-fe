@@ -20,6 +20,9 @@ export const styles = {
     '&>.chakra-collapse': {
       overflow: 'unset !important',
     },
+    _notFirst: {
+      marginTop: 1,
+    },
   },
   accordionButton: {
     gap: '1.5',
