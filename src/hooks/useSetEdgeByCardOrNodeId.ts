@@ -21,8 +21,8 @@ export const useSetEdgeByCardOrNodeId = (id: string, type: 'card' | 'node') => {
       type: 'smoothstep',
       source: edgeData.sourceNodeId,
       target: edgeData.targetNodeId,
-      sourceHandle: edgeData.card?.id,
-      data: edgeData.card?.id ?? edgeData.sourceNodeId,
+      sourceHandle: edgeData.cardId,
+      data: edgeData.cardId ?? edgeData.sourceNodeId,
     };
 
     setEdges(eds => addEdge(edge, eds));

@@ -12,7 +12,7 @@ export interface CreatedEdge extends Base {
 }
 
 export interface Edge extends Base {
-  card?: IBotCard;
+  cardId?: string;
   sourceNodeId: string;
   targetNodeId: string;
 }
