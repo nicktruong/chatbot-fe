@@ -2,7 +2,7 @@ import { TabPanel, TabPanels } from '@chakra-ui/react';
 
 import { styles } from './styles';
 
-import { BotDetail } from '../../components/BotDetail';
+import { BotDetail } from '../../components';
 
 export const HomeContent = () => {
   return (

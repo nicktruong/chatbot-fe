@@ -16,6 +16,7 @@ export const Explorer = () => {
     open,
     width,
     dragging,
+    botDetail,
     resizableContentRef,
     t,
     onResize,
@@ -46,14 +47,14 @@ export const Explorer = () => {
               style={{
                 fontSize: '1rem',
                 cursor: 'pointer',
-                color: colors.light.gray[400],
+                color: colors.homeLight.gray[400],
               }}
             />
           </Box>
 
           <Box sx={styles.infoAndAction}>
             {/* TODO: Get from API */}
-            <Text sx={styles.projectName}>Project name</Text>
+            <Text sx={styles.projectName}>{botDetail?.name}</Text>
           </Box>
 
           <Box sx={styles.flows}>

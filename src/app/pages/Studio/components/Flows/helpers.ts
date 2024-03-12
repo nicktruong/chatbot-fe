@@ -5,7 +5,7 @@ import { useGetAllFlows } from '@/hooks';
 export const usePrepareHook = () => {
   const { id, flow } = useParams();
 
-  const { data } = useGetAllFlows(id ?? '');
+  const { data } = useGetAllFlows(id);
 
   const flows =
     data?.data.map(({ flowType, ...data }) => {
