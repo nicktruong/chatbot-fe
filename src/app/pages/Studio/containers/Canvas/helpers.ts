@@ -10,6 +10,8 @@ import {
 } from '@/hooks';
 import { selectFlowId } from '@/store/studio';
 
+import { DEBOUNCE_TIME } from './constants';
+
 import { CanvasContext } from '../../contexts';
 import { MENU_ID } from '../../components';
 
@@ -41,7 +43,7 @@ export const usePrepareHook = () => {
     (nodeId: string, position: XYPosition) => {
       mutate({ nodeId, position });
     },
-    20,
+    DEBOUNCE_TIME,
   );
 
   const handleNodesChange: OnNodesChange = changes => {

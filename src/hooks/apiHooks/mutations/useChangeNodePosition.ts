@@ -23,7 +23,7 @@ export const useChangeNodePositionMutation = ({
     mutationKey: [queryKeys.CHANGE_POSITION],
     mutationFn: ({ nodeId, position }) =>
       axiosClient
-        .put(`/nodes/change-position/${nodeId}`, position)
+        .put(`/nodes/${nodeId}/position`, position)
         .then(({ data }) => data),
     ...options,
   });
