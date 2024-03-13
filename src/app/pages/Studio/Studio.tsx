@@ -6,7 +6,7 @@ import { Box, ChakraProvider } from '@chakra-ui/react';
 import { themes } from '@/styles';
 
 import { styles } from './styles';
-import { Canvas, Explorer, LeftSidebar } from './containers';
+import { Canvas, CardTray, Explorer, LeftSidebar } from './containers';
 
 export const Studio = () => {
   return (
@@ -15,6 +15,7 @@ export const Studio = () => {
         <Box sx={styles.leftBarContainer}>
           <LeftSidebar />
           <Explorer />
+          <CardTray />
         </Box>
         <Canvas />
       </Box>

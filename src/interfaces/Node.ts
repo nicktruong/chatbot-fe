@@ -7,6 +7,7 @@ export interface CreateNode {
   y: number;
   flowId: string;
   type: NodeTypeEnum;
+  id?: string;
 }
 
 export interface Node extends Base {
@@ -14,4 +15,10 @@ export interface Node extends Base {
   y: number;
   name: string;
   nodeType: NodeType;
+}
+
+export interface ChangedPosition {
+  x: number;
+  y: number;
+  updatedAt: string;
 }

@@ -30,7 +30,6 @@ export const usePrepareHook = () => {
     // TODO: Remove refreshToken if implemented
     // TODO: Clear redux state if persisted
     localStorage.removeItem(storageKeys.ACCESS_TOKEN);
-    localStorage.removeItem(storageKeys.USER);
     window.location.reload();
   };
 

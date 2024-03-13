@@ -1,34 +1,63 @@
-import { Connection, addEdge } from 'reactflow';
+import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useContext, useEffect } from 'react';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
+import { Connection, OnNodesChange, XYPosition, addEdge } from 'reactflow';
 
+import {
+  useGetNodes,
+  useAppSelector,
+  useChangeNodePositionMutation,
+} from '@/hooks';
 import { selectFlowId } from '@/store/studio';
-import { useAppSelector, useGetNodes } from '@/hooks';
+
+import { DEBOUNCE_TIME } from './constants';
 
 import { CanvasContext } from '../../contexts';
 import { MENU_ID } from '../../components';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
-  const { data } = useGetNodes(flowId);
+  const { data, isFetching } = useGetNodes(flowId);
   const nodesData = data?.data;
+
   const { show } = useContextMenu({ id: MENU_ID });
+  const { mutate } = useChangeNodePositionMutation({});
 
   const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
     useContext(CanvasContext);
 
   useEffect(() => {
-    if (!nodesData) return;
+    if (!nodesData || isFetching) return;
 
     const nodes = nodesData.map(data => ({
+      data,
       id: data.id,
-      data: { value: null },
       type: data.nodeType.type,
       position: { x: data.x, y: data.y },
     }));
 
     setNodes(nodes);
-  }, [nodesData, setNodes]);
+  }, [nodesData, isFetching, setNodes]);
+
+  const changeNodePosition = useDebouncedCallback(
+    (nodeId: string, position: XYPosition) => {
+      mutate({ nodeId, position });
+    },
+    DEBOUNCE_TIME,
+  );
+
+  const handleNodesChange: OnNodesChange = changes => {
+    changes.forEach(value => {
+      switch (value.type) {
+        case 'position':
+          if (!value.position) return;
+
+          changeNodePosition(value.id, value.position);
+          break;
+      }
+    });
+    onNodesChange(changes);
+  };
 
   const handleConnect = useCallback(
     (params: Connection) =>
@@ -46,8 +75,8 @@ export const usePrepareHook = () => {
     edges,
     nodes,
     onEdgesChange,
-    onNodesChange,
     onConnect: handleConnect,
     onShowMenu: handleShowMenu,
+    onNodesChange: handleNodesChange,
   };
 };
