@@ -37,19 +37,6 @@ export const usePrepareHook = () => {
     setNodes(nodes);
   }, [nodesData, isFetching, setNodes]);
 
-  useEffect(() => {
-    if (!nodesData) return;
-
-    const nodes = nodesData.map(data => ({
-      id: data.id,
-      data: { value: null },
-      type: data.nodeType.type,
-      position: { x: data.x, y: data.y },
-    }));
-
-    setNodes(nodes);
-  }, [nodesData, setNodes]);
-
   const changeNodePosition = useDebouncedCallback(
     (nodeId: string, position: XYPosition) => {
       mutate({ nodeId, position });
