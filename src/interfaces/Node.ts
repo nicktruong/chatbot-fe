@@ -5,9 +5,9 @@ import { Base, NodeType } from '.';
 export interface CreateNode {
   x: number;
   y: number;
-  id?: string;
   flowId: string;
   type: NodeTypeEnum;
+  id?: string;
 }
 
 export interface Node extends Base {
