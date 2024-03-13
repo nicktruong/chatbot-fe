@@ -6,15 +6,8 @@ import ReactFlow, {
 
 import { colors } from '@/styles';
 
+import { nodeTypes } from './nodeTypesMapping';
 import { usePrepareHook } from './helpers';
-
-import { StartNode, StandardNode, EndNode } from '../../components';
-
-const nodeTypes = {
-  endNode: EndNode,
-  startNode: StartNode,
-  standardNode: StandardNode,
-};
 
 export const Canvas = () => {
   const { edges, nodes, onConnect, onEdgesChange, onNodesChange } =
