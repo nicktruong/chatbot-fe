@@ -1,13 +1,33 @@
-import { TbArrowMoveRight } from 'react-icons/tb';
+import { useQueryClient } from '@tanstack/react-query';
 
+import {
+  useAppDispatch,
+  useAppSelector,
+  useGetCardTypes,
+  useCreateCardMutation,
+} from '@/hooks';
+import {
+  selectNodeId,
+  closeCardTray,
+  selectCardTrayOpen,
+} from '@/store/studio';
 import { CardType } from '@/interfaces';
-import { CardTypeEnum, GroupTypeEnum } from '@/enums';
-import { closeCardTray, selectCardTrayOpen } from '@/store/studio';
-import { useAppDispatch, useAppSelector, useGetCardTypes } from '@/hooks';
+import { queryKeys } from '@/constants';
+import { GroupTypeEnum } from '@/enums';
 
 export const usePrepareHook = () => {
   const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
 
+  const { mutate } = useCreateCardMutation({
+    onSuccess: (_, { nodeId }) => {
+      return queryClient.invalidateQueries({
+        queryKey: [queryKeys.CARD, nodeId],
+      });
+    },
+  });
+
+  const nodeId = useAppSelector(selectNodeId);
   const cardTrayOpen = useAppSelector(selectCardTrayOpen);
 
   const { data } = useGetCardTypes();
@@ -21,8 +41,9 @@ export const usePrepareHook = () => {
     {} as Record<GroupTypeEnum, CardType[]>,
   );
 
-  const handleAddCardToNode = () => {
+  const handleAddCardToNode = (id: string) => () => {
     dispatch(closeCardTray());
+    mutate({ cardTypeId: id, nodeId });
   };
 
   const mapGroupTypeToString = (groupType: string) => {
@@ -32,19 +53,9 @@ export const usePrepareHook = () => {
     }
   };
 
-  const mapCardTypeToIcon = (cardType: string) => {
-    switch (cardType) {
-      case CardTypeEnum.EXPRESSION:
-        return <TbArrowMoveRight style={{ color: '#008001', width: '1rem' }} />;
-      default:
-        break;
-    }
-  };
-
   return {
     cardGroups,
     cardTrayOpen,
-    mapCardTypeToIcon,
     mapGroupTypeToString,
     onAddCardToNode: handleAddCardToNode,
   };

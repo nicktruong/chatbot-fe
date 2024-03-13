@@ -1,6 +1,7 @@
 // react-query keys
 export const queryKeys = {
   BOTS: 'BOTS',
+  CARD: 'CARD',
   USER: 'USER',
   FLOW: 'FLOW',
   NODE: 'NODE',
@@ -9,6 +10,7 @@ export const queryKeys = {
   CARD_TYPE: 'CARD_TYPE',
   CREATE_BOT: 'CREATE_BOT',
   DELETE_BOT: 'DELETE_BOT',
+  CREATE_CARD: 'CREATE_CARD',
   CREATE_NODE: 'CREATE_NODE',
   CHANGE_POSITION: 'CHANGE_POSITION',
 };
