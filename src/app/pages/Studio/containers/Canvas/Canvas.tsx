@@ -9,8 +9,11 @@ import { colors } from '@/styles';
 import { nodeTypes } from './nodeTypesMapping';
 import { usePrepareHook } from './helpers';
 
+import { ContextMenu } from '../../components';
+import { CanvasProvider } from '../../contexts';
+
 export const Canvas = () => {
-  const { edges, nodes, onConnect, onEdgesChange, onNodesChange } =
+  const { edges, nodes, onConnect, onEdgesChange, onNodesChange, onShowMenu } =
     usePrepareHook();
 
   return (
@@ -19,6 +22,7 @@ export const Canvas = () => {
       edges={edges}
       nodeTypes={nodeTypes}
       onConnect={onConnect}
+      onContextMenu={onShowMenu}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       connectionLineType={ConnectionLineType.SmoothStep}
@@ -29,6 +33,15 @@ export const Canvas = () => {
         variant={BackgroundVariant.Dots}
         color={colors.studioLight.gray[300]}
       />
+      <ContextMenu />
     </ReactFlow>
+  );
+};
+
+export const CanvasWrapper = () => {
+  return (
+    <CanvasProvider>
+      <Canvas />
+    </CanvasProvider>
   );
 };
