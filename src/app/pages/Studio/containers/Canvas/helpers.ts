@@ -15,7 +15,7 @@ import { MENU_ID } from '../../components/ContextMenu/constants';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
-  const { data } = useGetNodes(flowId);
+  const { data, isFetching } = useGetNodes(flowId);
   const nodesData = data?.data;
 
   const { show } = useContextMenu({ id: MENU_ID });
@@ -25,33 +25,31 @@ export const usePrepareHook = () => {
     useContext(CanvasContext);
 
   useEffect(() => {
-    if (!nodesData) return;
+    if (!nodesData || isFetching) return;
 
     const nodes = nodesData.map(data => ({
+      data,
       id: data.id,
-      data: { value: null },
       type: data.nodeType.type,
       position: { x: data.x, y: data.y },
     }));
 
     setNodes(nodes);
-  }, [nodesData, setNodes]);
+  }, [nodesData, isFetching, setNodes]);
 
   const changeNodePosition = useDebouncedCallback(
-    (nodeId: string, position?: XYPosition) => {
-      if (!position) {
-        return;
-      }
-
+    (nodeId: string, position: XYPosition) => {
       mutate({ nodeId, position });
     },
-    100,
+    20,
   );
 
   const handleNodesChange: OnNodesChange = changes => {
     changes.forEach(value => {
       switch (value.type) {
         case 'position':
+          if (!value.position) return;
+
           changeNodePosition(value.id, value.position);
           break;
       }

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useReactFlow } from 'reactflow';
-import { nanoid } from '@reduxjs/toolkit';
 import { ItemParams } from 'react-contexify';
 
 import { NodeTypeEnum } from '@/enums';
@@ -19,17 +19,19 @@ export const usePrepareHook = () => {
     const { x, y } = (event.target as HTMLElement)?.getBoundingClientRect();
     const position = screenToFlowPosition({ x, y });
 
+    const id = uuidv4();
+
     setNodes(nodes => [
       ...nodes,
       {
+        id,
         position,
-        id: nanoid(),
-        data: { value: null },
         type: NodeTypeEnum.CUSTOM,
+        data: { id, name: 'Standard Node 1' },
       },
     ]);
 
-    mutate({ flowId, type: NodeTypeEnum.CUSTOM, ...position });
+    mutate({ id, flowId, type: NodeTypeEnum.CUSTOM, ...position });
   };
 
   return { onCreateNode: handleCreateNode };
