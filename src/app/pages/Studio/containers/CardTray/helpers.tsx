@@ -30,8 +30,7 @@ export const usePrepareHook = () => {
   const nodeId = useAppSelector(selectNodeId);
   const cardTrayOpen = useAppSelector(selectCardTrayOpen);
 
-  const { data } = useGetCardTypes();
-  const cardTypes = data?.data;
+  const { data: cardTypes } = useGetCardTypes();
   const cardGroups = cardTypes?.reduce(
     (acc, curr) => {
       acc[curr.groupType] ??= [];

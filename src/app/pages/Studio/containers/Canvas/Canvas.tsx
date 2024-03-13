@@ -5,12 +5,12 @@ import ReactFlow, {
 } from 'reactflow';
 
 import { colors } from '@/styles';
+import { CanvasProvider } from '@studio/contexts';
 
-import { nodeTypes } from './nodeTypesMapping';
 import { usePrepareHook } from './helpers';
+import { nodeTypes } from './nodeTypesMapping';
 
-import { ContextMenu } from '../../components';
-import { CanvasProvider } from '../../contexts';
+import { ContextMenu } from './components';
 
 export const Canvas = () => {
   const { edges, nodes, onConnect, onEdgesChange, onNodesChange, onShowMenu } =

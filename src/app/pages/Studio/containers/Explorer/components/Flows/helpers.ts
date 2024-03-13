@@ -12,11 +12,11 @@ export const usePrepareHook = () => {
   const dispatch = useAppDispatch();
 
   const { data } = useGetAllFlows(id);
-  const flowId = useExtractFlowId(data?.data);
+  const flowId = useExtractFlowId(data);
 
   const flows = useMemo(
     () =>
-      data?.data.map(params => {
+      data?.map(params => {
         return {
           ...params,
           isActive: params.id === flowId,

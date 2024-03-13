@@ -1,7 +1,7 @@
 import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useContext, useEffect } from 'react';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
-import { Connection, OnNodesChange, XYPosition, addEdge } from 'reactflow';
+import { addEdge, Connection, XYPosition, OnNodesChange } from 'reactflow';
 
 import {
   useGetNodes,
@@ -10,16 +10,14 @@ import {
   useChangeNodePositionMutation,
 } from '@/hooks';
 import { selectFlowId } from '@/store/studio';
+import { CanvasContext } from '@studio/contexts';
 
+import { MENU_ID } from './components';
 import { DEBOUNCE_TIME } from './constants';
-
-import { CanvasContext } from '../../contexts';
-import { MENU_ID } from '../../components';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
-  const { data, isFetching } = useGetNodes(flowId);
-  const nodesData = data?.data;
+  const { data: nodesData, isFetching } = useGetNodes(flowId);
 
   const { mutate } = useCreateEdgeMutation({});
   const { show } = useContextMenu({ id: MENU_ID });
@@ -41,11 +39,8 @@ export const usePrepareHook = () => {
     setNodes(nodes);
   }, [nodesData, isFetching, setNodes]);
 
-  useEffect(() => {
-    return () => {
-      setNodes([]);
-    };
-  }, []);
+  // To clean up cached nodes on the canvas
+  useEffect(() => () => setNodes([]), [setNodes]);
 
   const changeNodePosition = useDebouncedCallback(
     (nodeId: string, position: XYPosition) => {
@@ -69,23 +64,20 @@ export const usePrepareHook = () => {
 
   const handleConnect = useCallback(
     (params: Connection) => {
-      const options = { ...params, type: 'smoothstep' };
-      const newData = options.source;
+      const { source } = params;
+      const connection = { ...params, type: 'smoothstep', data: source };
 
-      setEdges(eds => {
-        return addEdge(
-          { ...options, data: newData },
-          eds.filter(edge => {
-            console.log(edge.data === newData);
-            return edge.data !== newData;
-          }),
-        );
+      setEdges(edges => {
+        // One source only has one edge
+        // => Remove edge previously set for this source
+        const newEdges = edges.filter(edge => edge.data !== source);
+        return addEdge(connection, newEdges);
       });
 
       mutate({
-        sourceNodeId: options.source ?? '',
-        targetNodeId: options.target ?? '',
-        cardId: options.sourceHandle ?? undefined,
+        sourceNodeId: connection.source ?? '',
+        targetNodeId: connection.target ?? '',
+        cardId: connection.sourceHandle ?? undefined,
       });
     },
     [mutate, setEdges],

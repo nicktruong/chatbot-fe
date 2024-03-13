@@ -11,12 +11,12 @@ import { messages } from './messages';
 
 export const usePrepareHook = () => {
   const { id } = useParams();
-  const { data } = useGetMe();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { data: user } = useGetMe();
   const { t } = useTranslation(messages.ns);
   const { data: botsData } = useGetMyBots();
-  const hasBot = !!botsData?.data.length;
+  const hasBot = !!botsData?.length;
 
   const handleTabsChange = (index: number) => () => {
     dispatch(setTabIndex(index));
@@ -43,8 +43,8 @@ export const usePrepareHook = () => {
   };
 
   return {
+    user,
     hasBot,
-    user: data?.data,
     t,
     onLogout: handleLogout,
     onTabsChange: handleTabsChange,

@@ -1,8 +1,8 @@
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
-import { routes } from '@/app/routes';
 import { queryKeys } from '@/constants';
 import { useGetMyBots, useDeleteBotMutation } from '@/hooks';
 
@@ -10,13 +10,12 @@ import { messages } from './messages';
 
 export const usePrepareHook = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
+
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation(messages.ns);
 
-  const { data } = useGetMyBots();
-  const bots = data?.data;
-  const botDetail = bots?.find(bot => bot.id === id);
+  const { data: bots } = useGetMyBots();
+  const botDetail = useMemo(() => bots?.find(bot => bot.id === id), [id, bots]);
 
   const { isPending, mutate } = useDeleteBotMutation({
     onSuccess: () => {
@@ -26,16 +25,6 @@ export const usePrepareHook = () => {
 
   const handleDeleteChatbot = () => {
     mutate(id ?? '');
-
-    if (bots && bots.length > 1) {
-      const botId = bots.find(bot => bot.id !== id)?.id ?? '';
-
-      navigate(
-        generatePath(routes.chatbotDetail, {
-          id: botId,
-        }),
-      );
-    }
   };
 
   return {

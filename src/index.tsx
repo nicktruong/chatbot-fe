@@ -3,34 +3,17 @@ import { AxiosError } from 'axios';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
+
+import App from '@/app';
+import { setupStore } from '@/store';
+import { setupQueryClient } from '@/config';
 
 import { themes } from '@/styles';
-import { setupStore } from '@/store';
+import reportWebVitals from '@/reportWebVitals';
 
-import App from './app';
-import { HttpStatus } from './enums';
-import reportWebVitals from './reportWebVitals';
-
-import '@/i18n';
-import '@/sentry';
-
-export const store = setupStore();
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: (failureCount, error) => {
-        if (error instanceof AxiosError) {
-          if (error.response?.status === HttpStatus.UNAUTHORIZED) return false;
-        }
-
-        if (failureCount >= 3) return false;
-        return true;
-      },
-    },
-  },
-});
+const store = setupStore();
+const queryClient = setupQueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
