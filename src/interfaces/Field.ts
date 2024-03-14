@@ -6,7 +6,6 @@ export interface Field extends Base {
   value: string;
   cardId: string;
   fieldTypeId: string;
-
   fieldType: FieldType;
 }
 

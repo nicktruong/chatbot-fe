@@ -1,7 +1,7 @@
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 import { styles } from '../../styles';
-import type { FieldComponentProps } from '../FieldComponent/interfaces';
+import type { FieldComponentProps } from '../FieldComponent';
 
 export const LabelField = ({
   value,
