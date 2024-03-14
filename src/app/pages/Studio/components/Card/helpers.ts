@@ -1,14 +1,15 @@
+import { Edge, addEdge } from 'reactflow';
 import { useContext, useEffect } from 'react';
 
+import { CardOrNode, EdgeType } from '@/enums';
 import { useGetEdgeByCardOrNodeId } from '@/hooks';
 
 import { CanvasContext } from '../../contexts';
-import { Edge, addEdge } from 'reactflow';
 
 export const usePrepareHook = (cardId: string) => {
   const { data, isFetching } = useGetEdgeByCardOrNodeId({
     id: cardId,
-    type: 'card',
+    type: CardOrNode.CARD,
   });
   const edgeData = data?.data;
 
@@ -19,7 +20,7 @@ export const usePrepareHook = (cardId: string) => {
 
     const edge: Edge = {
       id: edgeData.id,
-      type: 'smoothstep',
+      type: EdgeType.SMOOTH_STEP,
       source: edgeData.sourceNodeId,
       target: edgeData.targetNodeId,
     };

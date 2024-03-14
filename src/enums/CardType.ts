@@ -5,3 +5,8 @@ export enum CardTypeEnum {
 export enum GroupTypeEnum {
   TRANSITION = 'TRANSITION',
 }
+
+export enum CardOrNode {
+  CARD = 'CARD',
+  NODE = 'NODE',
+}

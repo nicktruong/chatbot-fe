@@ -9,6 +9,7 @@ import {
   useCreateEdgeMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
+import { EdgeType } from '@/enums';
 import { selectFlowId } from '@/store/studio';
 
 import { DEBOUNCE_TIME } from './constants';
@@ -69,14 +70,13 @@ export const usePrepareHook = () => {
 
   const handleConnect = useCallback(
     (params: Connection) => {
-      const options = { ...params, type: 'smoothstep' };
+      const options = { ...params, type: EdgeType.SMOOTH_STEP };
       const newData = options.source;
 
       setEdges(eds => {
         return addEdge(
           { ...options, data: newData },
           eds.filter(edge => {
-            console.log(edge.data === newData);
             return edge.data !== newData;
           }),
         );
