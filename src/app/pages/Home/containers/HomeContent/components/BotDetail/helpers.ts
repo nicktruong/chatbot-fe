@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
@@ -15,7 +14,7 @@ export const usePrepareHook = () => {
   const { t, i18n } = useTranslation(messages.ns);
 
   const { data: bots } = useGetMyBots();
-  const botDetail = useMemo(() => bots?.find(bot => bot.id === id), [id, bots]);
+  const botDetail = bots?.find(bot => bot.id === id);
 
   const { isPending, mutate } = useDeleteBotMutation({
     onSuccess: () => {
