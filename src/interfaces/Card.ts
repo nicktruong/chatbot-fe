@@ -5,7 +5,7 @@ export interface CreateCard {
   cardTypeId: string;
 }
 
-export interface Card extends Base {
+export interface IBotCard extends Base {
   nodeId: string;
   position: number;
   cardTypeId: string;

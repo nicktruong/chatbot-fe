@@ -6,17 +6,23 @@ import { mapCardTypeToIcon } from '@/utils';
 
 import { styles } from './styles';
 import { usePrepareHook } from './helpers';
-import type { CardProps } from './interfaces';
+import type { BotCardProps } from './interfaces';
 
 import { CustomHandle } from '../Handle';
 
-export const BotCard = ({ card }: CardProps) => {
-  usePrepareHook(card.id);
+export const BotCard = ({ card }: BotCardProps) => {
+  const { label, activeCardId, onCardClick } = usePrepareHook(card.id);
 
   return (
-    <Box key={card.id} sx={styles.card}>
+    <Box
+      key={card.id}
+      sx={styles.card}
+      onClick={onCardClick}
+      outline={activeCardId === card.id ? '1.5px solid' : 'none'}
+      outlineColor={activeCardId === card.id ? 'blue.700' : ''}
+    >
       {mapCardTypeToIcon(card.cardType?.type ?? '')}
-      <Text sx={styles.cardContent}>👋 Welcome on **Botpress Studio**!</Text>
+      <Text sx={styles.cardContent}>{label}</Text>
       {card.cardType?.groupType === GroupTypeEnum.TRANSITION && (
         <CustomHandle
           id={card.id}

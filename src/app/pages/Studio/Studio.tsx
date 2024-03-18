@@ -5,8 +5,14 @@ import { Box, ChakraProvider } from '@chakra-ui/react';
 
 import { themes } from '@/styles';
 
+import {
+  Canvas,
+  CardTray,
+  Explorer,
+  LeftSidebar,
+  PropertiesPanel,
+} from './containers';
 import { styles } from './styles';
-import { Canvas, CardTray, Explorer, LeftSidebar } from './containers';
 
 export const Studio = () => {
   return (
@@ -18,6 +24,9 @@ export const Studio = () => {
           <CardTray />
         </Box>
         <Canvas />
+        <Box sx={styles.rightBarContainer}>
+          <PropertiesPanel />
+        </Box>
       </Box>
     </ChakraProvider>
   );

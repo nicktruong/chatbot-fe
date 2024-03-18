@@ -1,5 +1,5 @@
-import type { Card } from '@/interfaces';
+import type { IBotCard } from '@/interfaces';
 
-export interface CardProps {
-  card: Card;
+export interface BotCardProps {
+  card: IBotCard;
 }
