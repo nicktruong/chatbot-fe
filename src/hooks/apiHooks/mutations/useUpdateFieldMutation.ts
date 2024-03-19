@@ -12,7 +12,7 @@ export const useUpdateFieldMutation = ({
 }: UseMutationOptions<void, AxiosError<ErrorResponse>, UpdateField, any>) =>
   useMutation({
     mutationKey: [queryKeys.UPDATE_FIELD],
-    mutationFn: data =>
-      axiosClient.put('/fields', data).then(({ data }) => data),
+    mutationFn: ({ fieldId, ...data }) =>
+      axiosClient.put(`/fields/${fieldId}`, data).then(({ data }) => data),
     ...options,
   });

@@ -21,7 +21,7 @@ export const FieldComponent = ({ field }: { field: Field }) => {
         return <LabelField />;
       case FieldTypeEnum.CONDITION:
         return <ConditionField />;
-      case FieldTypeEnum.QUESTION:
+      case FieldTypeEnum.NUMBER_QUESTION:
         return <QuestionField />;
       case FieldTypeEnum.STORE_RESULT_IN:
         return <StoreResultField />;

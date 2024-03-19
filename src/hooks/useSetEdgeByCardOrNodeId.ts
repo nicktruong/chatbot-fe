@@ -6,7 +6,7 @@ import { CanvasContext } from '@studio/contexts';
 
 import { useGetEdgeByCardOrNodeId } from './apiHooks';
 
-export const useSetEdgeByCardOrNodeId = (id: string, type: 'card' | 'node') => {
+export const useSetEdgeByCardOrNodeId = (id: string, type: CardOrNode) => {
   const { data: edgeData, isFetching } = useGetEdgeByCardOrNodeId({
     id,
     type: CardOrNode.CARD,
@@ -20,6 +20,7 @@ export const useSetEdgeByCardOrNodeId = (id: string, type: 'card' | 'node') => {
     const edge: Edge = {
       id: edgeData.id,
       type: EdgeType.SMOOTH_STEP,
+      source: edgeData.sourceNodeId,
       target: edgeData.targetNodeId,
       sourceHandle: edgeData.cardId,
       data: edgeData.cardId ?? edgeData.sourceNodeId,
