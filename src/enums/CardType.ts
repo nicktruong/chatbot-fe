@@ -9,3 +9,8 @@ export enum GroupTypeEnum {
   CAPTURE_INFO = 'CAPTURE_INFO',
   SEND_MESSAGES = 'SEND_MESSAGES',
 }
+
+export enum CardOrNode {
+  CARD = 'CARD',
+  NODE = 'NODE',
+}

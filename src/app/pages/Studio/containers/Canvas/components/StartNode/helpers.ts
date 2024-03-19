@@ -1,5 +1,6 @@
-import { useSetEdgeByCardOrNodeId } from '@/hooks/useSetEdgeByCardOrNodeId';
+import { CardOrNode } from '@/enums';
+import { useSetEdgeByCardOrNodeId } from '@/hooks';
 
 export const usePrepareHook = (nodeId: string) => {
-  useSetEdgeByCardOrNodeId(nodeId, 'node');
+  useSetEdgeByCardOrNodeId(nodeId, CardOrNode.NODE);
 };

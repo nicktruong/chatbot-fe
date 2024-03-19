@@ -7,14 +7,14 @@ import {
   useSetEdgeByCardOrNodeId,
 } from '@/hooks';
 import type { IBotCard } from '@/interfaces';
-import { CardTypeEnum, FieldTypeEnum } from '@/enums';
 import { selectPropertiesCard, setCard } from '@/store/studio';
+import { CardOrNode, CardTypeEnum, FieldTypeEnum } from '@/enums';
 
 export const usePrepareHook = (card: IBotCard) => {
   const dispatch = useAppDispatch();
   const activeCardId = useAppSelector(selectPropertiesCard)?.id;
 
-  useSetEdgeByCardOrNodeId(card.id, 'card');
+  useSetEdgeByCardOrNodeId(card.id, CardOrNode.CARD);
   const { data: cardFields } = useGetCardFields(card.id);
 
   const labelMapping = useCallback(() => {

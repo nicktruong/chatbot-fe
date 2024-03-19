@@ -31,7 +31,7 @@ export const FieldComponent = ({ field }: { field: Field }) => {
           onUpdateField={onUpdateField}
         />
       );
-    case FieldTypeEnum.QUESTION:
+    case FieldTypeEnum.NUMBER_QUESTION:
       return (
         <QuestionField
           value={input}

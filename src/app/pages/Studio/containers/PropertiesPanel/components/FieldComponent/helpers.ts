@@ -5,7 +5,7 @@ import { Field } from '@/interfaces';
 import { queryKeys } from '@/constants';
 import { useUpdateFieldMutation } from '@/hooks';
 
-export const usePrepareHook = ({ id, cardId, value }: Field) => {
+export const usePrepareHook = ({ id, cardId, value, ...field }: Field) => {
   const queryClient = useQueryClient();
   const [input, setInput] = useState('');
 
@@ -15,11 +15,14 @@ export const usePrepareHook = ({ id, cardId, value }: Field) => {
 
   useEffect(() => {
     if (input === '' && value) setInput(value);
-  }, [value, input]);
+  }, [value]);
 
   const { mutate } = useUpdateFieldMutation({
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: [queryKeys.FIELD, cardId] }),
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: [queryKeys.FIELD, cardId],
+      });
+    },
   });
 
   const handleUpdateField = (value: string) => {

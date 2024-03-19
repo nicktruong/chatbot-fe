@@ -1,11 +1,12 @@
 import { Edge, addEdge } from 'reactflow';
 import { useContext, useEffect } from 'react';
 
+import { CardOrNode } from '@/enums';
 import { CanvasContext } from '@studio/contexts';
 
 import { useGetEdgeByCardOrNodeId } from './apiHooks';
 
-export const useSetEdgeByCardOrNodeId = (id: string, type: 'card' | 'node') => {
+export const useSetEdgeByCardOrNodeId = (id: string, type: CardOrNode) => {
   const { data: edgeData, isFetching } = useGetEdgeByCardOrNodeId({
     id,
     type,
