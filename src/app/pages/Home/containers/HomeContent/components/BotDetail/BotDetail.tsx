@@ -1,6 +1,5 @@
 import {
   Box,
-  Card,
   Grid,
   Text,
   Button,
@@ -12,6 +11,7 @@ import { BsFillQuestionCircleFill } from 'react-icons/bs';
 
 import { formatRelative } from '@/utils';
 import { NoMessagesIcon } from '@/assets';
+import { BlankCard } from '@/app/pages/Home/components';
 
 import { styles } from './styles';
 import { messages } from './messages';
@@ -35,7 +35,7 @@ export const BotDetail = () => {
         </Box>
       ) : (
         <Box sx={styles.container}>
-          <Card sx={styles.card}>
+          <BlankCard>
             <CardBody padding="6">
               <Grid
                 gap={3}
@@ -95,9 +95,9 @@ export const BotDetail = () => {
                 </GridItem>
               </Grid>
             </CardBody>
-          </Card>
+          </BlankCard>
 
-          <Card sx={styles.card}>
+          <BlankCard>
             <CardBody padding="6">
               <Text fontSize="lg" color="red">
                 {t(messages.deleteChatbot)}
@@ -120,7 +120,7 @@ export const BotDetail = () => {
                 {t(messages.deleteChatbot)}
               </Button>
             </CardFooter>
-          </Card>
+          </BlankCard>
         </Box>
       )}
     </>
