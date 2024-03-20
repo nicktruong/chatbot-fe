@@ -22,12 +22,7 @@ export const styles = {
     maxWidth: '672px',
     paddingBottom: '8',
     flexDirection: 'column',
-    marginLeft: { lg: 'clamp(0px, 10vw, 9rem)' },
-  },
-  card: {
-    border: '1px',
-    boxShadow: 'none',
-    borderColor: 'gray.200',
+    margin: { lg: '0 auto' },
   },
   infoHeader: {
     display: 'flex',

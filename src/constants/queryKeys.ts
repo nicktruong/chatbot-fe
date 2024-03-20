@@ -8,6 +8,7 @@ export const queryKeys = {
   NODE: 'NODE',
   FIELD: 'FIELD',
   LOGIN: 'LOGIN',
+  MESSAGE: 'MESSAGE',
   SIGN_UP: 'SIGN_UP',
   CARD_TYPE: 'CARD_TYPE',
   CREATE_BOT: 'CREATE_BOT',

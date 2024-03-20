@@ -5,6 +5,7 @@ export * from './Edge';
 export * from './Flow';
 export * from './Node';
 export * from './Field';
+export * from './Message';
 export * from './Session';
 export * from './CardType';
 export * from './FlowType';
