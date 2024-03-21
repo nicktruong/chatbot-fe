@@ -8,7 +8,7 @@ export interface ICanvasContext {
   nodes: Node<any, string | undefined>[];
   setNodes: Dispatch<SetStateAction<Node<any, string | undefined>[]>>;
 
-  edges: Edge<any>[];
+  edges: Edge<string>[];
   onEdgesChange: OnChange<EdgeChange>;
-  setEdges: Dispatch<SetStateAction<Edge<any>[]>>;
+  setEdges: Dispatch<SetStateAction<Edge<string>[]>>;
 }

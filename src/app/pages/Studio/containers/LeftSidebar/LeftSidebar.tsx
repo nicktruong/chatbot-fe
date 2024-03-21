@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react';
 import { PiFlowArrow } from 'react-icons/pi';
 
+import { ExplorerType } from '@studio/constants';
+
 import { styles } from './styles';
 import { usePrepareHook } from './helpers';
-
-import { ExplorerType } from '../../constants';
 
 // TODO: Refine UI
 export const LeftSidebar = () => {

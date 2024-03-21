@@ -4,6 +4,7 @@ export * from './Card';
 export * from './Edge';
 export * from './Flow';
 export * from './Node';
+export * from './Field';
 export * from './Session';
 export * from './CardType';
 export * from './FlowType';
