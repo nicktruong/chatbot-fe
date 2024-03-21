@@ -51,6 +51,8 @@ export const usePrepareHook = () => {
     switch (groupType) {
       case GroupTypeEnum.TRANSITION:
         return 'Flow Logic';
+      case GroupTypeEnum.CAPTURE_INFO:
+        return 'Capture Information';
     }
   };
 
