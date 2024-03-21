@@ -1,19 +1,18 @@
+import { useContext } from 'react';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 import { styles } from '../../styles';
-import { FieldComponentProps } from '../FieldComponent/interfaces';
+import { FieldContext } from '../../contexts';
 
-export const ConditionField = ({
-  value,
-  onChange,
-  onUpdateField,
-}: FieldComponentProps) => {
+export const ConditionField = () => {
+  const { value, onInputChange, onUpdateField } = useContext(FieldContext);
+
   return (
     <FormControl sx={styles.fields}>
       <FormLabel sx={styles.labelField}>Condition</FormLabel>
       <Input
         value={value}
-        onChange={onChange}
+        onChange={onInputChange}
         sx={styles.studioInput}
         onBlur={e => onUpdateField(e.target.value)}
         onKeyDown={e =>

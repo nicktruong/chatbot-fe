@@ -31,13 +31,15 @@ export const usePrepareHook = () => {
   const cardTrayOpen = useAppSelector(selectCardTrayOpen);
 
   const { data: cardTypes } = useGetCardTypes();
-  const cardGroups = cardTypes?.reduce(
-    (acc, curr) => {
-      acc[curr.groupType] ??= [];
-      acc[curr.groupType].push(curr);
-      return acc;
-    },
-    {} as Record<GroupTypeEnum, CardType[]>,
+  const cardGroups = Object.entries(
+    cardTypes?.reduce(
+      (acc, curr) => {
+        acc[curr.groupType] ??= [];
+        acc[curr.groupType].push(curr);
+        return acc;
+      },
+      {} as Record<GroupTypeEnum, CardType[]>,
+    ) ?? {},
   );
 
   const handleAddCardToNode = (id: string) => () => {
@@ -49,6 +51,8 @@ export const usePrepareHook = () => {
     switch (groupType) {
       case GroupTypeEnum.TRANSITION:
         return 'Flow Logic';
+      case GroupTypeEnum.CAPTURE_INFO:
+        return 'Capture Information';
     }
   };
 

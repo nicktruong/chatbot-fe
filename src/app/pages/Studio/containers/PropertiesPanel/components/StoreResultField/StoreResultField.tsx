@@ -4,16 +4,16 @@ import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { styles } from '../../styles';
 import { FieldContext } from '../../contexts';
 
-export const LabelField = () => {
+export const StoreResultField = () => {
   const { value, onInputChange, onUpdateField } = useContext(FieldContext);
 
   return (
     <FormControl sx={styles.fields}>
-      <FormLabel sx={styles.labelField}>Label</FormLabel>
+      <FormLabel sx={styles.labelField}>Store result in</FormLabel>
       <Input
         value={value}
-        sx={styles.studioInput}
         onChange={onInputChange}
+        sx={styles.studioInput}
         onBlur={e => onUpdateField(e.target.value)}
         onKeyDown={e =>
           e.key === 'Enter' &&
