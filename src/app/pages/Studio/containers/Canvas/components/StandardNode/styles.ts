@@ -5,13 +5,15 @@ export const styles = {
     border: '1px',
     width: '255px',
     borderRadius: 'xl',
+    outline: '1.5px solid',
     borderColor: 'node.border',
+    outlineColor: 'transparent',
     backgroundColor: 'node.background',
-    transition: 'outline-width 200ms ease-in',
+    transition: 'all 200ms ease-in',
     boxShadow:
       '0 2px 4px -1px #00000014,inset 0 0 2px 1px rgba(255, 255, 255, 0.48)',
 
-    _hover: { outline: '1.5px solid', outlineColor: 'blue.700' },
+    _hover: { outlineColor: 'blue.700' },
   },
   nodeName: {
     paddingX: '2',

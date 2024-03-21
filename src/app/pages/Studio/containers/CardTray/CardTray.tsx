@@ -17,7 +17,11 @@ export const CardTray = () => {
     usePrepareHook();
 
   return (
-    <Box sx={styles.container} left={cardTrayOpen ? '100%' : '-100%'}>
+    <Box
+      sx={styles.container}
+      left={cardTrayOpen ? '100%' : '-100%'}
+      visibility={cardTrayOpen ? 'visible' : 'hidden'}
+    >
       <Accordion defaultIndex={Array.from(Array(3).keys())} allowMultiple>
         {cardGroups.map(([groupType, cardTypes]) => (
           <AccordionItem key={groupType} sx={styles.accordionItem}>
