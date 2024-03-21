@@ -8,6 +8,7 @@ export const studioLightColors = {
     100: '#f0f0f3',
     200: '#e8e8ec',
     300: '#e0e1e7',
+    500: '#d9d9e0',
     600: '#7f838d',
   },
   blue: {
@@ -24,6 +25,7 @@ export const studioLightColors = {
     950: '#0e385d',
   },
   slate: {
+    7: '#cdced7',
     11: '#60646c',
   },
   node: {

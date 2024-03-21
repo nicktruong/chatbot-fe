@@ -1,27 +1,28 @@
 import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useContext, useEffect } from 'react';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
-import { Connection, OnNodesChange, XYPosition, addEdge } from 'reactflow';
+import { addEdge, Connection, XYPosition, OnNodesChange } from 'reactflow';
 
 import {
   useGetNodes,
   useAppSelector,
+  useCreateEdgeMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
+import { EdgeType } from '@/enums';
 import { selectFlowId } from '@/store/studio';
+import { CanvasContext } from '@studio/contexts';
 
+import { MENU_ID } from './components';
 import { DEBOUNCE_TIME } from './constants';
-
-import { CanvasContext } from '../../contexts';
-import { MENU_ID } from '../../components';
 
 export const usePrepareHook = () => {
   const flowId = useAppSelector(selectFlowId);
-  const { data, isFetching } = useGetNodes(flowId);
-  const nodesData = data?.data;
+  const { data: nodesData, isFetching } = useGetNodes(flowId);
 
+  const { mutate } = useCreateEdgeMutation({});
   const { show } = useContextMenu({ id: MENU_ID });
-  const { mutate } = useChangeNodePositionMutation({});
+  const { mutate: updateNodePosition } = useChangeNodePositionMutation({});
 
   const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
     useContext(CanvasContext);
@@ -39,9 +40,12 @@ export const usePrepareHook = () => {
     setNodes(nodes);
   }, [nodesData, isFetching, setNodes]);
 
+  // To clean up cached nodes on the canvas
+  useEffect(() => () => setNodes([]), [setNodes]);
+
   const changeNodePosition = useDebouncedCallback(
     (nodeId: string, position: XYPosition) => {
-      mutate({ nodeId, position });
+      updateNodePosition({ nodeId, position });
     },
     DEBOUNCE_TIME,
   );
@@ -60,9 +64,28 @@ export const usePrepareHook = () => {
   };
 
   const handleConnect = useCallback(
-    (params: Connection) =>
-      setEdges(eds => addEdge({ ...params, type: 'smoothstep' }, eds)),
-    [setEdges],
+    (params: Connection) => {
+      const { source } = params;
+      const connection = {
+        ...params,
+        data: source,
+        type: EdgeType.SMOOTH_STEP,
+      };
+
+      setEdges(edges => {
+        // One source only has one edge
+        // => Remove edge previously set for this source
+        const newEdges = edges.filter(edge => edge.data !== source);
+        return addEdge(connection, newEdges);
+      });
+
+      mutate({
+        sourceNodeId: connection.source ?? '',
+        targetNodeId: connection.target ?? '',
+        cardId: connection.sourceHandle ?? undefined,
+      });
+    },
+    [mutate, setEdges],
   );
 
   const handleShowMenu = (e: TriggerEvent) => {

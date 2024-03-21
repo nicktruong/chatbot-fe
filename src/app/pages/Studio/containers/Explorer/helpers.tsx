@@ -3,6 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { SyntheticEvent, useMemo, useRef } from 'react';
 
 import {
+  ExplorerType,
+  MAX_EXPLORER_WIDTH,
+  MIN_EXPLORER_WIDTH,
+} from '@studio/constants';
+import {
   setWidth,
   setDragging,
   setExplorer,
@@ -14,22 +19,13 @@ import { useAppDispatch, useAppSelector, useGetMyBots } from '@/hooks';
 
 import { messages } from './messages';
 
-import {
-  ExplorerType,
-  MAX_EXPLORER_WIDTH,
-  MIN_EXPLORER_WIDTH,
-} from '../../constants';
-
 export const usePrepareHook = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { t } = useTranslation(messages.ns);
 
   const { data } = useGetMyBots();
-  const botDetail = useMemo(
-    () => data?.data.find(bot => bot.id === id),
-    [id, data],
-  );
+  const botDetail = useMemo(() => data?.find(bot => bot.id === id), [id, data]);
 
   const width = useAppSelector(selectExplorerWidth);
   const dragging = useAppSelector(selectExplorerDragging);

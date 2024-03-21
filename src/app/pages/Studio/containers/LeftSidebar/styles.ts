@@ -2,7 +2,6 @@ import type { SystemStyleObject } from '@chakra-ui/react';
 
 export const styles = {
   leftSidebar: {
-    zIndex: 10,
     width: '12',
     padding: '1',
     border: '1px',

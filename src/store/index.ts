@@ -4,12 +4,14 @@ import homeReducer from './home';
 import studioReducer from './studio';
 import cardTrayReducer from './studio/cardTray';
 import explorerReducer from './studio/explorer';
+import propertiesReducer from './studio/propertiesPanel';
 
 const rootReducer = combineReducers({
   home: homeReducer,
   studio: studioReducer,
   cardTray: cardTrayReducer,
   explorer: explorerReducer,
+  properties: propertiesReducer,
 });
 
 export const setupStore = (preloadedState?: Partial<RootState>) => {

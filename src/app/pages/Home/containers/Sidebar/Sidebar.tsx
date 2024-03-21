@@ -10,7 +10,7 @@ import {
 import { styles } from './styles';
 import { usePrepareHook } from './helpers';
 
-import { SidebarContent } from '../../components';
+import { SidebarContent } from './components';
 
 export const Sidebar = () => {
   const { sidebarOpen, isSmallerThanMd, onToggleSidebar } = usePrepareHook();

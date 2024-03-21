@@ -5,12 +5,11 @@ import ReactFlow, {
 } from 'reactflow';
 
 import { colors } from '@/styles';
+import { CanvasProvider } from '@studio/contexts';
 
-import { nodeTypes } from './nodeTypesMapping';
+import { ContextMenu } from './components';
 import { usePrepareHook } from './helpers';
-
-import { ContextMenu } from '../../components';
-import { CanvasProvider } from '../../contexts';
+import { nodeTypes } from './nodeTypesMapping';
 
 export const Canvas = () => {
   const { edges, nodes, onConnect, onEdgesChange, onNodesChange, onShowMenu } =
@@ -25,6 +24,7 @@ export const Canvas = () => {
       onContextMenu={onShowMenu}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
+      proOptions={{ hideAttribution: true }}
       connectionLineType={ConnectionLineType.SmoothStep}
     >
       <Background

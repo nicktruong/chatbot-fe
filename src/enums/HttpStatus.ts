@@ -1,3 +1,5 @@
+export type HttpStatusKey = keyof typeof HttpStatus;
+
 export enum HttpStatus {
   CONTINUE = 100,
   SWITCHING_PROTOCOLS = 101,

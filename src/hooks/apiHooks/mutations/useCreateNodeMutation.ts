@@ -4,17 +4,13 @@ import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 
 import { axiosClient } from '@/apis';
 import { queryKeys } from '@/constants';
-import type { CreateNode, DataResponse, Node } from '@/interfaces';
+import type { CreateNode, Node } from '@/interfaces';
 
 export const useCreateNodeMutation = ({
   mutationFn,
   mutationKey,
   ...options
-}: UseMutationOptions<
-  DataResponse<Node>,
-  AxiosError<ErrorResponse>,
-  CreateNode
->) =>
+}: UseMutationOptions<Node, AxiosError<ErrorResponse>, CreateNode>) =>
   useMutation({
     mutationKey: [queryKeys.CREATE_NODE],
     mutationFn: data =>

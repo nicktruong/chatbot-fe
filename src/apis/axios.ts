@@ -18,9 +18,7 @@ axiosClient.interceptors.request.use(config => {
 });
 
 axiosClient.interceptors.response.use(
-  response => {
-    return response;
-  },
+  response => response.data,
   (error: AxiosError) => {
     if (error.response?.status === HttpStatus.UNAUTHORIZED) {
       localStorage.removeItem(storageKeys.ACCESS_TOKEN);
