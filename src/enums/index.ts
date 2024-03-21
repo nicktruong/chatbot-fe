@@ -3,4 +3,5 @@ export * from './UserRole';
 export * from './FlowType';
 export * from './NodeType';
 export * from './FieldType';
+export * from './EdgeType';
 export * from './HttpStatus';

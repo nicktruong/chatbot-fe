@@ -9,6 +9,7 @@ import {
   useCreateEdgeMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
+import { EdgeType } from '@/enums';
 import { selectFlowId } from '@/store/studio';
 import { CanvasContext } from '@studio/contexts';
 
@@ -65,7 +66,11 @@ export const usePrepareHook = () => {
   const handleConnect = useCallback(
     (params: Connection) => {
       const { source } = params;
-      const connection = { ...params, type: 'smoothstep', data: source };
+      const connection = {
+        ...params,
+        data: source,
+        type: EdgeType.SMOOTH_STEP,
+      };
 
       setEdges(edges => {
         // One source only has one edge
