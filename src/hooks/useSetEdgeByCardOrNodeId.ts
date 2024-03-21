@@ -9,7 +9,7 @@ import { useGetEdgeByCardOrNodeId } from './apiHooks';
 export const useSetEdgeByCardOrNodeId = (id: string, type: CardOrNode) => {
   const { data: edgeData, isFetching } = useGetEdgeByCardOrNodeId({
     id,
-    type: CardOrNode.CARD,
+    type,
   });
 
   const { setEdges } = useContext(CanvasContext);

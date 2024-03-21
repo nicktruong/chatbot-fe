@@ -1,27 +1,39 @@
 import { useDebouncedCallback } from 'use-debounce';
 import { useCallback, useContext, useEffect } from 'react';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
-import { addEdge, Connection, XYPosition, OnNodesChange } from 'reactflow';
+import {
+  addEdge,
+  Connection,
+  XYPosition,
+  OnNodesChange,
+  OnEdgesChange,
+} from 'reactflow';
 
 import {
   useGetNodes,
   useAppSelector,
+  useAppDispatch,
   useCreateEdgeMutation,
+  useDeleteNodeMutation,
+  useDeleteEdgeMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
-import { EdgeType } from '@/enums';
-import { selectFlowId } from '@/store/studio';
+import { EdgeType, NodeTypeEnum } from '@/enums';
 import { CanvasContext } from '@studio/contexts';
+import { closeCardTray, selectFlowId } from '@/store/studio';
 
 import { MENU_ID } from './components';
 import { DEBOUNCE_TIME } from './constants';
 
 export const usePrepareHook = () => {
+  const dispatch = useAppDispatch();
   const flowId = useAppSelector(selectFlowId);
   const { data: nodesData, isFetching } = useGetNodes(flowId);
 
   const { mutate } = useCreateEdgeMutation({});
   const { show } = useContextMenu({ id: MENU_ID });
+  const { mutate: deleteNode } = useDeleteNodeMutation({});
+  const { mutate: deleteEdge } = useDeleteEdgeMutation({});
   const { mutate: updateNodePosition } = useChangeNodePositionMutation({});
 
   const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
@@ -49,17 +61,29 @@ export const usePrepareHook = () => {
     },
     DEBOUNCE_TIME,
   );
-
   const handleNodesChange: OnNodesChange = changes => {
-    changes.forEach(value => {
+    for (const value of changes) {
       switch (value.type) {
         case 'position':
           if (!value.position) return;
 
           changeNodePosition(value.id, value.position);
           break;
+        case 'remove':
+          const node = nodes.find(node => node.id === value.id);
+
+          if (
+            [NodeTypeEnum.START, NodeTypeEnum.END].includes(
+              node?.type as NodeTypeEnum,
+            )
+          ) {
+            return;
+          }
+
+          deleteNode(value.id);
+          break;
       }
-    });
+    }
     onNodesChange(changes);
   };
 
@@ -92,18 +116,34 @@ export const usePrepareHook = () => {
     [mutate, setEdges],
   );
 
+  const handleEdgesChange: OnEdgesChange = changes => {
+    changes.forEach(value => {
+      switch (value.type) {
+        case 'remove':
+          deleteEdge(value.id);
+          break;
+      }
+    });
+    onEdgesChange(changes);
+  };
+
   const handleShowMenu = (e: TriggerEvent) => {
     show({
       event: e,
     });
   };
 
+  const handleCloseCardTray = () => {
+    dispatch(closeCardTray());
+  };
+
   return {
     edges,
     nodes,
-    onEdgesChange,
     onConnect: handleConnect,
     onShowMenu: handleShowMenu,
+    onEdgesChange: handleEdgesChange,
     onNodesChange: handleNodesChange,
+    onCloseCardTray: handleCloseCardTray,
   };
 };

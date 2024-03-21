@@ -12,8 +12,15 @@ import { usePrepareHook } from './helpers';
 import { nodeTypes } from './nodeTypesMapping';
 
 export const Canvas = () => {
-  const { edges, nodes, onConnect, onEdgesChange, onNodesChange, onShowMenu } =
-    usePrepareHook();
+  const {
+    edges,
+    nodes,
+    onConnect,
+    onShowMenu,
+    onEdgesChange,
+    onNodesChange,
+    onCloseCardTray,
+  } = usePrepareHook();
 
   return (
     <ReactFlow
@@ -22,6 +29,7 @@ export const Canvas = () => {
       nodeTypes={nodeTypes}
       onConnect={onConnect}
       onContextMenu={onShowMenu}
+      onPaneClick={onCloseCardTray}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       proOptions={{ hideAttribution: true }}

@@ -5,5 +5,7 @@ export * from './useDeleteBotMutation';
 export * from './useCreateCardMutation';
 export * from './useCreateNodeMutation';
 export * from './useChangeNodePosition';
+export * from './useDeleteNodeMutation';
 export * from './useCreateEdgeMutation';
+export * from './useDeleteEdgeMutation';
 export * from './useUpdateFieldMutation';
