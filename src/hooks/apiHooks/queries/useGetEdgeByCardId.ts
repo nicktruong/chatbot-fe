@@ -13,7 +13,7 @@ export const useGetEdgeByCardOrNodeId = ({
   id: string;
   type: CardOrNode;
 }) =>
-  useQuery<Edge, AxiosError<ErrorResponse>>({
+  useQuery<Edge[], AxiosError<ErrorResponse>>({
     queryKey: [queryKeys.EDGE, id],
     queryFn: () =>
       axiosClient

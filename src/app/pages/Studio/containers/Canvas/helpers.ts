@@ -103,7 +103,7 @@ export const usePrepareHook = () => {
         // One source only has one edge
         // => Remove edge previously set for this source
         const newEdges = edges.filter(edge => {
-          return edge.data !== data && edge.target !== target;
+          return edge.data !== data;
         });
         return addEdge(connection, newEdges);
       });

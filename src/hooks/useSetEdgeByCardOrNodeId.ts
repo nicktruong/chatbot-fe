@@ -1,4 +1,4 @@
-import { Edge, addEdge } from 'reactflow';
+import { addEdge } from 'reactflow';
 import { useContext, useEffect } from 'react';
 
 import { CardOrNode, EdgeType } from '@/enums';
@@ -17,15 +17,17 @@ export const useSetEdgeByCardOrNodeId = (id: string, type: CardOrNode) => {
   useEffect(() => {
     if (!edgeData || isFetching) return;
 
-    const edge: Edge = {
-      id: edgeData.id,
-      type: EdgeType.SMOOTH_STEP,
-      source: edgeData.sourceNodeId,
-      target: edgeData.targetNodeId,
-      data: edgeData.cardId ?? edgeData.sourceNodeId,
-      sourceHandle: edgeData.cardId ?? edgeData.sourceNodeId,
-    };
+    edgeData.forEach(data => {
+      const edge = {
+        id: data.id,
+        type: EdgeType.SMOOTH_STEP,
+        source: data.sourceNodeId,
+        target: data.targetNodeId,
+        data: data.cardId ?? data.sourceNodeId,
+        sourceHandle: data.cardId ?? data.sourceNodeId,
+      };
 
-    setEdges(eds => addEdge(edge, eds));
+      setEdges(eds => addEdge(edge, eds));
+    });
   }, [edgeData, isFetching, setEdges]);
 };
