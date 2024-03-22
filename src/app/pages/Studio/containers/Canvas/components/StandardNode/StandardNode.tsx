@@ -30,6 +30,12 @@ export const StandardNode = ({ data: { id, name } }: NodeProps<Node>) => {
           </Box>
         </Box>
       </Box>
+      <CustomHandle
+        id={id}
+        type="source"
+        position={Position.Right}
+        style={{ top: 'unset', bottom: 22, right: -10 }}
+      />
     </Box>
   );
 };

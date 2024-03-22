@@ -61,6 +61,7 @@ export const usePrepareHook = () => {
     },
     DEBOUNCE_TIME,
   );
+
   const handleNodesChange: OnNodesChange = changes => {
     for (const value of changes) {
       switch (value.type) {
@@ -107,10 +108,15 @@ export const usePrepareHook = () => {
         return addEdge(connection, newEdges);
       });
 
+      const cardId =
+        sourceHandle === source || sourceHandle === null
+          ? undefined
+          : sourceHandle;
+
       mutate({
-        sourceNodeId: connection.source ?? '',
-        targetNodeId: connection.target ?? '',
-        cardId: connection.sourceHandle ?? undefined,
+        cardId,
+        sourceNodeId: source ?? '',
+        targetNodeId: target ?? '',
       });
     },
     [mutate, setEdges],

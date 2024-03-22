@@ -6,7 +6,6 @@ export interface CreateCard {
 }
 
 export interface IBotCard extends Base {
-  nodeId: string;
   position: number;
   cardTypeId: string;
   cardType?: CardType;
