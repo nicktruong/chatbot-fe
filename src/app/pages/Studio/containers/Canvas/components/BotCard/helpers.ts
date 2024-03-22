@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
 
 import {
   useAppDispatch,
@@ -7,12 +7,12 @@ import {
   useSetEdgeByCardOrNodeId,
 } from '@/hooks';
 import type { IBotCard } from '@/interfaces';
-import { selectPropertiesCard, setCard } from '@/store/studio';
+import { selectPropertiesData, setFocus } from '@/store/studio';
 import { CardOrNode, CardTypeEnum, FieldTypeEnum } from '@/enums';
 
 export const usePrepareHook = (card: IBotCard) => {
   const dispatch = useAppDispatch();
-  const activeCardId = useAppSelector(selectPropertiesCard)?.id;
+  const activeCardId = useAppSelector(selectPropertiesData)?.data.id;
 
   useSetEdgeByCardOrNodeId(card.id, CardOrNode.CARD);
   const { data: cardFields } = useGetCardFields(card.id);
@@ -36,8 +36,9 @@ export const usePrepareHook = (card: IBotCard) => {
     }
   }, [cardFields, card.cardType]);
 
-  const handleChangePropertiesPanel = () => {
-    dispatch(setCard(card));
+  const handleChangePropertiesPanel: MouseEventHandler = e => {
+    e.stopPropagation();
+    dispatch(setFocus({ data: card, type: CardOrNode.CARD }));
   };
 
   return {

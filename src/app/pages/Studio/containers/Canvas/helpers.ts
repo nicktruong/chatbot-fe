@@ -1,13 +1,14 @@
-import { useDebouncedCallback } from 'use-debounce';
-import { useCallback, useContext, useEffect } from 'react';
-import { TriggerEvent, useContextMenu } from 'react-contexify';
 import {
   addEdge,
   Connection,
   XYPosition,
   OnNodesChange,
   OnEdgesChange,
+  NodeMouseHandler,
 } from 'reactflow';
+import { useDebouncedCallback } from 'use-debounce';
+import { useCallback, useContext, useEffect } from 'react';
+import { TriggerEvent, useContextMenu } from 'react-contexify';
 
 import {
   useGetNodes,
@@ -18,9 +19,9 @@ import {
   useDeleteEdgeMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
-import { EdgeType, NodeTypeEnum } from '@/enums';
 import { CanvasContext } from '@studio/contexts';
-import { closeCardTray, selectFlowId } from '@/store/studio';
+import { CardOrNode, EdgeType, NodeTypeEnum } from '@/enums';
+import { closeCardTray, selectFlowId, setFocus } from '@/store/studio';
 
 import { MENU_ID } from './components';
 import { DEBOUNCE_TIME } from './constants';
@@ -143,6 +144,10 @@ export const usePrepareHook = () => {
     dispatch(closeCardTray());
   };
 
+  const handleChangePropertiesPanel: NodeMouseHandler = (e, node) => {
+    dispatch(setFocus({ ...node, type: CardOrNode.NODE }));
+  };
+
   return {
     edges,
     nodes,
@@ -151,5 +156,6 @@ export const usePrepareHook = () => {
     onEdgesChange: handleEdgesChange,
     onNodesChange: handleNodesChange,
     onCloseCardTray: handleCloseCardTray,
+    onChangePropertiesPanel: handleChangePropertiesPanel,
   };
 };

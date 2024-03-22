@@ -1,14 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useMutationState } from '@tanstack/react-query';
 
+import {
+  useGetCards,
+  useAppDispatch,
+  useAppSelector,
+  useSetEdgeByCardOrNodeId,
+} from '@/hooks';
 import { CardOrNode } from '@/enums';
 import { queryKeys } from '@/constants';
-import { openCardTray } from '@/store/studio';
 import type { CreateCard, IBotCard } from '@/interfaces';
-import { useAppDispatch, useGetCards, useSetEdgeByCardOrNodeId } from '@/hooks';
+import { openCardTray, selectPropertiesData } from '@/store/studio';
 
 export const usePrepareHook = (id: string) => {
   const dispatch = useAppDispatch();
+  const isActiveNode = useAppSelector(selectPropertiesData)?.data.id === id;
 
   const handleOpenCardTray = () => {
     dispatch(openCardTray(id));
@@ -34,5 +40,9 @@ export const usePrepareHook = (id: string) => {
     })),
   ];
 
-  return { cards: optimisticCards, onOpenCardTray: handleOpenCardTray };
+  return {
+    isActiveNode,
+    cards: optimisticCards,
+    onOpenCardTray: handleOpenCardTray,
+  };
 };

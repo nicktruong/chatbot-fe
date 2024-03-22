@@ -2,10 +2,10 @@ import type { SystemStyleObject } from '@chakra-ui/react';
 
 export const styles = {
   propertiesContent: {
-    width: '2xs',
     border: '1px',
     height: '100%',
     padding: [3, 2],
+    width: '17.75rem',
     borderRadius: 'lg',
     borderColor: 'gray.200',
     backgroundColor: 'gray.50',
@@ -37,5 +37,13 @@ export const styles = {
     _focusVisible: {
       borderColor: 'blue.700',
     },
+  },
+  desc: {
+    marginY: 3,
+    fontSize: 'xs',
+    fontWeight: 500,
+    overflow: 'auto',
+    color: 'gray.600',
+    maxHeight: '40px',
   },
 } satisfies Record<string, SystemStyleObject>;

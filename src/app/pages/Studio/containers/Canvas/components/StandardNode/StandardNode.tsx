@@ -11,7 +11,7 @@ import { BotCard } from '../BotCard';
 import { CustomHandle } from '../Handle';
 
 export const StandardNode = ({ data: { id, name } }: NodeProps<Node>) => {
-  const { cards, onOpenCardTray } = usePrepareHook(id);
+  const { cards, isActiveNode, onOpenCardTray } = usePrepareHook(id);
 
   return (
     <Box>
@@ -20,7 +20,14 @@ export const StandardNode = ({ data: { id, name } }: NodeProps<Node>) => {
         position={Position.Left}
         style={{ top: 22, left: -10 }}
       />
-      <Box sx={styles.container}>
+      <Box
+        sx={{
+          ...styles.container,
+          outlineColor: isActiveNode
+            ? 'blue.700'
+            : styles.container.outlineColor,
+        }}
+      >
         <Box sx={styles.nodeName}>{name}</Box>
         <Box sx={styles.nodeBody}>
           {cards?.map(card => <BotCard key={card.id} card={card} />)}

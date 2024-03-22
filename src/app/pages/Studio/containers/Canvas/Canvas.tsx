@@ -20,6 +20,7 @@ export const Canvas = () => {
     onEdgesChange,
     onNodesChange,
     onCloseCardTray,
+    onChangePropertiesPanel,
   } = usePrepareHook();
 
   return (
@@ -32,6 +33,7 @@ export const Canvas = () => {
       onPaneClick={onCloseCardTray}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
+      onNodeClick={onChangePropertiesPanel}
       proOptions={{ hideAttribution: true }}
       connectionLineType={ConnectionLineType.SmoothStep}
     >
