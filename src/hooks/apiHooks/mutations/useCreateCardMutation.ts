@@ -15,7 +15,7 @@ export const useCreateCardMutation = ({
   CreateCard
 >) =>
   useMutation({
-    mutationKey: [queryKeys.CREATE_CARD],
+    mutationKey: [queryKeys.CREATE_CARD, ...(mutationKey ?? [])],
     mutationFn: data =>
       axiosClient.post('/cards', data).then(({ data }) => data),
     ...options,

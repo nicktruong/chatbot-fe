@@ -19,16 +19,17 @@ export const usePrepareHook = () => {
   const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
 
+  const nodeId = useAppSelector(selectNodeId);
+  const cardTrayOpen = useAppSelector(selectCardTrayOpen);
+
   const { mutate } = useCreateCardMutation({
+    mutationKey: [nodeId],
     onSuccess: (_, { nodeId }) => {
       return queryClient.invalidateQueries({
         queryKey: [queryKeys.CARD, nodeId],
       });
     },
   });
-
-  const nodeId = useAppSelector(selectNodeId);
-  const cardTrayOpen = useAppSelector(selectCardTrayOpen);
 
   const { data: cardTypes } = useGetCardTypes();
   const cardGroups = Object.entries(
