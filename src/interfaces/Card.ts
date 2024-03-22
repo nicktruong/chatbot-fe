@@ -1,6 +1,7 @@
 import type { Base, CardType } from '.';
 
 export interface CreateCard {
+  id: string;
   nodeId: string;
   cardTypeId: string;
 }

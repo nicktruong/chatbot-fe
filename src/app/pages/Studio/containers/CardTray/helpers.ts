@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { useQueryClient } from '@tanstack/react-query';
 
 import {
@@ -45,7 +46,7 @@ export const usePrepareHook = () => {
 
   const handleAddCardToNode = (id: string) => () => {
     dispatch(closeCardTray());
-    mutate({ cardTypeId: id, nodeId });
+    mutate({ id: uuidv4(), cardTypeId: id, nodeId });
   };
 
   const mapGroupTypeToString = (groupType: string) => {

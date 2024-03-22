@@ -7,9 +7,16 @@ import {
   NodeMouseHandler,
 } from 'reactflow';
 import { useDebouncedCallback } from 'use-debounce';
-import { useCallback, useContext, useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { TriggerEvent, useContextMenu } from 'react-contexify';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 
+import {
+  setFocus,
+  selectFlowId,
+  closeCardTray,
+  selectPropertiesData,
+} from '@/store/studio';
 import {
   useGetNodes,
   useAppSelector,
@@ -17,24 +24,38 @@ import {
   useCreateEdgeMutation,
   useDeleteNodeMutation,
   useDeleteEdgeMutation,
+  useDeleteCardMutation,
   useChangeNodePositionMutation,
 } from '@/hooks';
+import { queryKeys } from '@/constants';
 import { CanvasContext } from '@studio/contexts';
 import { CardOrNode, EdgeType, NodeTypeEnum } from '@/enums';
-import { closeCardTray, selectFlowId, setFocus } from '@/store/studio';
 
 import { MENU_ID } from './components';
 import { DEBOUNCE_TIME } from './constants';
 
 export const usePrepareHook = () => {
+  const ref = useRef('');
+  const queryClient = useQueryClient();
+
   const dispatch = useAppDispatch();
   const flowId = useAppSelector(selectFlowId);
   const { data: nodesData, isFetching } = useGetNodes(flowId);
 
-  const { mutate } = useCreateEdgeMutation({});
   const { show } = useContextMenu({ id: MENU_ID });
+  const propertiesData = useAppSelector(selectPropertiesData);
+
+  const { mutate: createEdge } = useCreateEdgeMutation({});
   const { mutate: deleteNode } = useDeleteNodeMutation({});
   const { mutate: deleteEdge } = useDeleteEdgeMutation({});
+  const { mutate: deleteCard } = useDeleteCardMutation({
+    mutationKey: [ref.current],
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: [queryKeys.CARD, ref.current],
+      });
+    },
+  });
   const { mutate: updateNodePosition } = useChangeNodePositionMutation({});
 
   const { nodes, setNodes, onNodesChange, edges, setEdges, onEdgesChange } =
@@ -46,7 +67,7 @@ export const usePrepareHook = () => {
     const nodes = nodesData.map(data => ({
       data,
       id: data.id,
-      type: data.nodeType.type,
+      type: data.nodeType?.type,
       position: { x: data.x, y: data.y },
     }));
 
@@ -72,6 +93,18 @@ export const usePrepareHook = () => {
           changeNodePosition(value.id, value.position);
           break;
         case 'remove':
+          ref.current = value.id;
+
+          const focusItem = propertiesData;
+
+          if (
+            focusItem?.data?.id !== value.id &&
+            focusItem?.type === CardOrNode.CARD
+          ) {
+            deleteCard(focusItem?.data?.id);
+            return;
+          }
+
           const node = nodes.find(node => node.id === value.id);
 
           if (
@@ -114,13 +147,13 @@ export const usePrepareHook = () => {
           ? undefined
           : sourceHandle;
 
-      mutate({
+      createEdge({
         cardId,
         sourceNodeId: source ?? '',
         targetNodeId: target ?? '',
       });
     },
-    [mutate, setEdges],
+    [createEdge, setEdges],
   );
 
   const handleEdgesChange: OnEdgesChange = changes => {

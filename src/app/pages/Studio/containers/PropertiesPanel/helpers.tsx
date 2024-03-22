@@ -48,7 +48,7 @@ export const usePrepareHook = () => {
 
   const renderFields = () => {
     if (data?.type === CardOrNode.NODE) {
-      return <Text sx={styles.desc}>{data.data.nodeType.desc}</Text>;
+      return <Text sx={styles.desc}>{data.data.nodeType?.desc}</Text>;
     }
 
     return cardFields?.map(field => (
