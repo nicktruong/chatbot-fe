@@ -1,4 +1,4 @@
-import { ExplorerType } from '@/app/pages/Studio/constants';
+import { ExplorerType } from '@studio/constants';
 
 export interface ExplorerState {
   width: number;

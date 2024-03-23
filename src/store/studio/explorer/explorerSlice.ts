@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { ExplorerType, MIN_EXPLORER_WIDTH } from '@/app/pages/Studio/constants';
+import { ExplorerType, MIN_EXPLORER_WIDTH } from '@studio/constants';
 
 import type { ExplorerState } from './interfaces';
 

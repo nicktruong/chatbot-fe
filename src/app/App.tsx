@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { PrivateRoutes, mapRoutesToPath } from '@/utils';
+import { PrivateRoutes, renderRoutesFromList } from '@/utils';
 
 import { routes } from './routes';
 import { Home, Login, SignUp, Studio } from './pages';
@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<PrivateRoutes />}>
-          {mapRoutesToPath({
+          {renderRoutesFromList({
             element: <Home />,
             routes: [routes.home, routes.chatbot, routes.chatbotDetail],
           })}

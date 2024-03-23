@@ -17,6 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"],
+      "@home/*": ["./src/app/pages/Home/*"],
       "@studio/*": ["./src/app/pages/Studio/*"]
     }
   },

@@ -2,7 +2,7 @@ import { Position } from 'reactflow';
 import { Box, Text } from '@chakra-ui/react';
 
 import { GroupTypeEnum } from '@/enums';
-import { mapCardTypeToIcon } from '@/utils';
+import { renderCardTypeToIcon } from '@/utils';
 
 import { styles } from './styles';
 import { usePrepareHook } from './helpers';
@@ -21,7 +21,7 @@ export const BotCard = ({ card }: BotCardProps) => {
       outline={activeCardId === card.id ? '1.5px solid' : 'none'}
       outlineColor={activeCardId === card.id ? 'blue.700' : ''}
     >
-      {mapCardTypeToIcon(card.cardType?.type ?? '')}
+      {renderCardTypeToIcon(card.cardType?.type ?? '')}
       <Text sx={styles.cardContent}>{label}</Text>
       {card.cardType?.groupType === GroupTypeEnum.TRANSITION && (
         <CustomHandle

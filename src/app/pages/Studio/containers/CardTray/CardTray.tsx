@@ -10,7 +10,7 @@ import {
 
 import { styles } from './styles';
 import { usePrepareHook } from './helpers';
-import { mapCardTypeToIcon } from '@/utils';
+import { renderCardTypeToIcon } from '@/utils';
 
 export const CardTray = () => {
   const { cardGroups, cardTrayOpen, onAddCardToNode, mapGroupTypeToString } =
@@ -41,7 +41,7 @@ export const CardTray = () => {
                     sx={styles.cardType}
                     onClick={onAddCardToNode(cardType.id)}
                   >
-                    {mapCardTypeToIcon(cardType.type)}
+                    {renderCardTypeToIcon(cardType.type)}
                     <Text fontSize="xs" fontWeight={500}>
                       {cardType.name}
                     </Text>

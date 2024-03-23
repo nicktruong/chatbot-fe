@@ -3,5 +3,5 @@ export * from './error';
 export * from './string';
 export * from './loadable';
 export * from './PrivateRoutes';
-export * from './mapRoutesToPath';
-export * from './mapCardTypeToIcon';
+export * from './renderRoutesFromList';
+export * from './renderCardTypeToIcon';

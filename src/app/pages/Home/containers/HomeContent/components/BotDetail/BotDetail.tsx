@@ -9,9 +9,9 @@ import {
 } from '@chakra-ui/react';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
 
-import { formatRelative } from '@/utils';
+import { formatDate } from '@/utils';
 import { NoMessagesIcon } from '@/assets';
-import { BlankCard } from '@/app/pages/Home/components';
+import { BlankCard } from '@home/components';
 
 import { styles } from './styles';
 import { messages } from './messages';
@@ -61,7 +61,7 @@ export const BotDetail = () => {
                   </Box>
                   <Box>
                     <Text fontSize="sm">
-                      {formatRelative(botDetail.createdAt, { locale: lng })}
+                      {formatDate(botDetail.createdAt, 'relative', lng)}
                     </Text>
                   </Box>
                 </GridItem>
@@ -74,7 +74,7 @@ export const BotDetail = () => {
                   </Box>
                   <Box>
                     <Text fontSize="sm">
-                      {formatRelative(botDetail.updatedAt, { locale: lng })}
+                      {formatDate(botDetail.updatedAt, 'relative', lng)}
                     </Text>
                   </Box>
                 </GridItem>
@@ -88,7 +88,7 @@ export const BotDetail = () => {
                   <Box>
                     <Text fontSize="sm">
                       {botDetail.publishDate
-                        ? formatRelative(botDetail.publishDate, { locale: lng })
+                        ? formatDate(botDetail.publishDate, 'relative', lng)
                         : t(messages.never)}
                     </Text>
                   </Box>

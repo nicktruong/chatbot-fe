@@ -1,5 +1,4 @@
 import React from 'react';
-import { AxiosError } from 'axios';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';

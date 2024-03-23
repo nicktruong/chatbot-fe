@@ -4,7 +4,7 @@ import { MdOutlineTextFields } from 'react-icons/md';
 
 import { CardTypeEnum } from '@/enums';
 
-export const mapCardTypeToIcon = (cardType: string) => {
+export const renderCardTypeToIcon = (cardType: string) => {
   switch (cardType) {
     case CardTypeEnum.EXPRESSION:
       return <TbArrowMoveRight style={{ color: '#008001', width: '1rem' }} />;
