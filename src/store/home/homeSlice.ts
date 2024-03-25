@@ -1,11 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import type { HomeState } from './interfaces';
+
+const initialState: HomeState = {
+  tabIndex: 0,
+  sidebarOpen: false,
+};
+
 const homeSlice = createSlice({
   name: 'home',
-  initialState: {
-    tabIndex: 0,
-    sidebarOpen: false,
-  },
+  initialState,
   reducers: {
     setTabIndex: (state, action: PayloadAction<number>) => {
       state.tabIndex = action.payload;

@@ -7,7 +7,7 @@ import type { ExplorerState } from './interfaces';
 const initialState: ExplorerState = {
   dragging: false,
   width: MIN_EXPLORER_WIDTH,
-  explorer: ExplorerType.FLOW,
+  prevExplorer: ExplorerType.FLOW,
   currentExplorer: ExplorerType.FLOW,
 };
 
@@ -20,7 +20,7 @@ const explorerSlice = createSlice({
       state.currentExplorer = action.payload;
 
       if (action.payload) {
-        state.explorer = action.payload;
+        state.prevExplorer = action.payload;
       }
     },
     setDragging: (state, action: PayloadAction<boolean>) => {
@@ -33,7 +33,7 @@ const explorerSlice = createSlice({
         state.currentExplorer = null;
       } else if (width > 0) {
         state.width = width;
-        state.currentExplorer = state.explorer;
+        state.currentExplorer = state.prevExplorer;
       }
     },
   },

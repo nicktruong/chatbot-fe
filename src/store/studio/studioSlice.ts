@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type { StudioState } from './interfaces';
 
@@ -6,7 +6,6 @@ const initialState: StudioState = {
   flowId: '',
 };
 
-// TODO: Cache previous width before closing
 const studioSlice = createSlice({
   name: 'studio',
   initialState,

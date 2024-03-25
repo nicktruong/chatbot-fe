@@ -3,8 +3,8 @@ import { createSelector } from 'reselect';
 import type { RootState } from '@/store';
 
 export const selectExplorer = createSelector(
-  [(state: RootState) => state.explorer.explorer],
-  explorer => explorer,
+  [(state: RootState) => state.explorer.prevExplorer],
+  prevExplorer => prevExplorer,
 );
 
 export const selectCurrentExplorer = createSelector(
