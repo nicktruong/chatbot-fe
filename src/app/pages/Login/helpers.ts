@@ -23,6 +23,8 @@ export const usePrepareHook = () => {
     onSuccess: data => {
       // TODO: Save refreshToken to cookies when implemented corresponding endpoint
       localStorage.setItem(storageKeys.ACCESS_TOKEN, data.accessToken);
+      localStorage.setItem(storageKeys.REFRESH_TOKEN, data.refreshToken);
+
       navigate(routes.home);
     },
   });
