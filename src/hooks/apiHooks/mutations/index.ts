@@ -1,5 +1,6 @@
 export * from './useLoginMutation';
 export * from './useSignUpMutation';
+export * from './useLogoutMutation';
 export * from './useCreateBotMutation';
 export * from './useDeleteBotMutation';
 export * from './useCreateCardMutation';

@@ -8,6 +8,7 @@ import type { ErrorResponse, Message } from '@/interfaces';
 
 export const useGetMessages = (botId: string) =>
   useQuery<Message[], AxiosError<ErrorResponse>>({
+    enabled: !!botId,
     queryKey: [queryKeys.MESSAGE, botId],
     queryFn: () =>
       axiosClient.get(`/messages/${botId}`).then(({ data }) => data),
