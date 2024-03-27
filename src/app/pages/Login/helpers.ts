@@ -4,11 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocation, useNavigate } from 'react-router';
 
 import { routes } from '@/app/routes';
-import { storageKeys } from '@/constants';
+import { StorageKeys } from '@/enums';
+import { SettingsManager } from '@/utils';
 import { useLoginMutation } from '@/hooks';
 
 import { messages } from './messages';
 import { LoginSchema, type LoginSchemaType } from './schema';
+
+const settingsManager = SettingsManager.getInstance();
 
 export const usePrepareHook = () => {
   const navigate = useNavigate();
@@ -22,8 +25,8 @@ export const usePrepareHook = () => {
   } = useLoginMutation({
     onSuccess: data => {
       // TODO: Save refreshToken to cookies when implemented corresponding endpoint
-      localStorage.setItem(storageKeys.ACCESS_TOKEN, data.accessToken);
-      localStorage.setItem(storageKeys.REFRESH_TOKEN, data.refreshToken);
+      settingsManager.setItem(StorageKeys.ACCESS_TOKEN, data.accessToken);
+      settingsManager.setItem(StorageKeys.REFRESH_TOKEN, data.refreshToken);
 
       navigate(routes.home);
     },

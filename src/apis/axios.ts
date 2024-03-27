@@ -1,8 +1,10 @@
 import axios, { AxiosError } from 'axios';
 
-import { HttpStatus } from '@/enums';
 import { routes } from '@/app/routes';
-import { storageKeys } from '@/constants';
+import { SettingsManager } from '@/utils';
+import { HttpStatus, StorageKeys } from '@/enums';
+
+const settingsManager = SettingsManager.getInstance();
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -11,7 +13,8 @@ export const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem(storageKeys.ACCESS_TOKEN);
+  const accessToken = settingsManager.getItem<string>(StorageKeys.ACCESS_TOKEN);
+
   config.headers.Authorization = accessToken
     ? `Bearer ${accessToken}`
     : undefined;
@@ -19,6 +22,7 @@ axiosClient.interceptors.request.use(config => {
   return config;
 });
 
+// Prevent multiple calls to refresh token endpoint when invalidate
 let refreshTokenPromise: undefined | Promise<any>;
 
 axiosClient.interceptors.response.use(
@@ -28,25 +32,27 @@ axiosClient.interceptors.response.use(
 
     if (error.response?.status === HttpStatus.UNAUTHORIZED && originalRequest) {
       if (!refreshTokenPromise) {
-        const refreshToken = localStorage.getItem(storageKeys.REFRESH_TOKEN);
+        const refreshToken = settingsManager.getItem<string>(
+          StorageKeys.REFRESH_TOKEN,
+        );
 
-        refreshTokenPromise = axios.post(`${baseURL}/refresh`, {
+        refreshTokenPromise = axiosClient.post(`${baseURL}/refresh`, {
           refreshToken,
         });
       }
 
       return refreshTokenPromise
         ?.then(({ data }) => {
-          const { accessToken, refreshToken } = data.data;
-          localStorage.setItem(storageKeys.ACCESS_TOKEN, accessToken);
-          localStorage.setItem(storageKeys.REFRESH_TOKEN, refreshToken);
+          const { accessToken, refreshToken } = data;
+          settingsManager.setItem(StorageKeys.ACCESS_TOKEN, accessToken);
+          settingsManager.setItem(StorageKeys.REFRESH_TOKEN, refreshToken);
 
           // Required to return axiosClient to "continue" the request
           return axiosClient(originalRequest);
         })
         .catch(error => {
-          localStorage.removeItem(storageKeys.ACCESS_TOKEN);
-          localStorage.removeItem(storageKeys.REFRESH_TOKEN);
+          settingsManager.removeItem(StorageKeys.ACCESS_TOKEN);
+          settingsManager.removeItem(StorageKeys.REFRESH_TOKEN);
           window.location.pathname !== routes.login && window.location.reload();
 
           throw error;

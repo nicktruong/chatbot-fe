@@ -8,11 +8,13 @@ import {
   useLogoutMutation,
 } from '@/hooks';
 import { routes } from '@/app/routes';
-import { FlowTypeEnum } from '@/enums';
-import { storageKeys } from '@/constants';
+import { SettingsManager } from '@/utils';
+import { StorageKeys, FlowTypeEnum } from '@/enums';
 import { setTabIndex, toggleSidebar } from '@/store/home';
 
 import { messages } from './messages';
+
+const settingsManager = SettingsManager.getInstance();
 
 export const usePrepareHook = () => {
   const navigate = useNavigate();
@@ -27,8 +29,8 @@ export const usePrepareHook = () => {
 
   const { mutate } = useLogoutMutation({
     onSuccess: () => {
-      localStorage.removeItem(storageKeys.ACCESS_TOKEN);
-      localStorage.removeItem(storageKeys.REFRESH_TOKEN);
+      settingsManager.removeItem(StorageKeys.ACCESS_TOKEN);
+      settingsManager.removeItem(StorageKeys.REFRESH_TOKEN);
       window.location.reload();
     },
   });
